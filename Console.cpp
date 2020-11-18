@@ -1,14 +1,21 @@
-#include<iostream>
-#include<fstream>
-#include"Console.h"
-#include"function.h"
-#include<Windows.h>
+#include <Windows.h>
+
+#include <iostream>
+#include <fstream>
+#include "Console.h"
+#include "function.h"
 
 using namespace std;
 
-
 HANDLE hConsoleOutput;
 HANDLE hConsoleInput;
+void FixConsoleWindow()
+{
+	HWND consoleWindow = GetConsoleWindow();
+	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
+	style = style & ~(WS_MAXIMIZEBOX) & ~(WS_THICKFRAME);
+	SetWindowLong(consoleWindow, GWL_STYLE, style);
+}
 
 // Resize the Console Window
 void resizeConsole(SHORT width, SHORT height)
@@ -18,8 +25,8 @@ void resizeConsole(SHORT width, SHORT height)
 	GetWindowRect(console, &r);
 	MoveWindow(console, r.left, r.top, width, height, TRUE);*/
 
-	COORD crd = { width, height };
-	SMALL_RECT rec = { 0, 0, width - 1, height - 1 };
+	COORD crd = {width, height};
+	SMALL_RECT rec = {0, 0, width - 1, height - 1};
 	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleWindowInfo(hConsoleOutput, TRUE, &rec);
 	SetConsoleScreenBufferSize(hConsoleOutput, crd);
@@ -29,7 +36,7 @@ void resizeConsole(SHORT width, SHORT height)
 void clrscr(void)
 {
 	CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info;
-	COORD Home = { 0, 0 };
+	COORD Home = {0, 0};
 	DWORD dummy;
 
 	hConsoleOutput = GetStdHandle(STD_INPUT_HANDLE);
@@ -44,7 +51,7 @@ void clrscr(void)
 // Move the cursor.
 void gotoXY(SHORT x, SHORT y)
 {
-	COORD Cursor_an_Pos = { x, y };
+	COORD Cursor_an_Pos = {x, y};
 	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(hConsoleOutput, Cursor_an_Pos);
 }
@@ -93,23 +100,22 @@ void setBackgroundColor(WORD color)
 
 	WORD wAttributes = screen_buffer_info.wAttributes;
 	color &= 0x000f;
-	color <<= 4; // Dich trai 3 bit de phu hop voi mau nen
+	color <<= 4;		   // Dich trai 3 bit de phu hop voi mau nen
 	wAttributes &= 0xff0f; // Cai 0 cho 1 bit chu nhay va 3 bit mau nen
 	wAttributes |= color;
 
 	SetConsoleTextAttribute(hConsoleOutput, wAttributes);
 }
 
-void resizeText(int x, int y) {
-	PCONSOLE_FONT_INFOEX font = new CONSOLE_FONT_INFOEX();
-	font->cbSize = sizeof(CONSOLE_FONT_INFOEX);
-	GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
-	font->dwFontSize.X = x;
-	font->dwFontSize.Y = y;
-	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
-
-
-}
+// void resizeText(int x, int y)
+// {
+// 	PCONSOLE_FONT_INFOEX font = new CONSOLE_FONT_INFOEX();
+// 	font->cbSize = sizeof(CONSOLE_FONT_INFOEX);
+// 	GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
+// 	font->dwFontSize.X = x;
+// 	font->dwFontSize.Y = y;
+// 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
+// }
 WORD textattr()
 {
 	CONSOLE_SCREEN_BUFFER_INFO ConsoleInfo;
@@ -153,8 +159,8 @@ void Cursor(BOOL bVisible, DWORD dwSize)
 // Delete number of rows, SStartPos - Row start; SNumberRow: Number of rows.
 void deleteRow(SHORT SStartPos, SHORT SNumberRow)
 {
-	CONSOLE_SCREEN_BUFFER_INFO  ConsoleInfo;
-	COORD Pos = { 0, SStartPos };
+	CONSOLE_SCREEN_BUFFER_INFO ConsoleInfo;
+	COORD Pos = {0, SStartPos};
 	DWORD Tmp;
 	GetConsoleScreenBufferInfo(hConsoleOutput, &ConsoleInfo);
 	FillConsoleOutputCharacter(hConsoleOutput, ' ', ConsoleInfo.dwSize.X * SNumberRow, Pos, &Tmp);
@@ -177,51 +183,67 @@ void deleteRow(SHORT SStartPos, SHORT SNumberRow)
 //Light Magenta | 13
 //Yellow | 14
 //White | 15
-void Black() {
+void Black()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 }
-void Blue() {
+void Blue()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
 }
-void Green() {
+void Green()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 }
-void Cyan() {
+void Cyan()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
 }
-void Red() {
+void Red()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 }
-void Magenta() {
+void Magenta()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5);
 }
-void Brown() {
+void Brown()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 }
-void LightGray() {
+void LightGray()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
-void DarkGray() {
+void DarkGray()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
 }
-void LightBlue() {
+void LightBlue()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
 }
-void LightGreen() {
+void LightGreen()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 }
-void LightCyan() {
+void LightCyan()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
 }
-void LightRed() {
+void LightRed()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 }
-void LightMagenta() {
+void LightMagenta()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
 }
-void Yellow() {
+void Yellow()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 }
-void White() {
+void White()
+{
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
