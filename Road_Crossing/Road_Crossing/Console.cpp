@@ -107,20 +107,28 @@ void setBackgroundColor(WORD color)
 	SetConsoleTextAttribute(hConsoleOutput, wAttributes);
 }
 
-// void resizeText(int x, int y)
-// {
-// 	PCONSOLE_FONT_INFOEX font = new CONSOLE_FONT_INFOEX();
-// 	font->cbSize = sizeof(CONSOLE_FONT_INFOEX);
-// 	GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
-// 	font->dwFontSize.X = x;
-// 	font->dwFontSize.Y = y;
-// 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
-// }
+ void resizeText(int x, int y)
+ {
+ 	PCONSOLE_FONT_INFOEX font = new CONSOLE_FONT_INFOEX();
+ 	font->cbSize = sizeof(CONSOLE_FONT_INFOEX);
+ 	GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
+ 	font->dwFontSize.X = x;
+ 	font->dwFontSize.Y = y;
+ 	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, font);
+ }
 WORD textattr()
 {
 	CONSOLE_SCREEN_BUFFER_INFO ConsoleInfo;
 	GetConsoleScreenBufferInfo(hConsoleOutput, &ConsoleInfo);
 	return ConsoleInfo.wAttributes;
+}
+void hidecursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
 }
 
 void resettextattr()
