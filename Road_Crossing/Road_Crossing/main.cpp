@@ -7,6 +7,7 @@ using namespace std;
 
 
 int main(){
-	resizeText(10, 18);
+	resizeText(12, 20);
+	FixConsoleWindow();
     return 0;
 }
