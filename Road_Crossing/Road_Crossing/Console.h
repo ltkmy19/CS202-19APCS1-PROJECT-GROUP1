@@ -1,9 +1,14 @@
 #ifndef CONSOLE_H_
 #define CONSOLE_H_
-#include <Windows.h>
 #include <iostream>
-#include <Shlwapi.h>
+#include <Windows.h>
 #include <conio.h>
+#include <math.h>
+#include <thread>
+#include <fstream>
+#include <string>
+#include <map>
+#include <Mmsystem.h>
 
 void resizeConsole(SHORT width, SHORT height);
 void FixConsoleWindow();
