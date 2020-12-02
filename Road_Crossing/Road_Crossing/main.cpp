@@ -33,23 +33,23 @@ int main() {
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
 	
 
-	string Menu[4] = { "New Game", "Load Game", "Setting", "Quit" };
+	string Menu[4] = { "--New Game--", "--Load Game--", "--Setting--", "--Quit--" };
 	int pointer = 0;
-
+	int line = 2;
 	while (true)
 	{
 		system("cls");
-		ifstream Reader("1.txt");             //Open file
+		ifstream Reader("TextGraphic.txt");            
 
-		string Art = getFileContents(Reader);       //Get file
+		string Art = getFileContents(Reader);     
 
-		cout << Art << std::endl;               //Print it to the screen
+		cout << Art << endl;              
 
 		Reader.close();
 
 		for (int i = 0; i < 4; ++i)
 		{
-			gotoXY(17, 10+i);
+			gotoXY(30, 10+i+line);
 			if (i == pointer)
 			{
 				Green();
