@@ -39,7 +39,7 @@ int main() {
 	while (true)
 	{
 		system("cls");
-
+		LightMagenta();
 		ifstream Reader("TextGraphic.txt");            
 
 		string Art = getFileContents(Reader);     
@@ -47,7 +47,7 @@ int main() {
 		cout << Art << endl;              
 
 		Reader.close();
-
+		White();
 		for (int i = 0; i < 4; ++i)
 		{
 			gotoXY(80, 3+i);
@@ -89,12 +89,12 @@ int main() {
 				{
 				case 0:
 				{
-					Sleep(1000);
+					Sleep(100);
 					break;
 				}
 				case 1:
 				{
-					Sleep(1000);
+					Sleep(100);
 					break;
 				}
 				case 3:
