@@ -1,11 +1,7 @@
-#include <Windows.h>
 
-#include <iostream>
-#include <fstream>
 #include "Console.h"
 
 
-using namespace std;
 
 HANDLE hConsoleOutput;
 HANDLE hConsoleInput;
@@ -20,10 +16,7 @@ void FixConsoleWindow()
 // Resize the Console Window
 void resizeConsole(SHORT width, SHORT height)
 {
-	/*HWND console = GetConsoleWindow();
-	RECT r;
-	GetWindowRect(console, &r);
-	MoveWindow(console, r.left, r.top, width, height, TRUE);*/
+
 
 	COORD crd = {width, height};
 	SMALL_RECT rec = {0, 0, width - 1, height - 1};
@@ -100,8 +93,8 @@ void setBackgroundColor(WORD color)
 
 	WORD wAttributes = screen_buffer_info.wAttributes;
 	color &= 0x000f;
-	color <<= 4;		   // Dich trai 3 bit de phu hop voi mau nen
-	wAttributes &= 0xff0f; // Cai 0 cho 1 bit chu nhay va 3 bit mau nen
+	color <<= 4;		  
+	wAttributes &= 0xff0f; 
 	wAttributes |= color;
 
 	SetConsoleTextAttribute(hConsoleOutput, wAttributes);
@@ -144,18 +137,15 @@ void setColorBGTextXY(SHORT x, SHORT y, WORD color, WORD background, LPSTR str, 
 	setBackgroundColor(background);
 	setColor(color);
 
-	/*In duoc nhieu chu hon*/
 	va_list args;
 	va_start(args, str);
 	vprintf(str, args);
 	va_end(args);
-	/*In duoc nhieu chu hon*/
 
 	resettextattr();
 	//setColor(7);
 }
 
-// Show the cursor.
 void Cursor(BOOL bVisible, DWORD dwSize)
 {
 	CONSOLE_CURSOR_INFO ConsoleCursorInfo;

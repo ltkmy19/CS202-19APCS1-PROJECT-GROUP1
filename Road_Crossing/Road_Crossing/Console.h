@@ -22,6 +22,7 @@ void setBackgroundColor(WORD color);
 void resizeText(int x, int y);
 void setColorBGTextXY(SHORT x, SHORT y, WORD color, WORD background, LPSTR str, ...);
 void Cursor(BOOL bVisible = TRUE, DWORD dwSize = 25);
+void hidecursor();
 void deleteRow(SHORT SStartPos, SHORT SNumberRow);
 void Black();
 void Blue();
