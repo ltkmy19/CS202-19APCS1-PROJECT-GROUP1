@@ -39,6 +39,7 @@ int main() {
 	while (true)
 	{
 		system("cls");
+
 		ifstream Reader("TextGraphic.txt");            
 
 		string Art = getFileContents(Reader);     
@@ -49,7 +50,7 @@ int main() {
 
 		for (int i = 0; i < 4; ++i)
 		{
-			gotoXY(30, 10+i+line);
+			gotoXY(80, 3+i);
 			if (i == pointer)
 			{
 				Green();
@@ -113,7 +114,6 @@ int main() {
 			Sleep(150);
 		}
 		system("pause >nul");
-
 
 		return 0;
 	}
