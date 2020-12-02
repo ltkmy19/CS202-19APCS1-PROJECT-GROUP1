@@ -1,5 +1,6 @@
 #ifndef _TRAFFIC_LIGHT_H_
 #define _TRAFFIC_LIGHT_H_
+#include"Console.h"
 
 class Lights
 {
@@ -12,10 +13,5 @@ private:
 
 };
 
-void Lights::RedLight(int x, int y) {
 
-}
-void Lights::GreenLight(int x, int y) {
-
-}
 #endif // !_TRAFFIC_LIGHT_H_

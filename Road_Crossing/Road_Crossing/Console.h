@@ -9,6 +9,7 @@
 #include <string>
 #include <map>
 #include <Mmsystem.h>
+using namespace std;
 
 void resizeConsole(SHORT width, SHORT height);
 void FixConsoleWindow();

@@ -1,9 +1,5 @@
-#include<windows.h>
-#include<iostream>
-#include"Traffic_Light.h"
-#include"Console.h"
 
-using namespace std;
+#include"Traffic_Light.h"
 
 
 int main(){
