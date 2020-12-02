@@ -1,5 +1,4 @@
-#ifndef CONSOLE_H_
-#define CONSOLE_H_
+#pragma once
 #include <iostream>
 #include <Windows.h>
 #include <conio.h>
@@ -9,6 +8,7 @@
 #include <string>
 #include <map>
 #include <Mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
 using namespace std;
 
 void resizeConsole(SHORT width, SHORT height);
@@ -40,4 +40,4 @@ void LightRed();
 void LightMagenta();
 void Yellow();
 void White();
-#endif
+
