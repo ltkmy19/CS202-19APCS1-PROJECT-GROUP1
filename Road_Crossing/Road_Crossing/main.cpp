@@ -26,7 +26,16 @@ int main() {
 		string Art = getFileContents(Reader);     
 
 		cout << Art << endl;     
-
+		gotoXY(76, 5);
+		Yellow();
+		if (sound == 0) {
+			cout << "OFF";
+			mciSendString("pause  WeWillRockYou.mp3", NULL, 0, NULL);
+		}
+		else {
+			cout << "ON";
+			mciSendString("play  WeWillRockYou.mp3 repeat", NULL, 0, NULL);
+		}
 		Green();
 		gotoXY(70, 1);
 		cout << "MENU" << endl;
