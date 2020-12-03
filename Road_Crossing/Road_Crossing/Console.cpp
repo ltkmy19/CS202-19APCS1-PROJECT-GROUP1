@@ -165,6 +165,30 @@ void deleteRow(SHORT SStartPos, SHORT SNumberRow)
 	FillConsoleOutputAttribute(hConsoleOutput, 15, ConsoleInfo.dwSize.X * SNumberRow, Pos, &Tmp);
 	SetConsoleCursorPosition(hConsoleOutput, Pos);
 }
+void ProgressBar() {
+	float progress = 0.0;
+	while (progress < 1.0) {
+		Sleep(100);
+		int barWidth = 70;
+		gotoXY(1, 12);
+		cout << progress * 100 << "%" << endl;
+		cout << "[";
+		int pos = barWidth * progress;
+		for (int i = 0; i < barWidth; ++i) {
+			if (i < pos) {
+				cout << "=";
+			}
+			else if (i == pos) {
+				cout << ">";
+			}
+			else {
+				cout << " ";
+			}
+		}
+		cout << "] " << 100 << " %\r";
+		progress += 0.16;
+	}
+}
 //Black | 0
 //Blue | 1
 //Green | 2

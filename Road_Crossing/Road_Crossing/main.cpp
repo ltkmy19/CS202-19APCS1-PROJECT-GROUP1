@@ -87,6 +87,10 @@ int main() {
 				case 0:
 				{
 					system("cls");
+					ProgressBar();
+					system("cls");
+					gotoXY(45, 12);
+					cout << "Surprise!!!" << endl;
 					//Game();
 					system("pause >nul");
 					break;
@@ -94,6 +98,9 @@ int main() {
 				case 1:
 				{
 					system("cls");
+					gotoXY(45, 12);
+
+					cout << "Surprise!!!" << endl;
 					//LoadGame();
 					system("pause >nul");
 
