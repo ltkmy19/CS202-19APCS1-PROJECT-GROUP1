@@ -15,7 +15,8 @@ int main() {
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
-	int line = 2;
+	int sound = 1;
+	
 	while (true)
 	{
 		system("cls");
@@ -25,9 +26,9 @@ int main() {
 		string Art = getFileContents(Reader);     
 
 		cout << Art << endl;     
+
 		Green();
 		gotoXY(70, 1);
-
 		cout << "MENU" << endl;
 		Reader.close();
 		White();
@@ -71,34 +72,41 @@ int main() {
 			}
 			else if (GetAsyncKeyState(VK_RETURN) != 0)
 			{
-				system("cls");
 
 				switch (pointer)
 				{
 				case 0:
 				{
+					system("cls");
+
 					system("pause >nul");
 					break;
 				}
 				case 1:
 				{
+					system("cls");
+
 					system("pause >nul");
 
 					break;
 				}
 				case 2:
-				{
-					LightMagenta();
-					ifstream Reader("TextGraphic.txt");
+				{	
 
-					string Art = getFileContents(Reader);
-
-					cout << Art << endl;
+					if (sound == 1) {
+						sound = 0;
+					}
+					else {
+						sound = 1;
+					}
 					
 					break;
+
 				}
 				case 3:
 				{
+					system("cls");
+
 					LightMagenta();
 					ifstream Reader("TextGraphic.txt");
 
@@ -109,21 +117,37 @@ int main() {
 				}
 				case 4:
 				{
+					system("cls");
+
+					gotoXY(70, 1);
+					Green();
+					cout << "TUTORIAL" << endl;
+					int pos = 3;
 					LightMagenta();
 					ifstream Reader("TextGraphic.txt");
-
 					string Art = getFileContents(Reader);
-
 					cout << Art << endl;
-					gotoXY(70, 5);
-
-					cout << "Using w,a,s,d keys to move up, left, down, right.";
-					cout << "There are 10 rounds for the game. Pass all of them to win a trophy.";
+					gotoXY(70, pos);
+					LightGray();
+					cout << "[w]: up"<<endl;
+					gotoXY(70, pos+1);
+					White();
+					cout << "[a]: left" << endl;
+					LightGray();
+					gotoXY(70, pos + 2);
+					cout << "[d]: right" << endl;
+					White();
+					gotoXY(70, pos + 3);
+					cout << "[s]: down" << endl;
+					gotoXY(60, pos + 5);
+					Red();
+					cout << "There are 10 rounds for the game."<<endl;
 					break;
 				}
 				case 5:
 				{
-					
+					system("cls");
+
 					return 0;
 					break;
 				}
