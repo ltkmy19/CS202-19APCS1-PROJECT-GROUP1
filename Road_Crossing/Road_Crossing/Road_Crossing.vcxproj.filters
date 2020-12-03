@@ -24,12 +24,18 @@
     <ClCompile Include="Traffic_Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Traffic_Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

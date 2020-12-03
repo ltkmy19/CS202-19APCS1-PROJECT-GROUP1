@@ -1,26 +1,6 @@
 
 #include"Traffic_Light.h"
-string getFileContents(std::ifstream& File)
-{
-	std::string Lines = "";       
-
-	if (File)                      
-	{
-		while (File.good())
-		{
-			std::string TempLine;                 
-			std::getline(File, TempLine);        
-			TempLine += "\n";                      
-
-			Lines += TempLine;                     
-		}
-		return Lines;
-	}
-	else                          
-	{
-		return "ERROR File does not exist.";
-	}
-}
+#include"Files.h"
 
 
 int main() {
@@ -90,11 +70,14 @@ int main() {
 				case 0:
 				{
 					system("cls");
+					system("pause >nul");
 					break;
 				}
 				case 1:
 				{
 					system("cls");
+					system("pause >nul");
+
 					break;
 				}
 				case 2:
