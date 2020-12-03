@@ -31,7 +31,7 @@ int main() {
 	
 
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
-	
+	int character = 0;//male
 
 	string Menu[4] = { "--New Game--", "--Load Game--", "--Setting--", "--Quit--" };
 	int pointer = 0;
@@ -50,7 +50,7 @@ int main() {
 		White();
 		for (int i = 0; i < 4; ++i)
 		{
-			gotoXY(80, 3+i);
+			gotoXY(80, 3 + i + line);
 			if (i == pointer)
 			{
 				Green();
@@ -89,12 +89,17 @@ int main() {
 				{
 				case 0:
 				{
-					Sleep(100);
+					system("cls");
 					break;
 				}
 				case 1:
 				{
-					Sleep(100);
+					system("cls");
+					break;
+				}
+				case 2:
+				{
+
 					break;
 				}
 				case 3:
@@ -110,7 +115,6 @@ int main() {
 			}
 				
 			}
-
 			Sleep(150);
 		}
 		system("pause >nul");
