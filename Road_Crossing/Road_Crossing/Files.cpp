@@ -1,15 +1,15 @@
 #include"Files.h"
 
-string getFileContents(std::ifstream& File)
+string getFileContents(ifstream& File)
 {
-	std::string Lines = "";
+	string Lines = "";
 
 	if (File)
 	{
 		while (File.good())
 		{
-			std::string TempLine;
-			std::getline(File, TempLine);
+			string TempLine;
+			getline(File, TempLine);
 			TempLine += "\n";
 
 			Lines += TempLine;

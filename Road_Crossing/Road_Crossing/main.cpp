@@ -87,14 +87,14 @@ int main() {
 				case 0:
 				{
 					system("cls");
-
+					//Game();
 					system("pause >nul");
 					break;
 				}
 				case 1:
 				{
 					system("cls");
-
+					//LoadGame();
 					system("pause >nul");
 
 					break;
@@ -156,13 +156,19 @@ int main() {
 				case 5:
 				{
 					system("cls");
-
+					gotoXY(35, 10);
+					LightMagenta();
+					ifstream Reader("ByeBye.txt");
+					string Art = getFileContents(Reader);
+					cout << Art << endl;
+					White();
 					return 0;
 					break;
 				}
 			
 				default:
 				{
+					
 					break;
 				}
 				}
