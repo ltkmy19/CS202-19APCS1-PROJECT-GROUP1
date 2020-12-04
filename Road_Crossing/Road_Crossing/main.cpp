@@ -158,7 +158,30 @@ int main() {
 					gotoXY(posx-1, posy +3);
 					cout << "[1]";
 
-
+					posx = 85;
+					posy = 4;
+					White();
+					gotoXY(posx, posy);
+					map[1][1] = char(219);
+					map[0][2] = '/';
+					map[2][0] = '/';
+					map[0][0] = char(92);
+					map[2][2] = char(92);
+					map[1][0] = char(254);
+					gotoXY(posx, posy);
+					cout << map[1][1];
+					gotoXY(posx - 1, posy + 1);
+					cout << map[0][2];
+					gotoXY(posx + 1, posy - 1);
+					cout << map[2][0];
+					gotoXY(posx - 1, posy - 1);
+					cout << map[0][0];
+					gotoXY(posx + 1, posy + 1);
+					cout << map[2][2];
+					gotoXY(posx, posy - 1);
+					cout << map[1][0];
+					gotoXY(posx - 1, posy + 3);
+					cout << "[2]";
 					
 					character= _getch();
 					break;
