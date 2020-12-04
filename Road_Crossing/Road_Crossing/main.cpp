@@ -9,7 +9,7 @@ int main() {
 	
 
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
-	char character = '1';//male
+	int character = 1;//male
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
@@ -36,17 +36,15 @@ int main() {
 			mciSendString("play  WeWillRockYou.mp3 repeat", NULL, 0, NULL);
 		}
 
-		gotoXY(90, 6);
+		gotoXY(89, 6);
 		Yellow();
-		if (character == '1') {
+		if (character == 1) {
 			cout << "MALE";
 		}
-		else if (character == '2') {
+		else if (character == 2) {
 			cout << "FEMALE";
 		}
-		else {
-			cout << character;
-		}
+	
 		Cyan();
 		gotoXY(80, 1);
 		cout << "MENU" << endl;
@@ -140,7 +138,7 @@ int main() {
 					string Art = getFileContents(Reader);
 
 					cout << Art << endl;
-					gotoXY(80, 1);
+					gotoXY(76, 1);
 					Cyan();
 					cout << "CHARACTER" << endl;
 					int posx = 75;
@@ -193,7 +191,12 @@ int main() {
 					cout << map[1][0];
 					gotoXY(posx - 1, posy + 3);
 					cout << "[2]";
-					character= _getch();
+					if (character == 1) {
+						character = 2;
+					}
+					else {
+						character = 1;
+					}
 					
 					break;
 				}
@@ -246,8 +249,9 @@ int main() {
 
 				}
 			}
-
+			_getch();
 			}
+			
 			Sleep(150);
 		}
 	
