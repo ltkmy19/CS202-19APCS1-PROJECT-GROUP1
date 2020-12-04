@@ -1,7 +1,6 @@
 #include"Traffic_Light.h"
 #include"Files.h"
 
-
 int main() {
 	resizeText(20, 20);
 
@@ -18,6 +17,7 @@ int main() {
 	
 	while (true)
 	{
+		
 		system("cls");
 		LightMagenta();
 		ifstream Reader("TextGraphic.txt");            
@@ -35,7 +35,18 @@ int main() {
 			cout << "ON";
 			mciSendString("play  WeWillRockYou.mp3 repeat", NULL, 0, NULL);
 		}
-		
+
+		gotoXY(90, 6);
+		Yellow();
+		if (character == '1') {
+			cout << "MALE";
+		}
+		else if (character == '2') {
+			cout << "FEMALE";
+		}
+		else {
+			cout << character;
+		}
 		Cyan();
 		gotoXY(80, 1);
 		cout << "MENU" << endl;
@@ -182,8 +193,8 @@ int main() {
 					cout << map[1][0];
 					gotoXY(posx - 1, posy + 3);
 					cout << "[2]";
-					
 					character= _getch();
+					
 					break;
 				}
 				case 4:  //Tutorial
@@ -232,12 +243,15 @@ int main() {
 					
 					break;
 				}
+
 				}
 			}
 
 			}
 			Sleep(150);
 		}
+	
+
 		system("pause >nul");
 
 		return 0;
