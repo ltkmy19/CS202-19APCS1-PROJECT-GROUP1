@@ -1,4 +1,3 @@
-
 #include"Traffic_Light.h"
 #include"Files.h"
 
@@ -11,7 +10,7 @@ int main() {
 	
 
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
-	int character = 0;//male
+	char character = '1';//male
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
@@ -26,7 +25,7 @@ int main() {
 		string Art = getFileContents(Reader);     
 
 		cout << Art << endl;     
-		gotoXY(76, 5);
+		gotoXY(85, 5);
 		Yellow();
 		if (sound == 0) {
 			cout << "OFF";
@@ -36,14 +35,15 @@ int main() {
 			cout << "ON";
 			mciSendString("play  WeWillRockYou.mp3 repeat", NULL, 0, NULL);
 		}
-		Green();
-		gotoXY(70, 1);
+		
+		Cyan();
+		gotoXY(80, 1);
 		cout << "MENU" << endl;
 		Reader.close();
 		White();
 		for (int i = 0; i < 6; ++i)
 		{
-			gotoXY(65, 3 + i);
+			gotoXY(75, 3 + i);
 
 			if (i == pointer)
 			{
@@ -84,7 +84,7 @@ int main() {
 
 				switch (pointer)
 				{
-				case 0:
+				case 0: //New Game
 				{
 					system("cls");
 					ProgressBar();
@@ -95,7 +95,7 @@ int main() {
 					system("pause >nul");
 					break;
 				}
-				case 1:
+				case 1:  //Load Game
 				{
 					system("cls");
 					gotoXY(45, 12);
@@ -106,7 +106,7 @@ int main() {
 
 					break;
 				}
-				case 2:
+				case 2:  //Sound
 				{	
 
 					if (sound == 1) {
@@ -119,7 +119,7 @@ int main() {
 					break;
 
 				}
-				case 3:
+				case 3:   //Character
 				{
 					system("cls");
 
@@ -129,38 +129,69 @@ int main() {
 					string Art = getFileContents(Reader);
 
 					cout << Art << endl;
+					gotoXY(80, 1);
+					Cyan();
+					cout << "CHARACTER" << endl;
+					int posx = 75;
+					int posy = 4;
+					White();
+					gotoXY(posx, posy);
+					char map[3][3];
+					map[1][1] = char(219);
+					map[0][2] = '/';
+					map[2][0] = '/';
+					map[0][0] = char(92);
+					map[2][2] = char(92);
+					map[1][0] = char(254);
+					gotoXY(posx, posy);
+					cout << map[1][1];
+					gotoXY(posx - 1, posy + 1);
+					cout << map[0][2];
+					gotoXY(posx + 1, posy - 1);
+					cout << map[2][0];
+					gotoXY(posx - 1, posy - 1);
+					cout << map[0][0];
+					gotoXY(posx + 1, posy + 1);
+					cout << map[2][2];
+					gotoXY(posx, posy - 1);
+					cout << map[1][0];
+					gotoXY(posx-1, posy +3);
+					cout << "[1]";
+
+
+					
+					character= _getch();
 					break;
 				}
-				case 4:
+				case 4:  //Tutorial
 				{
 					system("cls");
-
-					gotoXY(70, 1);
-					Green();
+					gotoXY(80, 1);
+					Cyan();
 					cout << "TUTORIAL" << endl;
 					int pos = 3;
 					LightMagenta();
 					ifstream Reader("TextGraphic.txt");
 					string Art = getFileContents(Reader);
 					cout << Art << endl;
-					gotoXY(70, pos);
+					gotoXY(80, pos);
 					LightGray();
 					cout << "[w]: up"<<endl;
-					gotoXY(70, pos+1);
+					gotoXY(80, pos+1);
 					White();
 					cout << "[a]: left" << endl;
 					LightGray();
-					gotoXY(70, pos + 2);
+					gotoXY(80, pos + 2);
 					cout << "[d]: right" << endl;
 					White();
-					gotoXY(70, pos + 3);
+					gotoXY(80, pos + 3);
 					cout << "[s]: down" << endl;
-					gotoXY(60, pos + 5);
+					gotoXY(70, pos + 5);
 					Red();
 					cout << "There are 10 rounds for the game."<<endl;
 					break;
 				}
-				case 5:
+				case 5:   //Quit
 				{
 					system("cls");
 					gotoXY(35, 10);
@@ -180,7 +211,7 @@ int main() {
 				}
 				}
 			}
-				
+
 			}
 			Sleep(150);
 		}
