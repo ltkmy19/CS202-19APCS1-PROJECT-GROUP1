@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CGame.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Traffic_Light.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CGame.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Files.h" />
     <ClInclude Include="Traffic_Light.h" />

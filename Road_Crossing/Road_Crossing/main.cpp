@@ -9,7 +9,7 @@ int main() {
 	
 
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
-	int character = 1;//male
+	char character = '1';//male
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
@@ -38,10 +38,10 @@ int main() {
 
 		gotoXY(89, 6);
 		Yellow();
-		if (character == 1) {
+		if (character == '1') {
 			cout << "MALE";
 		}
-		else if (character == 2) {
+		else if (character == '2') {
 			cout << "FEMALE";
 		}
 	
@@ -199,13 +199,8 @@ int main() {
 					cout << char(92);
 					gotoXY(posx - 1, posy + 3);
 					cout << "[2]";
-					if (character == 1) {
-						character = 2;
-					}
-					else {
-						character = 1;
-					}
-					
+					FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+					character = _getch();
 					break;
 				}
 				case 4:  //Tutorial
