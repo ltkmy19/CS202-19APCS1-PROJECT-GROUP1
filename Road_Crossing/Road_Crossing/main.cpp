@@ -1,6 +1,6 @@
 #include"Traffic_Light.h"
 #include"Files.h"
-
+bool alive = true;
 int main() {
 	resizeText(20, 20);
 
@@ -99,10 +99,33 @@ int main() {
 					ProgressBar();
 					system("cls");
 					gotoXY(45, 12);
-					//cout << "Surprise!!!" << endl;
-					//Game();
+					//StartGame();
+					//char press;
+					//while (alive == true) {
+					//	system("cls");
+					//	press = tolower(_getch());
+					//	if (true) //	if (!cg->getPeople()->isDead())
+					//	{
+					//		if (GetAsyncKeyState(VK_ESCAPE)) {
+					//			break;
+					//		}
+					//		else if (press =='p') {
 
+					//		}
+					//		else if (press == 'k') {
 
+					//		}
+					//		else if (press == ' m') {
+
+					//		}
+					//		else {
+					//			cout << "Surprise!!!" << endl;
+					//		}
+					//	}
+					//	else {
+
+					//	}
+					//}
 					system("pause >nul");
 					break;
 				}
@@ -113,7 +136,32 @@ int main() {
 
 					cout << "Surprise!!!" << endl;
 					//LoadGame();
-					system("pause >nul");
+					//char press;
+					//while (alive == true) {
+					//	system("cls");
+					//	press = tolower(_getch());
+					//	if (true) //	if (!cg->getPeople()->isDead())
+					//	{
+					//		if (GetAsyncKeyState(VK_ESCAPE)) {
+					//			break;
+					//		}
+					//		else if (press == 'p') {
+
+					//		}
+					//		else if (press == 'k') {
+
+					//		}
+					//		else if (press == ' m') {
+
+					//		}
+					//		else {
+					//			cout << "Surprise!!!" << endl;
+					//		}
+					//	}
+					//	else {
+
+					//	}
+					//}
 
 					break;
 				}
