@@ -127,12 +127,14 @@
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MultiThread.cpp" />
     <ClCompile Include="Traffic_Light.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGame.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Files.h" />
+    <ClInclude Include="MultiThread.h" />
     <ClInclude Include="Traffic_Light.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

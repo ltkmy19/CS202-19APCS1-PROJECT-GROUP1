@@ -99,8 +99,10 @@ int main() {
 					ProgressBar();
 					system("cls");
 					gotoXY(45, 12);
-					cout << "Surprise!!!" << endl;
+					//cout << "Surprise!!!" << endl;
 					//Game();
+
+
 					system("pause >nul");
 					break;
 				}
