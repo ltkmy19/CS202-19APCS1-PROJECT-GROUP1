@@ -1,12 +1,12 @@
-//#include "CGame.h"
-//using namespace std;
+#include "CGame.h"
+using namespace std;
+
+//CGame::CGAME(){
 //
-////CGame::CGAME(){
-////
-////}
+//}
 //
-//void CGame::drawGame()
-//CGame::~CGAME(){
+//void CGAME::drawGame()
+//CGAME::~CGAME(){
 //    delete[] axh;
 //    delete[] axt;
 //    delete[] akl;
@@ -14,43 +14,43 @@
 //    delete[] lv;
 //}
 //
-//CPEOPLE CGame::getPeople(){
+//CPEOPLE CGAME::getPeople(){
 //    return cn;
 //}
 //
-//CVEHICLE* CGame::getVehicle(){
+//vector <CVEHICLE*> CGAME::getVehicle(){
 //    int c = /*max car at this level*/;
 //    int t = /*max truck at this level*/;
-//    CVEHICLE* tmp = new CVEHICLE[c+t];
+//    vector<CVEHICLE*>tmp;
 //    for(int i = 0;i < c;i++){
-//        tmp[i] = axh[i];
+//        tmp.push_back(&(c[i]));
 //    }
-//    for(int i = c;i < t;i++){
-//        tmp[i] = axt[i];
+//    for(int j = 0;j < t;j++){
+//        tmp.push_back(&(t[j]));
 //    }
 //    return tmp;
 //}
 //
-//CANIMAL* CGame::getAnimal(){
+//vector <CANIMAL*> CGAME::getAnimal(){
 //    int d = /*max dinasour at this level*/;
 //    int b = /*max bird at this level*/;
-//    CVEHICLE* tmp = new CVEHICLE[c+t];
+//    vector<CANIMAL*>tmp;
 //    for(int i = 0;i < d;i++){
-//        tmp[i] = akl[i];
+//        tmp.push_back(&(d[i]));
 //    }
-//    for(int i = d;i < b;i++){
-//        tmp[i] = ac[i];
+//    for(int j = 0;j < b;j++){
+//        tmp.push_back(&(b[j]));
 //    }
 //    return tmp;
 //}
-//
-////void CGame::resetGame()
-////void CGame::exitGame(HANDLE)
-////void CGame::startGame()
-////void CGame::loadGame(istream)
-////void CGame::saveGame(istream)
-////void CGame::pauseGame(HANDLE)
-////void CGame::resumeGame(HANDLE)
-////void CGame::updatePosPeople(char)
-////void CGame::updatePosVehicle()
-////void CGame::updatePosAnimal()
+
+////void CGAME::resetGame()
+////void CGAME::exitGame(HANDLE)
+////void CGAME::startGame()
+////void CGAME::loadGame(istream)
+////void CGAME::saveGame(istream)
+////void CGAME::pauseGame(HANDLE)
+////void CGAME::resumeGame(HANDLE)
+////void CGAME::updatePosPeople(char)
+////void CGAME::updatePosVehicle()
+////void CGAME::updatePosAnimal()
