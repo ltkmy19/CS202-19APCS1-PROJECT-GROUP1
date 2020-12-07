@@ -5,6 +5,8 @@
 //#include "Traffic_Light.h"
 //using namespace std;
 //
+//int WIDTH = 80;
+//int HEIGHT = 29;
 //class CGAME{
 //private:
 //    CTRUCK* axt;
@@ -13,6 +15,7 @@
 //    CBIRD* ac;
 //    CPEOPLE cn;
 //    LEVEL *lv;
+//	  int curLevel;	
 //public:
 //    CGAME(); //Chuẩn bị dữ liệu cho tất cả các đối tượng
 //    void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
