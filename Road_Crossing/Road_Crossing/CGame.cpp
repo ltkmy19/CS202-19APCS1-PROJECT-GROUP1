@@ -1,4 +1,5 @@
 //#include "CGame.h"
+//#include <fstream>
 //using namespace std;
 //
 //CGame::CGAME(){
@@ -54,7 +55,42 @@
 //void CGAME::resetGame()
 //void CGAME::exitGame(HANDLE)
 //void CGAME::startGame()
-//void CGAME::loadGame(istream)
+
+
+//void CGAME::loadGame(){
+//    ifstream fin;
+//    int numberOfSave = 0;
+//    int level= 0, line = 0;
+//    string name = "";
+//    FileSave *tmp = nullptr;
+//    fin.open("SaveFiles.txt");
+//    if(!fin.is_open()) cout << "Can not open file!" << endl;
+//    else{
+//        if(fin.eof()) cout << "There is no save file!"<<endl;
+//        else{
+//            while(!fin.eof()){
+//                fin >> level;
+//                getline(fin,name);
+//                tmp = new FileSave(level, name);
+//                this->File.push_back(tmp);
+//                gotoXY(WIDTH+8,line);
+//                cout << numberOfSave+1 <<". "<< File[numberOfSave]->getName() <<" (Level: "<<File[numberOfSave]->getLevel()<<")";
+//                numberOfSave++;
+//                line++;
+//
+//            }
+//            char type = _getch();
+//            if(type != 27){
+//                int a = type - '0';
+//                if(a > 0 && a <= numberOfSave){
+//                    this->curLevel = File[a]->getLevel()-1;
+//                    updateLevel();
+//                }
+//            }
+//        }
+//        fin.close();
+//    }
+//}
 //void CGAME::saveGame(istream)
 //void CGAME::pauseGame(HANDLE)
 //void CGAME::resumeGame(HANDLE)
