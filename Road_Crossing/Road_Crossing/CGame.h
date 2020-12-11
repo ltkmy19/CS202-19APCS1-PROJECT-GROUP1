@@ -61,6 +61,7 @@ public:
 //    int getCurLevel() {
 //        return curLevel;
 //    }
+//    void Clean();
 //};
 //
 #endif // CGAME_H_INCLUDED
