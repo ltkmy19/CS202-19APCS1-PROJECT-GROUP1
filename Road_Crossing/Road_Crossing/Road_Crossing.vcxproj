@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="CVehicle.cpp" />
     <ClCompile Include="Files.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MultiThread.cpp" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="CGame.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="CVehicle.h" />
     <ClInclude Include="Files.h" />
     <ClInclude Include="MultiThread.h" />
     <ClInclude Include="Traffic_Light.h" />
