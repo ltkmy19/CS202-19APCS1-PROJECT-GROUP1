@@ -7,13 +7,29 @@
 //}
 //
 //void CGAME::drawGame() {
-//    Magenta();
-//    gotoXY(0, 0); cout << (char)218; for (int i = 1; i < WIDTH ;i++) { cout << (char)196; } cout << (char)191;
+//    LightMagenta();
+//    gotoXY(0, 0); cout << (char)218; for (int i = 1; i < WIDTH; i++) { cout << (char)196; } cout << (char)191;
 //    gotoXY(0, 1); for (int i = 2; i < HEIGHT; i++) { cout << (char)179; gotoXY(0, i); }
 //    gotoXY(0, HEIGHT - 1); cout << (char)192; for (int i = 1; i < WIDTH; i++) { cout << (char)196; }
 //    gotoXY(WIDTH, 1); for (int i = 2; i < HEIGHT; i++) { cout << (char)179; gotoXY(WIDTH, i); } cout << (char)217;
+//
+//    int W = WIDTH + 8;
+//    int H = HEIGHT - 10;
+//    gotoXY(W, 2); cout << (char)218; for (int i = W+1; i < W+30;i++) { cout << (char)196; } cout << (char)191;
+//    gotoXY(W, 3); for (int i = 4; i < H; i++) { cout << (char)179; gotoXY(W, i); }
+//    gotoXY(W, H-1); cout << (char)192; for (int i = W+1; i < W+30; i++) { cout << (char)196; }
+//    gotoXY(W+30, 3); for (int i = 3; i < H; i++) { cout << (char)179; gotoXY(W+30, i); } cout << (char)217;
+//
+//    LightCyan();
+//    gotoXY(W + 1, 4); cout << "WELCOME TO CROSSING ROAD! ^_^";
+//    gotoXY(W + 7, 6); cout << "press ESC to exit ";
+//    gotoXY(W + 5, 8); cout << "Level: 1";
+//    gotoXY(W + 5, 10); cout << "P: Pause/Resume ";
+//    gotoXY(W + 6, 12); cout << "Please pause before: ";
+//    gotoXY(W + 5, 14); cout << "K: Load game ";
+//    gotoXY(W + 5, 16); cout << "S: Save game ";
 //}
-
+//
 //CGAME::~CGAME(){
 //    delete[] axh;
 //    delete[] axt;
@@ -51,12 +67,12 @@
 //    }
 //    return tmp;
 //}
-
+//
 //void CGAME::resetGame()
 //void CGAME::exitGame(HANDLE)
 //void CGAME::startGame()
-
-
+//
+//
 //void CGAME::loadGame(){
 //    ifstream fin;
 //    int numberOfSave = 0;
@@ -91,7 +107,7 @@
 //        fin.close();
 //    }
 //}
-
+//
 //void CGAME::saveGame(){
 //	Clean();
 //	ofstream fout;
