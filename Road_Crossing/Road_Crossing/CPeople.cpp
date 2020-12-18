@@ -53,3 +53,93 @@ void CPEOPLE::ReDraw(int x, int y, char type) {
 	}
 
 }
+
+void CPEOPLE:: Up(int x) {
+	gotoXY(mX, mY);// ve nguoi
+	cout << ' ';
+	gotoXY(mX - 1, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX - 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX + 1, mY + 1);
+	cout << '_';
+	gotoXY(mX, mY - 1);
+	cout << ' ';
+	gotoXY(mX, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY );
+	cout << ' ';
+	gotoXY(mX - 1, mY);
+	cout << ' ';
+	mY -= x;
+	ReDraw(mX, mY, type);
+}
+
+void CPEOPLE::Down(int x) {
+	gotoXY(mX, mY);// ve nguoi
+	cout << ' ';
+	gotoXY(mX - 1, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX - 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX + 1, mY + 1);
+	cout << '_';
+	gotoXY(mX, mY - 1);
+	cout << ' ';
+	gotoXY(mX, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY);
+	cout << ' ';
+	gotoXY(mX - 1, mY);
+	cout << ' ';
+	mY += x;
+	ReDraw(mX, mY, type);
+}
+void CPEOPLE:: Left(int x) {
+	gotoXY(mX, mY);// ve nguoi
+	cout << ' ';
+	gotoXY(mX - 1, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX - 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX + 1, mY + 1);
+	cout << '_';
+	gotoXY(mX, mY - 1);
+	cout << ' ';
+	gotoXY(mX, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY);
+	cout << ' ';
+	gotoXY(mX - 1, mY);
+	cout << ' ';
+	mX -= 4;
+	ReDraw(mX, mY, type);
+}
+void CPEOPLE:: Right(int x) {
+	gotoXY(mX, mY);// ve nguoi
+	cout << ' ';
+	gotoXY(mX - 1, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX - 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX + 1, mY + 1);
+	cout << '_';
+	gotoXY(mX, mY - 1);
+	cout << ' ';
+	gotoXY(mX, mY + 1);
+	cout << '_';
+	gotoXY(mX + 1, mY);
+	cout << ' ';
+	gotoXY(mX - 1, mY);
+	cout << ' ';
+	mX += x;
+	ReDraw(mX, mY, type);
+}
