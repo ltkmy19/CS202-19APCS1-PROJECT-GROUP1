@@ -1,18 +1,31 @@
 #include "CPeople.h"
 
-CPEOPLE::CPEOPLE(int x, int y, char** _map, char type) {
+CPEOPLE::CPEOPLE(int x, int y, char type) {
 	mX = x;
 	mY = y;
-	map[0][0] = _map[0][0];
-	map[0][1] = _map[0][1];
-	map[0][2] = _map[0][2];
-	map[1][0] = _map[1][0];
-	map[1][1] = _map[1][1];
-	map[1][2] = _map[1][2];
-	map[2][0] = _map[2][0];
-	map[2][1] = _map[2][1];
-	map[2][2] = _map[2][2];
 	this->type = type;
+	if (type == '1') {
+		map[1][1] = char(219);
+		map[0][2] = '/';
+		map[2][0] = '/';
+		map[0][0] = char(92);
+		map[2][2] = char(92);
+		map[1][0] = char(254);
+		map[0][1] = ' ';
+		map[2][1] = ' ';
+		map[1][2] = ' ';
+	}
+	else {
+		map[1][1] = char(219);
+		map[0][2] = '/';
+		map[2][0] = char(126);
+		map[0][1] = '/';
+		map[0][0] = char(126);
+		map[2][1] = char(92);
+		map[2][2] = char(92);
+		map[1][0] = char(254);
+		map[1][2] = ' ';
+	}
 	mState = false;
 }
 void CPEOPLE::ReDraw(int x, int y, char type) {
