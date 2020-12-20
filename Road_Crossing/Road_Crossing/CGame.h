@@ -29,6 +29,24 @@
 //    }
 //};
 
+//class Level {
+//private:
+//	int lane; // number of lanes
+//	int distance;
+//	int speed; // speed of obstacle
+//	int car, truck, dina, bird;
+//public:
+//	Level(int, int, int, int, int, int, int);
+//	int getLane();
+//	int getDistance();
+//	int getSpeed();
+//	int AmountOfCar();
+//	int AmountOfTruck();
+//	int AmountOfDinasour();
+//	int AmounrOfBird();
+//};
+
+
 //class CGAME{
 //private:
 //    CTRUCK* axt;
