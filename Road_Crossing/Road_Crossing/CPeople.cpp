@@ -13,6 +13,7 @@ CPEOPLE::CPEOPLE(int x, int y, char** _map, char type) {
 	map[2][1] = _map[2][1];
 	map[2][2] = _map[2][2];
 	this->type = type;
+	mState = false;
 }
 void CPEOPLE::ReDraw(int x, int y, char type) {
 	if (type == 1) {
@@ -143,3 +144,36 @@ void CPEOPLE:: Right(int x) {
 	mX += x;
 	ReDraw(mX, mY, type);
 }
+
+bool CPEOPLE::isDead() {
+	return mState;
+}
+int CPEOPLE::getX() { return mX; }
+int CPEOPLE::getY() { return mY; }
+char CPEOPLE::getType() { return type; }
+void CPEOPLE:: killPeople() {
+	mState = true;
+}
+
+/*bool CPEOPLE::isImpact(CVEHICLE* a[], int n) {
+	for (int i = 0; i < n; ++i) {
+		if (a[i] == NULL) continue;
+		int dX = abs(a[i]->getX() - mX);
+		int dY = abs(a[i]->getY() - mY);
+		if (dX < 3 && dY < 3) {
+			return true;
+		}
+	}
+	return false;
+}
+bool CPEOPLE::isImpact(CANIMAL* b[], int n) {
+	for (int i = 0; i < n; ++i) {
+		if (b[i] == NULL) continue;
+		int dX = abs(b[i]->getX() - mX);
+		int dY = abs(b[i]->getY() - mY);
+		if (dX < 3 && dY < 2) {
+			return true;
+		}
+	}
+	return false;
+}*/
