@@ -1,12 +1,13 @@
 #include"Traffic_Light.h"
 #include"Files.h"
+#include"CPeople.h"
 bool alive = true;
 int main() {
 	resizeText(20, 20);
 
 	FixConsoleWindow();
 	hidecursor();
-	
+
 
 	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
 	char character = '1';//male
@@ -14,17 +15,17 @@ int main() {
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
 	int sound = 1;
-	
+
 	while (true)
 	{
-		
+
 		system("cls");
 		LightMagenta();
-		ifstream Reader("TextGraphic.txt");            
+		ifstream Reader("TextGraphic.txt");
 
-		string Art = getFileContents(Reader);     
+		string Art = getFileContents(Reader);
 
-		cout << Art << endl;     
+		cout << Art << endl;
 		gotoXY(85, 5);
 		Yellow();
 		if (sound == 0) {
@@ -44,7 +45,7 @@ int main() {
 		else if (character == '2') {
 			cout << "FEMALE";
 		}
-	
+
 		Cyan();
 		gotoXY(80, 1);
 		cout << "MENU" << endl;
@@ -65,7 +66,7 @@ int main() {
 				White();
 				cout << Menu[i] << endl;
 			}
-			
+
 		}
 		White();
 		while (true)
@@ -166,7 +167,7 @@ int main() {
 					break;
 				}
 				case 2:  //Sound
-				{	
+				{
 
 					if (sound == 1) {
 						sound = 0;
@@ -174,7 +175,7 @@ int main() {
 					else {
 						sound = 1;
 					}
-					
+
 					break;
 
 				}
@@ -194,59 +195,17 @@ int main() {
 					int posx = 75;
 					int posy = 4;
 					White();
-					gotoXY(posx, posy);
-					char map[3][3];
-					map[1][1] = char(219);
-					map[0][2] = '/';
-					map[2][0] = '/';
-					map[0][0] = char(92);
-					map[2][2] = char(92);
-					map[1][0] = char(254);
-					gotoXY(posx, posy);
-					Brown();
-					cout << map[1][1];
-					White();
-					gotoXY(posx - 1, posy + 1);
-					cout << map[0][2];
-					gotoXY(posx + 1, posy - 1);
-					cout << map[2][0];
-					gotoXY(posx - 1, posy - 1);
-					cout << map[0][0];
-					gotoXY(posx + 1, posy + 1);
-					cout << map[2][2];
-					gotoXY(posx, posy - 1);
-					cout << map[1][0];
-					gotoXY(posx-1, posy +3);
+					CPEOPLE male(posx, posy, '1');
+					male.ReDraw(posx, posy, '1');
+					gotoXY(posx - 1, posy + 3);
+
 					cout << "[1]";
 
 					posx = 85;
 					posy = 4;
 					White();
-					gotoXY(posx, posy);
-					map[1][1] = char(219);
-					map[0][2] = '/';
-					map[0][1] = char(92);
-					map[0][0] = char(92);
-					map[2][2] = char(92);
-					map[1][0] = char(254);
-					gotoXY(posx, posy);
-					LightMagenta();
-					cout << map[1][1];
-					White();
-					gotoXY(posx - 1, posy + 1);
-					cout << map[0][2];
-					gotoXY(posx + 1, posy + 1);
-					cout << map[2][2];
-					gotoXY(posx, posy - 1);
-					cout << map[1][0];
-					gotoXY(posx-1, posy - 1);
-					cout << "~";
-					gotoXY(posx + 1, posy - 1);
-					cout << "~";
-					gotoXY(posx - 1, posy);
-					cout << char(47);
-					gotoXY(posx + 1, posy);
-					cout << char(92);
+					CPEOPLE female(posx, posy, '2');
+					female.ReDraw(posx, posy, '2');
 					gotoXY(posx - 1, posy + 3);
 					cout << "[2]";
 					FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
@@ -266,8 +225,8 @@ int main() {
 					cout << Art << endl;
 					gotoXY(80, pos);
 					LightGray();
-					cout << "[w]: up"<<endl;
-					gotoXY(80, pos+1);
+					cout << "[w]: up" << endl;
+					gotoXY(80, pos + 1);
 					White();
 					cout << "[a]: left" << endl;
 					LightGray();
@@ -278,7 +237,7 @@ int main() {
 					cout << "[s]: down" << endl;
 					gotoXY(70, pos + 5);
 					Red();
-					cout << "There are 10 rounds for the game."<<endl;
+					cout << "There are 10 rounds for the game." << endl;
 					break;
 				}
 				case 5:   //Quit
@@ -293,23 +252,23 @@ int main() {
 					return 0;
 					break;
 				}
-			
+
 				default:
 				{
-					
+
 					break;
 				}
 
 				}
 			}
 			_getch();
-			}
-			
-			Sleep(150);
 		}
-	
 
-		system("pause >nul");
-
-		return 0;
+		Sleep(150);
 	}
+
+
+	system("pause >nul");
+
+	return 0;
+}

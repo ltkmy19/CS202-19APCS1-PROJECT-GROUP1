@@ -21,6 +21,6 @@ public:
 	char getType();
 	void killPeople();
 	~CPEOPLE() {
-		delete[]map;
+		
 	};
 };
