@@ -39,6 +39,9 @@
     <ClCompile Include="CPeople.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CAnimal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CPeople.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
