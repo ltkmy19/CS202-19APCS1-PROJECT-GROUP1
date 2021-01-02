@@ -9,6 +9,8 @@ using namespace std;
 
 int WIDTH = 80;
 int HEIGHT = 29;
+int LEFTMOST = 3;
+int RIGHTMOST = WIDTH - 6;
 
 class FileSave{
 private:
@@ -53,6 +55,7 @@ private:
     CCAR* axh;
     CDINASOUR* akl;
     CBIRD* ac;
+    int Finish //pos y-axis represent the end point of a level;
     CPEOPLE cn;
     LEVEL *lv;
     int curLevel = 0;
@@ -72,7 +75,7 @@ public:
     void saveGame(); // Thực hiện lưu lại dữ liệu trò chơi
     void pauseGame(HANDLE); // Tạm dừng Thread
     void resumeGame(HANDLE); //Quay lai Thread
-    void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
+    void updatePosPeople(char tmp); //Thực hiện điều khiển di chuyển của CPEOPLE
     void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
     void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
     bool isCrashed();

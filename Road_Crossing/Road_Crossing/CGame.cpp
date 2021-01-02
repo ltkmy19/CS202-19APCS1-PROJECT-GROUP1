@@ -43,8 +43,8 @@ CPEOPLE CGAME::getPeople(){
 }
 
 vector <CVEHICLE*> CGAME::getVehicle(){
-    int c = lv[curLevel]->AmountOfCar();
-    int t = lv[curLevel]->AmountOfTruck();;
+    int c = lv[curLevel-1]->AmountOfCar();
+    int t = lv[curLevel-1]->AmountOfTruck();;
     vector<CVEHICLE*>tmp;
     for(int i = 0;i < c;i++){
         tmp.push_back(&(axh[i]));
@@ -56,8 +56,8 @@ vector <CVEHICLE*> CGAME::getVehicle(){
 }
 
 vector <CANIMAL*> CGAME::getAnimal(){
-    int d = lv[curLevel]->AmountOfDinasour();
-    int b = lv[curLevel]->AmountOfBird();
+    int d = lv[curLevel-1]->AmountOfDinasour();
+    int b = lv[curLevel-1]->AmountOfBird();
     vector<CANIMAL*>tmp;
     for(int i = 0;i < d;i++){
         tmp.push_back(&(akl[i]));
@@ -73,39 +73,49 @@ void CGAME::exitGame(HANDLE)
 void CGAME::startGame()
 
 
-void CGAME::loadGame(){
-    ifstream fin;
-    int numberOfSave = 0;
-    int level= 0, line = 0;
-    string name = "";
-    FileSave *tmp = nullptr;
-    fin.open("SaveFiles.txt");
-    if(!fin.is_open()) cout << "Can not open file!" << endl;
-    else{
-        if(fin.eof()) cout << "There is no save file!"<<endl;
-        else{
-            while(!fin.eof()){
-                fin >> level;
-                getline(fin,name);
-                tmp = new FileSave(level, name);
-                this->File.push_back(tmp);
-                gotoXY(WIDTH+8,line);
-                cout << numberOfSave+1 <<". "<< File[numberOfSave]->getName() <<" (Level: "<<File[numberOfSave]->getLevel()<<")";
-                numberOfSave++;
-                line++;
-
-            }
-            char type = _getch();
-            if(type != 27){
-                int a = type - '0';
-                if(a > 0 && a <= numberOfSave){
-                    this->curLevel = File[a]->getLevel()-1;
-                    updateLevel();
-                }
-            }
-        }
-        fin.close();
-    }
+void CGAME::loadGame() {
+	Clean();
+	ifstream fin;
+	int numberOfSave = 0;
+	int W = WIDTH + 6;
+	int H = HEIGHT - 5;
+	int level = 0, line = H;
+	string name = "";
+	FileSave* tmp = nullptr;
+	fin.open("SaveFiles.txt");
+	if (!fin.is_open()) {
+		GotoXY(W + 2, H + 4); cout << "Can not open file!";
+		Sleep(500);
+		Clean();
+		return;
+	}
+	else {
+		if (fin.eof()) cout << "There is no save file!" << endl;
+		else {
+			while (!fin.eof()) {
+				fin >> level;
+				fin.ignore(1);
+				getline(fin, name);
+				if (tmp != NULL) delete tmp;
+				tmp = new FileSave(level, name);
+				this->File.push_back(tmp);
+				GotoXY(W+2, line);
+				cout << numberOfSave + 1 << ". " << File[numberOfSave]->getName() << " (Level: " << File[numberOfSave]->getLevel() << ")";
+				numberOfSave++;
+				line++;
+			}
+			char type = _getch();
+			if (type != 27) {
+				int a = type - '0';
+				if (a > 0 && a <= numberOfSave) {
+					this->presentLevel = File[a-1]->getLevel() - 1;
+					UpdateLevel();
+				}
+			}
+		}
+		fin.close();
+	}
+	Clean();
 }
 
 void CGAME::saveGame(){
@@ -168,7 +178,44 @@ void CGAME::resumeGame(HANDLE){
 bool CGAME::isCrashed(){
     return (cn.isImpact() || cn.isImpact() || cn.isImpact() || cn.isImpact());
 }
-void CGAME::updatePosPeople(char)
+void CGAME::updatePosPeople(char tmp){
+    int d = lv[curLevel-1]->getDistance();
+    switch(tmp){
+    case 87:{
+        if(cn->getY()!= Finish)
+            cn->Up(d);
+        break;
+    };
+    case 83:{
+        if(cn->getY()!= HEIGHT-3)
+            cn->Down(d);
+        break;
+    };
+    case 65:{
+        if(cn->getX() >= TOPLEFT + 4)
+            cn->Left(4);
+        break;
+    };
+    case 68:{
+        if(cn->getX() >= TOPRIGHT - 4)
+            cn->Right(4);
+        break;
+    };
+    default:
+        break;
+    }
+    if(cn->isFinish(Finish)){
+        updateLevel();
+    }
+}
+
+void GGAME::clean(){
+    int i = HEIGHT - 5;
+	while (i < HEIGHT) {
+		GotoXY(WIDTH + 1, i); for (int j = 0; j < WIDTH + 20; j++) cout << " ";
+		i += 1;
+	}
+}
 void CGAME::updatePosVehicle()
 void CGAME::updatePosAnimal()
 
