@@ -3,6 +3,8 @@
 #include "Console.h"
 #include "Files.h"
 #include "Traffic_Light.h"
+#include "CVehicle.h"
+#include "CAnimal.h"
 #include <stdio.h>
 #include <vector>
 using namespace std;
