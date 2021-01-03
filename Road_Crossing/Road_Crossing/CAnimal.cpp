@@ -12,7 +12,7 @@ void CANIMAL::Move(int x, int y)
 
 bool CANIMAL::IsDone()
 {
-
+	return true;
 }
 
 CDINAUSOR::CDINAUSOR(int x, int y) : CANIMAL(x, y) 

@@ -1,6 +1,4 @@
-#include"Traffic_Light.h"
-#include"Files.h"
-#include"CPeople.h"
+#include"CGame.h"
 bool alive = true;
 int main() {
 	resizeText(20, 20);

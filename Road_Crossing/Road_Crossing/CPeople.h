@@ -1,8 +1,10 @@
 #include "Traffic_Light.h"
-
+#include"CAnimal.h"
+#include"CVehicle.h"
+#include<vector>
 class CPEOPLE {
-	int mX, mY;
-	char map[3][3];
+	int posX, posY;
+	char people[3][3];
 	bool mState; //true-> die, flase->alive
 	char type;
 public:
@@ -12,9 +14,11 @@ public:
 	void Left(int x);
 	void Right(int x);
 	void Down(int x);
-	/*bool isImpact(CVEHICLE* a[], int n);
-	bool isImpact(CANIMAL* b[], int n);
-	bool isFinish(int Finish);*/
+	bool ISCrashed(vector<CCAR*> a, int n);
+	bool ISCrashed(vector<CTRUCK*> b, int n);
+	bool ISCrashed(vector<CDINAUSOR*> a, int n);
+	bool ISCrashed(vector<CBIRD*> b, int n);
+	bool isFinish(int Finish);
 	bool isDead();
 	int getX();
 	int getY();

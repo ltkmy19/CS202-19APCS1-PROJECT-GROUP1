@@ -1,5 +1,4 @@
-
-#include"Traffic_Light.h"
+#include"Console.h"
 bool alive = true;
 int time = 1;
 char move = ' ';
