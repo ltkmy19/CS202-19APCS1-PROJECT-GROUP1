@@ -105,52 +105,63 @@ int main() {
 					char press;
 					pp->startGame();
 					thread game(RunGame, pp, Is_move, move,  time , alive);
-
+					try {
+						if (alive != true || alive != false) {
+							throw 10;
+						}
+	
 					while (alive == true) {
 						system("cls");
 						press = tolower(_getch());
-						if (!pp->getPeople()->isDead()) {
-							if (GetAsyncKeyState(VK_ESCAPE)) {
-								pp->exitGame(game.native_handle());
-								alive = false;
-							}
-							else if (press == 'p') {
-								if (Is_move) {
-									Is_move = false;
-									pp->pauseGame(game.native_handle());
+						
+								if (!pp->getPeople()->isDead()) {
+									if (GetAsyncKeyState(VK_ESCAPE)) {
+										pp->exitGame(game.native_handle());
+										alive = false;
+									}
+									else if (press == 'p') {
+										if (Is_move) {
+											Is_move = false;
+											pp->pauseGame(game.native_handle());
+										}
+										else {
+											Is_move = true;
+											pp->resumeGame(game.native_handle());
+										}
+
+									}
+									else if (press == 'k') {
+										if (!Is_move) {
+											pp->saveGame();
+										}
+									}
+									else if (press == 'l') {
+										if (!Is_move) {
+											pp->loadGame();
+										}
+									}
+									else {
+										if (Is_move) move = press;
+
+
+									}
 								}
 								else {
-									Is_move = true;
-									pp->resumeGame(game.native_handle());
+									if (press == 'y') {
+										pp->startGame();
+									}
+									else {
+										pp->exitGame(game.native_handle());
+										return 0;
+									}
 								}
+							}
 
-							}
-							else if (press == 'k') {
-								if (!Is_move) { 
-									pp->saveGame(); 
-								}
-							}
-							else if (press == 'l') {
-								if (!Is_move) {
-									pp->loadGame();
-								}
-							}
-							else {
-								if (Is_move) move = press;
-								
-								
-							}
 						}
-						else {
-							if (press == 'y') {
-								pp->startGame();
-							}
-							else {
-								pp->exitGame(game.native_handle());
-								return 0;
-							}
+						catch (int a) {
+
 						}
-					}
+
 					game.join();
 
 					break;
@@ -162,49 +173,56 @@ int main() {
 					char press;
 					pp->startGame();
 					thread game( RunGame, pp, Is_move, move,  time , alive );
+					try {
+						if (alive != true || alive != false) {
+							throw 10;
+						}
+						while (alive == true) {
+							system("cls");
+							press = tolower(_getch());
+							if (!pp->getPeople()->isDead()) {
+								if (GetAsyncKeyState(VK_ESCAPE)) {
+									pp->exitGame(game.native_handle());
+									alive = false;
+								}
+								else if (press == 'p') {
+									if (Is_move) {
+										Is_move = false;
+										pp->pauseGame(game.native_handle());
+									}
+									else {
+										Is_move = true;
+										pp->resumeGame(game.native_handle());
+									}
 
-					while (alive == true) {
-						system("cls");
-						press = tolower(_getch());
-						if (!pp->getPeople()->isDead()) {
-							if (GetAsyncKeyState(VK_ESCAPE)) {
-								pp->exitGame(game.native_handle());
-								alive = false;
-							}
-							else if (press == 'p') {
-								if (Is_move) {
-									Is_move = false;
-									pp->pauseGame(game.native_handle());
+								}
+								else if (press == 'k') {
+									if (!Is_move) {
+										pp->saveGame();
+									}
+								}
+								else if (press == 'l') {
+									if (!Is_move) {
+										pp->loadGame();
+									}
 								}
 								else {
-									Is_move = true;
-									pp->resumeGame(game.native_handle());
+									if (Is_move) move = press;
 								}
+							}
+							else {
+								if (press == 'y') {
+									pp->startGame();
+								}
+								else {
+									pp->exitGame(game.native_handle());
+									return 0;
+								}
+							}
+						}
+					}
+					catch (int a) {
 
-							}
-							else if (press == 'k') {
-								if (!Is_move) {
-									pp->saveGame();
-								}
-							}
-							else if (press == 'l') {
-								if (!Is_move) {
-									pp->loadGame();
-								}
-							}
-							else {
-								if (Is_move) move = press;
-							}
-						}
-						else {
-							if (press == 'y') {
-								pp->startGame();
-							}
-							else {
-								pp->exitGame(game.native_handle());
-								return 0;
-							}
-						}
 					}
 					game.join();
 
