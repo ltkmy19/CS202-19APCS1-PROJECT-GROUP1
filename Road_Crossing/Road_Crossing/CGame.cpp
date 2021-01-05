@@ -29,6 +29,15 @@ void CGAME::drawGame() {
     gotoXY(W + 6, 12); cout << "Please pause before: ";
     gotoXY(W + 5, 14); cout << "K: Load game ";
     gotoXY(W + 5, 16); cout << "S: Save game ";
+
+	int d = lv[curLevel - 1]->getDistance();
+	int n = lv[curLevel - 1]->getLane();
+	int m = Height;
+
+	for (int i = 0; i < n; i++) {
+		gotoXY(Startlane, m - 2); Finish = m - 2; m -= d;
+		for (int j = 0; j < Endlane; ++j) cout << "_";
+	}
 }
 
 
@@ -60,14 +69,24 @@ vector <CANIMAL*> CGAME::getAnimal(){
     return tmp;
 }
 
-void CGAME::resetGame() {
+void CGAME::deleteGame(){
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfCar();i++) delete axh[i];
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfTruck();i++) delete axt[i];
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfBird();i++) delete ac[i];
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfDinasour();i++) delete akl[i];
+    delete pp;
+}
 
+void CGAME::resetGame() {
+    deleteGame();
+    curLevel = 1;
+    drawGame();
 }
 void CGAME::exitGame(HANDLE) {
 
 }
 void CGAME::startGame() {
-
+    drawGame();
 }
 
 
@@ -217,26 +236,7 @@ void CGAME::clean(){
 		i += 1;
 	}
 }
-void CGAME::TrafficLight(int RedLight) {
 
-	Lights li;
-	int d = lv[curLevel - 1]->getDistance();
-	int n = lv[curLevel - 1]->getLane();
-	int posY = Height - 2 - d;
-	for (int i = 0; i < n - 2; i++) {
-		int pos;
-		if (i % 2 == 0) pos = Startlane - 1;
-		else pos = Endlane + 3;
-
-		if (RedLight!=0) {
-			li.RedLight(pos, posY);
-		}
-		else {
-			li.GreenLight(pos, posY);
-		}
-		posY -= d;
-	}
-}
 void CGAME::EndGame(bool Win) {
 
 	clrscr();
@@ -259,17 +259,55 @@ void CGAME::updatePosVehicle() {
 void CGAME::updatePosAnimal() {
 
 }
-void CGAME::UpdateLevel() {
 
+bool CGAME::isFinish(){
+    return (curLevel > Max_level) ? true : false;
+}
+void CGAME::UpdateLevel() {
+    deleteGame();
+    curLevel++;
+    if(!isFinish()) drawGame();
+}
+
+void CGAME::EndGame(bool Win) {
+
+	clrscr();
+	if (Win) {
+		Red();
+		ifstream Reader("Win.txt");
+		string Art = getFileContents(Reader);
+		cout << Art << endl;
+		White();
+	}
+	else {
+		gotoXY(Width / 2, Height / 2);
+
+		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
+	}
+}
+
+void CGAME::TrafficLight(bool RedLight){
+    Lights tmp;
+    int d = lv[curLevel - 1]->getDistance();
+	int n = lv[curLevel - 1]->getLane();
+	int m = Height-d-2;
+	for(int i = 0;i < n-2; i++){
+        int p;
+        if(i % 2 == 0) p = Startlane-1;
+        else p = Endlane + 3;
+        if(RedLight) tmp.RedLight(p,m);
+        else tmp.GreenLight(p,m);
+        m -= d;
+	}
 }
 
 Level::Level(int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours) {
 	lane = lanes;
-	speed = speeds; 
-	car = cars; 
+	speed = speeds;
+	car = cars;
 	truck = trucks;
 	bird = birds;
-	dina = dinasours; 
+	dina = dinasours;
 	distance = distances;
 }
 

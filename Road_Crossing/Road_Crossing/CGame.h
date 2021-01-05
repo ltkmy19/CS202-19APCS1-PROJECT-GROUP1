@@ -9,10 +9,15 @@
 
 using namespace std;
 
-//int WIDTH = 80;
-//int HEIGHT = 29;
-//int LEFTMOST = 3;
-//int RIGHTMOST = WIDTH - 6;
+const int Max_level = 10;
+const float Height = 29;
+const float Width = 80;
+const int Startlane = 3;
+const int Endlane = Width - 6;
+const int Intwidth = 118 - Width;
+const int Stoptime = 41;
+int LEFTMOST = 3;
+int RIGHTMOST = Width - 6;
 
 class FileSave{
 private:
@@ -53,7 +58,7 @@ public:
 
 class CGAME{
 private:
-    
+
 	vector<CTRUCK*>axt;
 	vector<CCAR*>axh;
 	vector<CDINAUSOR*>akl;
@@ -64,42 +69,35 @@ private:
     int curLevel = 0;
     vector<FileSave*>File;
 
-    const int Max_level = 10;
-    const float Height = 29;
-    const float Width = 80;
-    const int Startlane = 3;
-    const int Endlane = Width - 6;
-    const int Intwidth = 118 - Width;
-    const int Stoptime = 41;
-    int LEFTMOST = 3;
-    int RIGHTMOST = Width - 6;
-	
+
 public:
     CGAME() ;
-    void drawGame(); 
+    void drawGame();
 	CPEOPLE* getPeople() {
 		return pp;
 	};
     vector <CVEHICLE*> getVehicle();
-    vector <CANIMAL*> getAnimal(); 
+    vector <CANIMAL*> getAnimal();
     void resetGame();
-    void exitGame(HANDLE); 
+    void exitGame(HANDLE);
     void startGame();
-    void loadGame(); 
+    void loadGame();
     void saveGame(); //
     void pauseGame(HANDLE);
-    void resumeGame(HANDLE); 
+    void resumeGame(HANDLE);
     void updatePosPeople(char tmp);
     void updatePosVehicle();
     void updatePosAnimal();
+    bool isFinish();
     bool isCrashed();
     void UpdateLevel();
     int getCurLevel() {
         return curLevel;
     }
     void clean();
-    void TrafficLight(int RedLight);
+    void TrafficLight(bool RedLight);
     void EndGame(bool Win);
+    void deleteGame();
 };
 
 
