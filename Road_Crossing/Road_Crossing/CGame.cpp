@@ -244,7 +244,6 @@ void CGAME::EndGame(bool Win) {
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
-
 		cout << Art << endl;
 		White();
 	}
