@@ -1,4 +1,4 @@
-#include"CGame.h"
+#include "MultiThread.h"
 bool alive = true;
 int main() {
 	resizeText(20, 20);
@@ -98,7 +98,6 @@ int main() {
 					ProgressBar();
 					system("cls");
 					gotoXY(45, 12);
-					//StartGame();
 					//char press;
 					//while (alive == true) {
 					//	system("cls");

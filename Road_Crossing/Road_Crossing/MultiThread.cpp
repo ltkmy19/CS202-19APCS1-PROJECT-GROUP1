@@ -1,12 +1,16 @@
 #include"MultiThread.h"
-bool alive = true;
-int time = 1;
-char move = ' ';
-bool Is_move = true;
-void SubThread() {
+
+void RunGame() {
+	bool alive = true;
+	int time = 1;
+	char move = ' ';
+	bool Is_move = true;
+	CGAME* pp;
 	while (alive) {
-		++time;
-		if (!Is_move) continue;
+		time++;
+		if (Is_move == false) {
+			continue;
+		}
 		if (!pp->getPeople()->isDead()) 
 			pp->updatePosPeople(move, time);
 
@@ -20,14 +24,15 @@ void SubThread() {
 		move = ' ';
 
 		if (time % 300 > 1 - 1) {
-			pp->RedLight();
-			pp->Update();
+			pp->TrafficLight(1);
+			//pp->Update();
 		}
 		else {
-			pp->GreenLight();
+
+			pp->TrafficLight(2);
 		}
 
-		if (pp->IsImpact()) {
+		if (pp->isCrashed()) {
 			cout << "\a";
 			pp->ScoreBoard(false);
 			alive = false;

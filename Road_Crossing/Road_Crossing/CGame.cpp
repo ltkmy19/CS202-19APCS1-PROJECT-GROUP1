@@ -1,15 +1,7 @@
 #include "CGame.h"
 
 using namespace std;
-const int Max_level = 10;
-const float Height = 29;
-const float Width = 80;
-const int Startlane = 3;
-const int Endlane = Width - 6;
-const int Intwidth = 118 - Width;
-const int Stoptime = 41;
-int LEFTMOST = 3;
-int RIGHTMOST = Width - 6;
+
 CGAME::CGAME(){
 
 
@@ -225,6 +217,43 @@ void CGAME::clean(){
 		i += 1;
 	}
 }
+void CGAME::TrafficLight(int RedLight) {
+
+	Lights li;
+	int d = lv[curLevel - 1]->getDistance();
+	int n = lv[curLevel - 1]->getLane();
+	int posY = Height - 2 - d;
+	for (int i = 0; i < n - 2; i++) {
+		int pos;
+		if (i % 2 == 0) pos = Startlane - 1;
+		else pos = Endlane + 3;
+
+		if (RedLight!=0) {
+			li.RedLight(pos, posY);
+		}
+		else {
+			li.GreenLight(pos, posY);
+		}
+		posY -= d;
+	}
+}
+void CGAME::EndGame(bool Win) {
+
+	clrscr();
+	if (Win) {
+		Red();
+		ifstream Reader("Win.txt");
+		string Art = getFileContents(Reader);
+
+		cout << Art << endl;
+		White();
+	}
+	else {
+		gotoXY(Width / 2, Height / 2);
+
+		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
+	}
+}
 void CGAME::updatePosVehicle() {
 
 }
@@ -244,6 +273,7 @@ Level::Level(int lanes, int distances, int speeds, int cars, int trucks, int bir
 	dina = dinasours; 
 	distance = distances;
 }
+
 
 int Level::getLane() { return lane; }
 int Level::getDistance() { return distance; }

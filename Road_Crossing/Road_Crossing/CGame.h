@@ -63,33 +63,44 @@ private:
     CPEOPLE* pp;
     int curLevel = 0;
     vector<FileSave*>File;
+
+    const int Max_level = 10;
+    const float Height = 29;
+    const float Width = 80;
+    const int Startlane = 3;
+    const int Endlane = Width - 6;
+    const int Intwidth = 118 - Width;
+    const int Stoptime = 41;
+    int LEFTMOST = 3;
+    int RIGHTMOST = Width - 6;
 	
 public:
-    CGAME() ; //Chuẩn bị dữ liệu cho tất cả các đối tượng
-    void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
-    ~CGAME() {}; // Hủy tài nguyên đã cấp phát
+    CGAME() ;
+    void drawGame(); 
 	CPEOPLE* getPeople() {
 		return pp;
-	};//Lấy thông tin người
-    vector <CVEHICLE*> getVehicle();//Lấy danh sách các xe
-    vector <CANIMAL*> getAnimal(); //Lấy danh sách các thú
-    void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
-    void exitGame(HANDLE); // Thực hiện thoát Thread
-    void startGame(); // Thực hiện bắt đầu vào trò chơi
-    void loadGame(); // Thực hiện tải lại trò chơi đã lưu
-    void saveGame(); // Thực hiện lưu lại dữ liệu trò chơi
-    void pauseGame(HANDLE); // Tạm dừng Thread
-    void resumeGame(HANDLE); //Quay lai Thread
-    void updatePosPeople(char tmp); //Thực hiện điều khiển di chuyển của CPEOPLE
-    void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
-    void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
+	};
+    vector <CVEHICLE*> getVehicle();
+    vector <CANIMAL*> getAnimal(); 
+    void resetGame();
+    void exitGame(HANDLE); 
+    void startGame();
+    void loadGame(); 
+    void saveGame(); //
+    void pauseGame(HANDLE);
+    void resumeGame(HANDLE); 
+    void updatePosPeople(char tmp);
+    void updatePosVehicle();
+    void updatePosAnimal();
     bool isCrashed();
     void UpdateLevel();
-
     int getCurLevel() {
         return curLevel;
     }
     void clean();
+    void TrafficLight(int RedLight);
+    void EndGame(bool Win);
 };
+
 
 #endif // CGAME_H_INCLUDED
