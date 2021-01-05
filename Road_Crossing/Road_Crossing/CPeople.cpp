@@ -161,9 +161,15 @@ void CPEOPLE:: Right(int x) {
 bool CPEOPLE::isDead() {
 	return mState;
 }
-int CPEOPLE::getX() { return posX; }
-int CPEOPLE::getY() { return posY; }
-char CPEOPLE::getType() { return type; }
+int CPEOPLE::getX() { 
+	return posX; 
+}
+int CPEOPLE::getY() { 
+	return posY; 
+}
+char CPEOPLE::getType() { 
+	return type; 
+}
 void CPEOPLE:: killPeople() {
 	mState = true;
 }
