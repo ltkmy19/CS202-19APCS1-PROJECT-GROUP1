@@ -17,14 +17,14 @@ class CTRUCK: public CVEHICLE
 {
 private:
 public:
-	CTRUCK(int x, int y);
-	void Draw(int x, int y);
+	CTRUCK(int tmpX, int tmpY);
+	void Draw(int tmpX, int tmpY);
 };
 
 class CCAR : public CVEHICLE
 {
 private:
 public:
-	CCAR(int x, int y);
-	void Draw(int x, int y);
+	CCAR(int tmpX, int tmpY);
+	void Draw(int tmpX, int tmpY);
 };

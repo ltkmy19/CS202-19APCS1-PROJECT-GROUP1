@@ -2,25 +2,25 @@
 
 class CANIMAL {
 protected:
-	int mX, mY, Way;
+	int x, y, Way;
 public:
-	CANIMAL(int x, int y);
-	void virtual Draw(int x, int y) = 0;
+	CANIMAL(int tmpX, int tmpY);
+	void virtual Draw(int tmpX, int tmpY) = 0;
 	void Move(int, int);
 	bool IsDone();
-	int getX() { return mX; }
-	int getY() { return mY; }
+	int getX() { return x; }
+	int getY() { return y; }
 };
 
 class CDINAUSOR : public CANIMAL {
 public:
-	CDINAUSOR(int x, int y);
-	void Draw(int x, int y);
+	CDINAUSOR(int tmpX, int tmpY);
+	void Draw(int tmpX, int tmpY);
 };
 
 class CBIRD : public CANIMAL {
 public:
-	CBIRD(int x, int y);
-	void Draw(int x, int y);
+	CBIRD(int tmpX, int tmpY);
+	void Draw(int tmpX, int tmpY);
 };
 
