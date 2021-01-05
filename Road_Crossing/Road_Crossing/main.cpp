@@ -14,15 +14,19 @@ int main() {
 	int pointer = 0;
 	int sound = 1;
 
+	bool alive = true;
+	int time = 1;
+	char move = ' ';
+	bool Is_move = true;
+	CGAME* pp = new CGAME;
+
 	while (true)
 	{
 
 		system("cls");
 		LightMagenta();
 		ifstream Reader("TextGraphic.txt");
-
 		string Art = getFileContents(Reader);
-
 		cout << Art << endl;
 		gotoXY(85, 5);
 		Yellow();
@@ -98,68 +102,129 @@ int main() {
 					ProgressBar();
 					system("cls");
 					gotoXY(45, 12);
-					//char press;
-					//while (alive == true) {
-					//	system("cls");
-					//	press = tolower(_getch());
-					//	if (true) //	if (!cg->getPeople()->isDead())
-					//	{
-					//		if (GetAsyncKeyState(VK_ESCAPE)) {
-					//			break;
-					//		}
-					//		else if (press =='p') {
+					char press;
+					pp->startGame();
+					thread game(RunGame, pp, Is_move, move,  time , alive);
+					try {
+						if (alive != true || alive != false) {
+							throw 10;
+						}
+	
+					while (alive == true) {
+						system("cls");
+						press = tolower(_getch());
+						
+								if (!pp->getPeople()->isDead()) {
+									if (GetAsyncKeyState(VK_ESCAPE)) {
+										pp->exitGame(game.native_handle());
+										alive = false;
+									}
+									else if (press == 'p') {
+										if (Is_move) {
+											Is_move = false;
+											pp->pauseGame(game.native_handle());
+										}
+										else {
+											Is_move = true;
+											pp->resumeGame(game.native_handle());
+										}
 
-					//		}
-					//		else if (press == 'k') {
+									}
+									else if (press == 'k') {
+										if (!Is_move) {
+											pp->saveGame();
+										}
+									}
+									else if (press == 'l') {
+										if (!Is_move) {
+											pp->loadGame();
+										}
+									}
+									else {
+										if (Is_move) move = press;
 
-					//		}
-					//		else if (press == ' m') {
 
-					//		}
-					//		else {
-					//			cout << "Surprise!!!" << endl;
-					//		}
-					//	}
-					//	else {
+									}
+								}
+								else {
+									if (press == 'y') {
+										pp->startGame();
+									}
+									else {
+										pp->exitGame(game.native_handle());
+										return 0;
+									}
+								}
+							}
 
-					//	}
-					//}
-					system("pause >nul");
+						}
+						catch (int a) {
+
+						}
+
+					game.join();
+
 					break;
 				}
 				case 1:  //Load Game
 				{
 					system("cls");
 					gotoXY(45, 12);
+					char press;
+					pp->startGame();
+					thread game( RunGame, pp, Is_move, move,  time , alive );
+					try {
+						if (alive != true || alive != false) {
+							throw 10;
+						}
+						while (alive == true) {
+							system("cls");
+							press = tolower(_getch());
+							if (!pp->getPeople()->isDead()) {
+								if (GetAsyncKeyState(VK_ESCAPE)) {
+									pp->exitGame(game.native_handle());
+									alive = false;
+								}
+								else if (press == 'p') {
+									if (Is_move) {
+										Is_move = false;
+										pp->pauseGame(game.native_handle());
+									}
+									else {
+										Is_move = true;
+										pp->resumeGame(game.native_handle());
+									}
 
-					cout << "Surprise!!!" << endl;
-					//LoadGame();
-					//char press;
-					//while (alive == true) {
-					//	system("cls");
-					//	press = tolower(_getch());
-					//	if (true) //	if (!cg->getPeople()->isDead())
-					//	{
-					//		if (GetAsyncKeyState(VK_ESCAPE)) {
-					//			break;
-					//		}
-					//		else if (press == 'p') {
+								}
+								else if (press == 'k') {
+									if (!Is_move) {
+										pp->saveGame();
+									}
+								}
+								else if (press == 'l') {
+									if (!Is_move) {
+										pp->loadGame();
+									}
+								}
+								else {
+									if (Is_move) move = press;
+								}
+							}
+							else {
+								if (press == 'y') {
+									pp->startGame();
+								}
+								else {
+									pp->exitGame(game.native_handle());
+									return 0;
+								}
+							}
+						}
+					}
+					catch (int a) {
 
-					//		}
-					//		else if (press == 'k') {
-
-					//		}
-					//		else if (press == ' m') {
-
-					//		}
-					//		else {
-					//			cout << "Surprise!!!" << endl;
-					//		}
-					//	}
-					//	else {
-
-					//	}
-					//}
+					}
+					game.join();
 
 					break;
 				}

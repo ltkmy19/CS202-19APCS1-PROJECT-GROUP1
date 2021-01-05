@@ -6,7 +6,7 @@ class Lights
 {
 public:
 	void RedLight(int x, int y);
-	void YellowLight(int x, int y);
+	//void YellowLight(int x, int y);
 	void GreenLight(int x, int y);
 
 private:
