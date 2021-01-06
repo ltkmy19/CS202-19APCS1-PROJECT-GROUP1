@@ -1,4 +1,6 @@
-#include "MultiThread.h"
+#include"MultiThread.h"
+using namespace std;
+
 int main() {
 	resizeText(20, 20);
 
@@ -14,10 +16,11 @@ int main() {
 	int sound = 1;
 
 	bool alive = true;
-	int time = 1;
-	char move = ' ';
+	int ti = 40;
 	bool Is_move = true;
-	CGAME* pp = new CGAME;
+	CGAME* pp;
+	char MOVE;
+	pp = new CGAME;
 
 	while (true)
 	{
@@ -28,6 +31,7 @@ int main() {
 		string Art = getFileContents(Reader);
 		cout << Art << endl;
 		gotoXY(85, 5);
+
 		Yellow();
 		if (sound == 0) {
 			cout << "OFF";
@@ -46,6 +50,7 @@ int main() {
 		else if (character == '2') {
 			cout << "FEMALE";
 		}
+
 
 		Cyan();
 		gotoXY(80, 1);
@@ -100,66 +105,62 @@ int main() {
 					system("cls");
 					ProgressBar();
 					system("cls");
-					gotoXY(45, 12);
 					char press;
+					alive = true;
+					Is_move = true;
+					MOVE = ' ';
+					ti = 40;
 					pp->startGame();
-					thread game(RunGame, pp, Is_move, move,  time , alive);
-					try {
-						if (alive != true || alive != false) {
-							throw 10;
-						}
-	
+					thread game{ RunGame, ref(pp),ref(Is_move), ref(ti), ref(alive), ref(MOVE) };
 					while (alive == true) {
-						system("cls");
-						press = tolower(_getch());
-						
-								if (!pp->getPeople()->isDead()) {
-									if (GetAsyncKeyState(VK_ESCAPE)) {
-										pp->exitGame(game.native_handle());
-										alive = false;
-									}
-									else if (press == 'p') {
-										if (Is_move) {
-											Is_move = false;
-											pp->pauseGame(game.native_handle());
-										}
-										else {
-											Is_move = true;
-											pp->resumeGame(game.native_handle());
-										}
-
-									}
-									else if (press == 'k') {
-										if (!Is_move) {
-											pp->saveGame();
-										}
-									}
-									else if (press == 'l') {
-										if (!Is_move) {
-											pp->loadGame();
-										}
-									}
-									else {
-										if (Is_move) move = press;
-
-
-									}
+						press = _getch();
+						press = tolower(press);
+						gotoXY(10, 10);
+						cout << press;
+						if (!pp->getPeople()->isDead()) {
+							if (GetAsyncKeyState(VK_ESCAPE)) {
+								pp->exitGame(game.native_handle());
+								alive = false;
+							}
+							else if (press == 'p') {
+								if (Is_move) {
+									Is_move = false;
+									pp->pauseGame(game.native_handle());
 								}
 								else {
-									if (press == 'y') {
-										pp->startGame();
-									}
-									else {
-										pp->exitGame(game.native_handle());
-										return 0;
-									}
+									Is_move = true;
+									pp->resumeGame(game.native_handle());
+								}
+
+							}
+							else if (press == 'k') {
+								if (!Is_move) {
+									pp->saveGame();
 								}
 							}
+							else if (press == 'l') {
+								if (!Is_move) {
+									pp->loadGame();
+								}
+							}
+							else {
+								if (Is_move) {
+									MOVE = press;
+								}
 
-						}
-						catch (int a) {
 
+							}
 						}
+						else {
+							if (press == 'y') {
+								pp->startGame();
+							}
+							else {
+								pp->exitGame(game.native_handle());
+								return 0;
+							}
+						}
+					}
 
 					game.join();
 
@@ -169,8 +170,8 @@ int main() {
 				{
 					system("cls");
 					gotoXY(45, 12);
-					ifstream f; 
-					int saveno = 0; 
+					ifstream f;
+					int saveno = 0;
 					vector<FileSave*> File;
 					f.open("SaveFile.txt");
 					int level; string name;
@@ -193,71 +194,68 @@ int main() {
 
 						f.close();
 
-						char type; 
+						char type;
 						type = _getch();
-						if (GetAsyncKeyState(VK_ESCAPE)!=true) {
+						if (GetAsyncKeyState(VK_ESCAPE) != true) {
 							int a = type - '0';
 							if (a <= saveno && a > 0) {
 								int curLevel = File[a - 1]->getLevel();
-								//pp->LoadLevel(curLevel);
+								//pp->UpdateLevel(curLevel);
 							}
 						}
-						else continue;
+						else {
+							continue;
+						}
 					}
 					char press;
 					pp->startGame();
-					thread game( RunGame, pp, Is_move, move,  time , alive );
-					try {
-						if (alive != true || alive != false) {
-							throw 10;
-						}
-						while (alive == true) {
-							system("cls");
-							press = tolower(_getch());
-							if (!pp->getPeople()->isDead()) {
-								if (GetAsyncKeyState(VK_ESCAPE)) {
-									pp->exitGame(game.native_handle());
-									alive = false;
-								}
-								else if (press == 'p') {
-									if (Is_move) {
-										Is_move = false;
-										pp->pauseGame(game.native_handle());
-									}
-									else {
-										Is_move = true;
-										pp->resumeGame(game.native_handle());
-									}
-
-								}
-								else if (press == 'k') {
-									if (!Is_move) {
-										pp->saveGame();
-									}
-								}
-								else if (press == 'l') {
-									if (!Is_move) {
-										pp->loadGame();
-									}
+					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
+					while (alive == true) {
+						system("cls");
+						press = tolower(_getch());
+						if (!pp->getPeople()->isDead()) {
+							if (GetAsyncKeyState(VK_ESCAPE)) {
+								pp->exitGame(game.native_handle());
+								alive = false;
+							}
+							else if (press == 'p') {
+								if (Is_move) {
+									Is_move = false;
+									pp->pauseGame(game.native_handle());
 								}
 								else {
-									if (Is_move) move = press;
+									Is_move = true;
+									pp->resumeGame(game.native_handle());
+								}
+
+							}
+							else if (press == 'k') {
+								if (!Is_move) {
+									pp->saveGame();
+								}
+							}
+							else if (press == 'l') {
+								if (!Is_move) {
+									pp->loadGame();
 								}
 							}
 							else {
-								if (press == 'y') {
-									pp->startGame();
-								}
-								else {
-									pp->exitGame(game.native_handle());
-									return 0;
+								if (Is_move) {
+									MOVE = press;
 								}
 							}
 						}
+						else {
+							if (press == 'y') {
+								pp->startGame();
+							}
+							else {
+								pp->exitGame(game.native_handle());
+								return 0;
+							}
+						}
 					}
-					catch (int a) {
 
-					}
 					game.join();
 
 					break;
@@ -279,33 +277,33 @@ int main() {
 				{
 					system("cls");
 
-					LightMagenta();
-					ifstream Reader("TextGraphic.txt");
+						LightMagenta();
+						ifstream Reader("TextGraphic.txt");
 
-					string Art = getFileContents(Reader);
+						string Art = getFileContents(Reader);
 
-					cout << Art << endl;
-					gotoXY(76, 1);
-					Cyan();
-					cout << "CHARACTER" << endl;
-					int posx = 75;
-					int posy = 4;
-					White();
-					CPEOPLE male(posx, posy, '1');
-					male.ReDraw(posx, posy, '1');
-					gotoXY(posx - 1, posy + 3);
+						cout << Art << endl;
+						gotoXY(76, 1);
+						Cyan();
+						cout << "CHARACTER" << endl;
+						int posx = 75;
+						int posy = 4;
+						White();
+						CPEOPLE male(posx, posy, '1');
+						male.ReDraw(posx, posy, '1');
+						gotoXY(posx - 1, posy + 3);
 
-					cout << "[1]";
+						cout << "[1]";
 
-					posx = 85;
-					posy = 4;
-					White();
-					CPEOPLE female(posx, posy, '2');
-					female.ReDraw(posx, posy, '2');
-					gotoXY(posx - 1, posy + 3);
-					cout << "[2]";
-					FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-					character = _getch();
+						posx = 85;
+						posy = 4;
+						White();
+						CPEOPLE female(posx, posy, '2');
+						female.ReDraw(posx, posy, '2');
+						gotoXY(posx - 1, posy + 3);
+						cout << "[2]";
+						FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+						character = _getch();
 					break;
 				}
 				case 4:  //Tutorial
@@ -345,6 +343,7 @@ int main() {
 					string Art = getFileContents(Reader);
 					cout << Art << endl;
 					White();
+					delete pp;
 					return 0;
 					break;
 				}
@@ -363,7 +362,7 @@ int main() {
 		Sleep(150);
 	}
 
-
+	delete pp;
 	system("pause >nul");
 
 	return 0;

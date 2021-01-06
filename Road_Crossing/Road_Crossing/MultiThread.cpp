@@ -1,41 +1,37 @@
 #include"MultiThread.h"
 
-void RunGame(CGAME* pp, bool Is_move, char move, int time, bool alive) {
+void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
+	while (alive) {
+		++ti;
+		if (!Is_move) {
+			continue;
+		}
+		if (!pp->getPeople()->isDead()) {
+			pp->updatePosPeople(MOVE);
+		}
+		if (pp->isFinish()) {
+			pp->EndGame(true);
+			alive = false;
+			break;
+		}
 
-	//while (alive) {
-	//	time++;
-	//	if (Is_move == false) {
-	//		continue;
-	//	}
-	//	if (!pp->getPeople()->isDead()) 
-	//		pp->updatePosPeople(move, time);
+		MOVE = ' ';
+		if (ti % 300 > 40) {
+			pp->TrafficLight(true);
+			//pp->Update();
+		}
+		else {
+			pp->TrafficLight(false);
+		}
 
-	//	if (pp->IsFinish()) {
-	//		pp->EndGame(true);
-	//		alive = false;
-	//		break;
-	//	}
+		if (pp->isCrashed()) {
+			cout << "\a";
+			pp->EndGame(false);
+			alive = false;
+			break;
 
-
-	//	move = ' ';
-
-	//	if (time % 300 > 1 - 1) {
-	//		pp->TrafficLight(1);
-	//		//pp->Update();
-	//	}
-	//	else {
-
-	//		pp->TrafficLight(2);
-	//	}
-
-	//	if (pp->isCrashed()) {
-	//		cout << "\a";
-	//		pp->EndGame(false);
-	//		alive = false;
-	//		break;
-
-	//	}
+		}
 
 	//	Sleep(100 / pp->getSpeed());
-	//}
+	}
 }
