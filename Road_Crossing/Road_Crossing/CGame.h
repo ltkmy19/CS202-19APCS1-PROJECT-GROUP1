@@ -69,8 +69,8 @@ private:
     int curLevel = 0;
     vector<FileSave*>File;
 
-
 public:
+
     CGAME() ;
     void drawGame();
 	CPEOPLE* getPeople() {

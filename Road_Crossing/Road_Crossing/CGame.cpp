@@ -237,22 +237,6 @@ void CGAME::clean(){
 	}
 }
 
-void CGAME::EndGame(bool Win) {
-
-	clrscr();
-	if (Win) {
-		Red();
-		ifstream Reader("Win.txt");
-		string Art = getFileContents(Reader);
-		cout << Art << endl;
-		White();
-	}
-	else {
-		gotoXY(Width / 2, Height / 2);
-
-		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
-	}
-}
 void CGAME::updatePosVehicle() {
 
 }

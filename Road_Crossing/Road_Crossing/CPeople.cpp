@@ -69,7 +69,7 @@ void CPEOPLE::ReDraw(int x, int y, char type) {
 }
 
 void CPEOPLE:: Up(int x) {
-	gotoXY(posX, posY);// ve nguoi
+	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
 	cout << '_';
@@ -92,7 +92,7 @@ void CPEOPLE:: Up(int x) {
 }
 
 void CPEOPLE::Down(int x) {
-	gotoXY(posX, posY);// ve nguoi
+	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
 	cout << '_';
@@ -114,7 +114,7 @@ void CPEOPLE::Down(int x) {
 	ReDraw(posX, posY, type);
 }
 void CPEOPLE:: Left(int x) {
-	gotoXY(posX, posY);// ve nguoi
+	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
 	cout << '_';
@@ -136,7 +136,7 @@ void CPEOPLE:: Left(int x) {
 	ReDraw(posX, posY, type);
 }
 void CPEOPLE:: Right(int x) {
-	gotoXY(posX, posY);// ve nguoi
+	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
 	cout << '_';

@@ -1,5 +1,4 @@
 #include "MultiThread.h"
-bool alive = true;
 int main() {
 	resizeText(20, 20);
 
