@@ -38,6 +38,8 @@ void CGAME::drawGame() {
 		gotoXY(Startlane, m - 2); Finish = m - 2; m -= d;
 		for (int j = 0; j < Endlane; ++j) cout << "_";
 	}
+    this->pp = new CPEOPLE(Width/2,Height-3,peopleType);
+    TrafficLight(false);
 }
 
 
@@ -153,7 +155,7 @@ void CGAME::saveGame(){
 			cnt--;
 		}
 		else if (a == 13) {
-			fout.open("SaveFile.txt");
+			fout.open("SaveFile.txt",fstream::app);
 			if (!fout.is_open()) {
 				gotoXY(W + 2, H + 4); cout << "Can not open file!";
 				Sleep(500);
@@ -238,10 +240,53 @@ void CGAME::clean(){
 }
 
 void CGAME::updatePosVehicle() {
+    Level* level = lv[curLevel-1];
+    int a,b;
+    for(int i = 0;i < level->AmountOfCar();i++){
+        if(axh[i] == NULL || axh[i]->IsDone()){
+            if(axh[i] != NULL) delete axh[i];
+            a = 1 + rand() % (level->getLane()-2);
+            b = 10;
+            if(a % 2) axh[i] = new CCAR(Endlane + b,Finish - a*level->getDistance()-1);
+            else axh[i] = new CCAR(Startlane - b,Finish - a*level->getDistance()-1);
+        }
+        else ac[i]->Move(10,10);
+    }
+    for(int i = 0;i < level->AmountOfTruck();i++){
+        if(axt[i] == NULL || axt[i]->IsDone()){
+            if(axt[i] != NULL) delete axt[i];
+            a = 1 + rand() % (level->getLane()-2);
+            b = 10;
+            if(a % 2) axt[i] = new CTRUCK(Endlane + b,Finish - a*level->getDistance()-1);
+            else axt[i] = new CTRUCK(Startlane - b,Finish - a*level->getDistance()-1);
+        }
+        else axt[i]->Move(10,10);
+    }
 
 }
 void CGAME::updatePosAnimal() {
-
+    Level* level = lv[curLevel-1];
+    int a,b;
+    for(int i = 0;i < level->AmountOfBird();i++){
+        if(ac[i] == NULL || ac[i]->IsDone()){
+            if(ac[i] != NULL) delete ac[i];
+            a = 1 + rand() % (level->getLane()-2);
+            b = 10;
+            if(a % 2 == 0) ac[i] = new CBIRD(Endlane + b,Finish - a*level->getDistance()-1);
+            else ac[i] = new CBIRD(Startlane - b,Finish - a*level->getDistance()-1);
+        }
+        else ac[i]->Move(10,10);
+    }
+    for(int i = 0;i < level->AmountOfDinasour();i++){
+        if(akl[i] == NULL || akl[i]->IsDone()){
+            if(akl[i] != NULL) delete akl[i];
+            a = 1 + rand() % (level->getLane()-2);
+            b = 10;
+            if(a % 2 == 0) akl[i] = new CDINAUSOR(Endlane + b,Finish - a*level->getDistance()-1);
+            else akl[i] = new CDINAUSOR(Startlane - b,Finish - a*level->getDistance()-1);
+        }
+        else akl[i]->Move(10,10);
+    }
 }
 
 bool CGAME::isFinish(){

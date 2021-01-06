@@ -5,19 +5,11 @@
 #include "CPeople.h"
 #include <stdio.h>
 #include <vector>
+#include <stdlib.h>
 #include <fstream>
 
 using namespace std;
 
-const int Max_level = 10;
-const float Height = 29;
-const float Width = 80;
-const int Startlane = 3;
-const int Endlane = Width - 6;
-const int Intwidth = 118 - Width;
-const int Stoptime = 41;
-int LEFTMOST = 3;
-int RIGHTMOST = Width - 6;
 
 class FileSave{
 private:
@@ -58,7 +50,7 @@ public:
 
 class CGAME{
 private:
-
+    char peopleType;
 	vector<CTRUCK*>axt;
 	vector<CCAR*>axh;
 	vector<CDINAUSOR*>akl;
@@ -70,6 +62,15 @@ private:
     vector<FileSave*>File;
 
 public:
+    const int Max_level = 10;
+    const int Height = 29;
+    const int Width = 80;
+    const int Startlane = 3;
+    const int Endlane = Width - 6;
+    const int Intwidth = 118 - Width;
+    const int Stoptime = 41;
+    int LEFTMOST = 3;
+    int RIGHTMOST = Width - 6;
 
     CGAME() ;
     void drawGame();
