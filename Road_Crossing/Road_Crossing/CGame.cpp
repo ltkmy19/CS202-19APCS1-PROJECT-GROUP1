@@ -4,7 +4,7 @@ using namespace std;
 
 CGAME::CGAME(char ppType){
     peopleType = ppType;
-	lv[0] = new Level(4, 7, 2, 0, 0, 0, 4);
+	lv[0] = new Level(4, 7, 2, 3, 3, 3, 5);//int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours
 	lv[1] = new Level(4, 7, 2, 2, 2, 2, 1);
 	lv[2] = new Level(5, 6, 2, 2, 3, 3, 3);
 	lv[3] = new Level(5, 6, 2, 3, 3, 2, 3);
