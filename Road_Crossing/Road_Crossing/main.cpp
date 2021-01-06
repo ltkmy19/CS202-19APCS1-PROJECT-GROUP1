@@ -169,6 +169,41 @@ int main() {
 				{
 					system("cls");
 					gotoXY(45, 12);
+					ifstream f; 
+					int saveno = 0; 
+					vector<FileSave*> File;
+					f.open("SaveFile.txt");
+					int level; string name;
+					gotoXY(17, 15);
+					if (f.fail()) {
+						cout << "There is no save file!!";
+					}
+					else {
+						cout << "Here are saved files: ";
+						int line = 17;
+						while (!f.eof()) {
+							getline(f, name);
+							f >> level;
+							f.ignore();
+							File[saveno] = new FileSave(level, name);
+							gotoXY(17, line); cout << saveno + 1 << ". " << File[saveno]->getName() << " "
+								<< File[saveno]->getLevel();
+							saveno += 1; line += 1;
+						}
+
+						f.close();
+
+						char type; 
+						type = _getch();
+						if (GetAsyncKeyState(VK_ESCAPE)!=true) {
+							int a = type - '0';
+							if (a <= saveno && a > 0) {
+								int curLevel = File[a - 1]->getLevel();
+								//pp->LoadLevel(curLevel);
+							}
+						}
+						else continue;
+					}
 					char press;
 					pp->startGame();
 					thread game( RunGame, pp, Is_move, move,  time , alive );
