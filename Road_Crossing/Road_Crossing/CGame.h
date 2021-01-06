@@ -63,15 +63,15 @@ public:
 class CGAME{
 private:
     char peopleType;
-	vector<CTRUCK*>axt;
-	vector<CCAR*>axh;
-	vector<CDINAUSOR*>akl;
-	vector<CBIRD*>ac;
-	vector<Level*>lv;
+	CTRUCK* axt[10];
+	CCAR* axh [10];
+	CDINAUSOR* akl[10];
+	CBIRD* ac[10];
+	Level* lv[10];
 	int Finish; //pos y-axis represent the end point of a level;
     CPEOPLE* pp;
     int curLevel = 0;
-    vector<FileSave*>File;
+    FileSave* File[10];
 
 public:
 //    const int Max_level = 10;
@@ -85,7 +85,6 @@ public:
 //    int RIGHTMOST = Width - 6;
 
     CGAME(char ppType) ;
-    void levelInitialize(int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours);
     void drawGame();
 	CPEOPLE* getPeople() {
 		return pp;

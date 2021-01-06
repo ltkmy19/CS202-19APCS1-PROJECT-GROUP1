@@ -18,10 +18,10 @@ public:
 	void Left(int x);
 	void Right(int x);
 	void Down(int x);
-	bool ISCrashed(vector<CCAR*> a, int n);
-	bool ISCrashed(vector<CTRUCK*> b, int n);
-	bool ISCrashed(vector<CDINAUSOR*> a, int n);
-	bool ISCrashed(vector<CBIRD*> b, int n);
+	bool ISCrashed(CCAR** a, int n);
+	bool ISCrashed(CTRUCK** b, int n);
+	bool ISCrashed(CDINAUSOR** a, int n);
+	bool ISCrashed(CBIRD** b, int n);
 	bool isFinish(int Finish);
 	bool isDead();
 	int getX();
