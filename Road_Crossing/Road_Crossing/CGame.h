@@ -3,13 +3,25 @@
 #include "Files.h"
 #include "Traffic_Light.h"
 #include "CPeople.h"
+#include "CAnimal.h"
+#include "CVehicle.h"
+#include "Console.h"
+#include "MultiThread.h"
 #include <stdio.h>
 #include <vector>
 #include <stdlib.h>
 #include <fstream>
 
 using namespace std;
-
+const int Max_level = 10;
+const int Height = 29;
+const int Width = 80;
+const int Startlane = 3;
+const int Endlane = Width - 6;
+const int Intwidth = 118 - Width;
+const int Stoptime = 41;
+const int LEFTMOST = 3;
+const int RIGHTMOST = Width - 6;
 
 class FileSave{
 private:
@@ -62,15 +74,15 @@ private:
     vector<FileSave*>File;
 
 public:
-    const int Max_level = 10;
-    const int Height = 29;
-    const int Width = 80;
-    const int Startlane = 3;
-    const int Endlane = Width - 6;
-    const int Intwidth = 118 - Width;
-    const int Stoptime = 41;
-    int LEFTMOST = 3;
-    int RIGHTMOST = Width - 6;
+//    const int Max_level = 10;
+//    const int Height = 29;
+//    const int Width = 80;
+//    const int Startlane = 3;
+//    const int Endlane = Width - 6;
+//    const int Intwidth = 118 - Width;
+//    const int Stoptime = 41;
+//    int LEFTMOST = 3;
+//    int RIGHTMOST = Width - 6;
 
     CGAME(char ppType) ;
     void levelInitialize(int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours);
