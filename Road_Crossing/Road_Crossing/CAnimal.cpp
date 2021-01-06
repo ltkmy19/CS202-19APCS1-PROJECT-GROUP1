@@ -2,14 +2,27 @@
 #include "CGame.h"
 #pragma
 
-CANIMAL::CANIMAL(int x, int y) 
+CANIMAL::CANIMAL(int tmpX, int tmpY)
 {
-
+	x = tmpX;
+	y = tmpY;
+	if (tmpX >= Endlane) Way = -1;
+	else Way = 1;
 }
 
-void CANIMAL::Move(int x, int y)
+void CANIMAL::Move(int tmpX, int tmpY)
 {
+	if (x <= Endlane + Startlane - 1 && x >= Startlane + 1)
+	{
+		gotoXY(x - 2, y - 1); 
+		cout << "    ";
 
+		gotoXY(x - 2, y);
+		cout << "    ";
+
+		gotoXY(x - 1, y + 1); 
+		cout << "___";
+	}
 }
 
 bool CANIMAL::IsDone()
@@ -27,37 +40,44 @@ bool CANIMAL::IsDone()
 	return false;
 }
 
-CDINAUSOR::CDINAUSOR(int x, int y) : CANIMAL(x, y) 
+CDINAUSOR::CDINAUSOR(int tmpX, int tmpY) : CANIMAL(tmpX, tmpY) 
 {
-
+	Draw(tmpX, tmpY);
 }
 
 void CDINAUSOR::Draw(int tmpX, int tmpY)
 {
 	x += 3 * Way; //toc do 
-	tmpX = x;
+	x = tmpX;
 
 	if (x > Endlane + Startlane - 1 || x <= Startlane) return;
 
 	gotoXY(tmpX, tmpY + 1);
 	cout << char(223);
-
 	cout << char(178);
 	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(178);
 	gotoXY(tmpX, tmpY);
 	cout << char(203);
+}
+
+CBIRD::CBIRD(int tmpX, int tmpY) : CANIMAL(tmpX, tmpY) 
+{
+	Draw(tmpX, tmpY);
+}
+
+void CBIRD::Draw(int tmpX, int tmpY) 
+{
+	x += 4 * Way; 
+	tmpX = x;
+
+	if (tmpX > Endlane + Startlane - 1 || tmpX <= Startlane) 
+		return;
+
 	gotoXY(tmpX, tmpY);
-}
-
-CBIRD::CBIRD(int x, int y) : CANIMAL(x, y) 
-{
-
-}
-
-void CBIRD::Draw(int x, int y) 
-{
-
-
+	cout << char(254);
+	cout << char(223);
+	gotoXY(tmpX - 1, tmpY);
+	cout << char(223);
 }
 
