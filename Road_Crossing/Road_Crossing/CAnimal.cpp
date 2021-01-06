@@ -23,6 +23,7 @@ void CANIMAL::Move(int tmpX, int tmpY)
 		gotoXY(x - 1, y + 1); 
 		cout << "___";
 	}
+	Draw(x, y);
 }
 
 bool CANIMAL::IsDone()
@@ -47,8 +48,8 @@ CDINAUSOR::CDINAUSOR(int tmpX, int tmpY) : CANIMAL(tmpX, tmpY)
 
 void CDINAUSOR::Draw(int tmpX, int tmpY)
 {
-	x += 3 * Way; //toc do 
-	x = tmpX;
+	x += 3 * Way;
+	tmpX = x;
 
 	if (x > Endlane + Startlane - 1 || x <= Startlane) return;
 

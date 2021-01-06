@@ -285,8 +285,10 @@ void CGAME::updatePosAnimal() {
             if(ac[i] != NULL) delete ac[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2 == 0) ac[i] = new CBIRD(Endlane + b,Finish - a*level->getDistance()-1);
-            else ac[i] = new CBIRD(Startlane - b,Finish - a*level->getDistance()-1);
+            if(a % 2 == 0) 
+				ac[i] = new CBIRD(Endlane,Finish + a*level->getDistance()-1);
+            else 
+				ac[i] = new CBIRD(Startlane,Finish + a*level->getDistance()-1);
         }
         else ac[i]->Move(10,10);
     }
@@ -295,8 +297,10 @@ void CGAME::updatePosAnimal() {
             if(akl[i] != NULL) delete akl[i];
             a = 1 + rand() % (level->getLane()-2);
             b = rand()%7*12;
-            if(a % 2 == 0) akl[i] = new CDINAUSOR(Endlane + b,Finish - a*level->getDistance()-1);
-            else akl[i] = new CDINAUSOR(Startlane - b,Finish - a*level->getDistance()-1);
+            if(a % 2 == 0) \
+				akl[i] = new CDINAUSOR(Endlane,Finish + a*level->getDistance()-1);
+            else 
+				akl[i] = new CDINAUSOR(Startlane,Finish + a*level->getDistance()-1);
         }
         else akl[i]->Move(10,10);
     }

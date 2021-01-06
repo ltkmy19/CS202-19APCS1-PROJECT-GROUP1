@@ -19,9 +19,11 @@ void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
 		if (ti % 300 > 40) {
 			pp->TrafficLight(true);
 			//pp->Update();
+			pp->updatePosAnimal();
 		}
 		else {
 			pp->TrafficLight(false);
+			pp->updatePosAnimal();
 		}
 
 		if (pp->isCrashed()) {
