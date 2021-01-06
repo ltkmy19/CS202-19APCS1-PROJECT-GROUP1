@@ -2,8 +2,20 @@
 
 using namespace std;
 
-CGAME::CGAME(){
+CGAME::CGAME(char ppType){
+    peopleType = ppType;
+    lv[0] = new Level(4, 7, 2, 0, 0, 0, 4); //lanes, distances,  speeds,  cars,  trucks,  birds,  dinasours
+	lv[1] = new Level(4, 7, 2, 2, 2, 2, 1);
+	lv[2] = new Level(5, 6, 2, 2, 3, 3, 3);
+	lv[3] = new Level(5, 6, 2, 3, 3, 2, 3);
+	lv[4] = new Level(5, 6, 3, 3, 3, 3, 2);
+	lv[5] = new Level(7, 4, 2, 3, 3, 3, 3);
+	lv[6] = new Level(7, 4, 3, 3, 3, 3, 3);
+	lv[7] = new Level(7, 4, 4, 4, 4, 4, 4);
+	lv[8] = new Level(9, 3, 3, 6, 5, 4, 4);
+	lv[9] = new Level(9, 3, 4, 7, 7, 7, 7);
 
+	curLevel = 1;
 
 }
 
@@ -115,6 +127,7 @@ void CGAME::loadGame() {
 				fin >> level;
 				fin.ignore(1);
 				getline(fin, name);
+				fin.get(peopleType);
 				if (tmp != NULL) delete tmp;
 				tmp = new FileSave(level, name);
 				this->File.push_back(tmp);
@@ -161,7 +174,7 @@ void CGAME::saveGame(){
 				Sleep(500);
 				return;
 			}
-
+            fout << peopleType << endl;
 			fout << name << endl;
 			fout << curLevel << endl;
 			fout.close();
