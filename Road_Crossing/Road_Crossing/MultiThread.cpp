@@ -16,7 +16,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
 		}
 
 		MOVE = ' ';
-		if (ti % 300 > 40) {
+		if (ti % 300 > Stoptime-1) {
 			pp->TrafficLight(true);
 			//pp->Update();
 		}
@@ -26,7 +26,6 @@ void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
 		}
 
 		if (pp->isCrashed()) {
-			cout << "\a";
 			pp->EndGame(false);
 			alive = false;
 			break;

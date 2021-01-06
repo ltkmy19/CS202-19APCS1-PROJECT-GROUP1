@@ -16,11 +16,10 @@ int main() {
 	int sound = 1;
 
 	bool alive = true;
-	int ti = 40;
+	int ti = Stoptime;
 	bool Is_move = true;
 	CGAME* pp;
 	char MOVE;
-	pp = new CGAME(1);
 
 	while (true)
 	{
@@ -109,18 +108,21 @@ int main() {
 					alive = true;
 					Is_move = true;
 					MOVE = ' ';
-					ti = 40;
+					ti = Stoptime;
+					pp = new CGAME(character);
+
 					pp->startGame();
 					thread game{ RunGame, ref(pp),ref(Is_move), ref(ti), ref(alive), ref(MOVE) };
 					while (alive == true) {
 						press = _getch();
 						press = tolower(press);
-						gotoXY(10, 10);
-						cout << press;
+						/*gotoXY(10, 10);
+						cout << press;*/
 						if (!pp->getPeople()->isDead()) {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
 								pp->exitGame(game.native_handle());
 								alive = false;
+							
 							}
 							else if (press == 'p') {
 								if (Is_move) {
@@ -157,6 +159,7 @@ int main() {
 							}
 							else {
 								pp->exitGame(game.native_handle());
+								delete pp;
 								return 0;
 							}
 						}
@@ -200,13 +203,16 @@ int main() {
 							int a = type - '0';
 							if (a <= saveno && a > 0) {
 								int curLevel = File[a - 1]->getLevel();
-								//pp->UpdateLevel(curLevel);
+								
+								pp->UpdateLevel();
 							}
 						}
 						else {
 							continue;
 						}
 					}
+					pp = new CGAME(character);
+
 					char press;
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
@@ -343,7 +349,7 @@ int main() {
 					string Art = getFileContents(Reader);
 					cout << Art << endl;
 					White();
-					delete pp;
+					
 					return 0;
 					break;
 				}
