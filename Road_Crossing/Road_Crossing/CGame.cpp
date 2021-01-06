@@ -294,7 +294,7 @@ void CGAME::updatePosAnimal() {
         if(akl[i] == NULL || akl[i]->IsDone()){
             if(akl[i] != NULL) delete akl[i];
             a = 1 + rand() % (level->getLane()-2);
-            b = 10;
+            b = rand()%7*12;
             if(a % 2 == 0) akl[i] = new CDINAUSOR(Endlane + b,Finish - a*level->getDistance()-1);
             else akl[i] = new CDINAUSOR(Startlane - b,Finish - a*level->getDistance()-1);
         }
