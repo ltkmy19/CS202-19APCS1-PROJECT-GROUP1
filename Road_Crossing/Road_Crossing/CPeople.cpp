@@ -90,7 +90,7 @@ void CPEOPLE:: Up(int x) {
 	gotoXY(posX - 1, posY);
 	cout << ' ';
 	posY -= x;
-	ReDraw(posX, posY, type);
+	Draw(posX, posY, type);
 }
 
 void CPEOPLE::Down(int x) {
@@ -113,7 +113,7 @@ void CPEOPLE::Down(int x) {
 	gotoXY(posX - 1, posY);
 	cout << ' ';
 	posY += x;
-	ReDraw(posX, posY, type);
+	Draw(posX, posY, type);
 }
 void CPEOPLE:: Left(int x) {
 	gotoXY(posX, posY);
@@ -135,7 +135,7 @@ void CPEOPLE:: Left(int x) {
 	gotoXY(posX - 1, posY);
 	cout << ' ';
 	posX -= 4;
-	ReDraw(posX, posY, type);
+	Draw(posX, posY, type);
 }
 void CPEOPLE:: Right(int x) {
 	gotoXY(posX, posY);
@@ -157,7 +157,7 @@ void CPEOPLE:: Right(int x) {
 	gotoXY(posX - 1, posY);
 	cout << ' ';
 	posX += x;
-	ReDraw(posX, posY, type);
+	Draw(posX, posY, type);
 }
 
 bool CPEOPLE::isDead() {
