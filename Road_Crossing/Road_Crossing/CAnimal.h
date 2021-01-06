@@ -1,4 +1,5 @@
 #include "Console.h"
+#include "CGame.h"
 
 class CANIMAL {
 protected:
