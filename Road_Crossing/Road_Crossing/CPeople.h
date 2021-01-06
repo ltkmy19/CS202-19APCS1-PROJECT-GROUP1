@@ -13,7 +13,7 @@ class CPEOPLE {
 	char type;
 public:
 	CPEOPLE(int x, int y, char type);
-	void ReDraw(int x, int y, char type);
+	void Draw(int x, int y, char type);
 	void Up(int x);
 	void Left(int x);
 	void Right(int x);

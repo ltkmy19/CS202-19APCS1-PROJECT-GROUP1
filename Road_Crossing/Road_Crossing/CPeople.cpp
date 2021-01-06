@@ -27,9 +27,10 @@ CPEOPLE::CPEOPLE(int x, int y, char type) {
 		people[1][0] = char(254);
 		people[1][2] = ' ';
 	}
+	Draw(x, y, type);
 	mState = false;
 }
-void CPEOPLE::ReDraw(int x, int y, char type) {
+void CPEOPLE::Draw(int x, int y, char type) {
 	if (type == 1) {
 		gotoXY(x, y);
 		Brown();
