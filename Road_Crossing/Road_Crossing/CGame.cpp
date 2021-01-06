@@ -4,21 +4,25 @@ using namespace std;
 
 CGAME::CGAME(char ppType){
     peopleType = ppType;
-    lv[0] = new Level(4, 7, 2, 0, 0, 0, 4); //lanes, distances,  speeds,  cars,  trucks,  birds,  dinasours
-	lv[1] = new Level(4, 7, 2, 2, 2, 2, 1);
-	lv[2] = new Level(5, 6, 2, 2, 3, 3, 3);
-	lv[3] = new Level(5, 6, 2, 3, 3, 2, 3);
-	lv[4] = new Level(5, 6, 3, 3, 3, 3, 2);
-	lv[5] = new Level(7, 4, 2, 3, 3, 3, 3);
-	lv[6] = new Level(7, 4, 3, 3, 3, 3, 3);
-	lv[7] = new Level(7, 4, 4, 4, 4, 4, 4);
-	lv[8] = new Level(9, 3, 3, 6, 5, 4, 4);
-	lv[9] = new Level(9, 3, 4, 7, 7, 7, 7);
-
+    levelInitialize(4,7,2,0,0,0,4);
+    levelInitialize(4,7,2,2,2,2,1);
+    levelInitialize(5,6,2,2,3,3,3);
+    levelInitialize(5,6,2,3,3,2,3);
+    levelInitialize(5,6,3,3,3,3,2);
+    levelInitialize(7,4,2,3,3,3,3);
+    levelInitialize(7,4,3,3,3,3,3);
+    levelInitialize(7,4,4,4,4,4,4);
+    levelInitialize(9,3,3,6,5,4,4);
+    levelInitialize(9,3,4,7,7,7,7);
 	curLevel = 1;
 
 }
 
+void CGAME::levelInitialize(int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours){
+    Level* level;
+    level = new Level(lanes, distances, speeds, cars, trucks, birds, dinasours);
+	lv.push_back(level);
+}
 void CGAME::drawGame() {
     LightMagenta();
     gotoXY(0, 0); cout << (char)218; for (int i = 1; i < Width; i++) { cout << (char)196; } cout << (char)191;

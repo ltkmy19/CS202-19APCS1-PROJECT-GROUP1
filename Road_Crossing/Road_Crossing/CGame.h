@@ -72,7 +72,8 @@ public:
     int LEFTMOST = 3;
     int RIGHTMOST = Width - 6;
 
-    CGAME() ;
+    CGAME(char ppType) ;
+    void levelInitialize(int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours);
     void drawGame();
 	CPEOPLE* getPeople() {
 		return pp;
