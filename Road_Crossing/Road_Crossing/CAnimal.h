@@ -1,7 +1,8 @@
-#include "Console.h"
-#include "CGame.h"
+#ifndef _CANIMAL_H_
+#define _CANIMAL_H_
 
-class CANIMAL {
+class CANIMAL 
+{
 protected:
 	int x, y, Way;
 public:
@@ -25,3 +26,4 @@ public:
 	void Draw(int tmpX, int tmpY);
 };
 
+#endif

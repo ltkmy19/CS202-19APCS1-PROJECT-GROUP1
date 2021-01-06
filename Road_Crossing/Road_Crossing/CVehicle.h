@@ -1,4 +1,5 @@
-#include "Console.h"
+#ifndef _CVEHICLE_H_
+#define _CVEHICLE_H_
 
 class CVEHICLE
 {
@@ -28,3 +29,5 @@ public:
 	CCAR(int tmpX, int tmpY);
 	void Draw(int tmpX, int tmpY);
 };
+
+#endif

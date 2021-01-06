@@ -1,4 +1,5 @@
 #include "CVehicle.h"
+#include "CGame.h"
 
 //CVEHICLE
 

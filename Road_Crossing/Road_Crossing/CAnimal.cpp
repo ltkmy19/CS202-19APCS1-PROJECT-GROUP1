@@ -1,4 +1,6 @@
 #include "CAnimal.h"
+#include "CGame.h"
+#pragma
 
 CANIMAL::CANIMAL(int x, int y) 
 {
@@ -14,9 +16,12 @@ bool CANIMAL::IsDone()
 {
 	if ((Way == 1 && x >= Endlane) || (Way == -1 && x <= Startlane + 3))
 	{
-		GotoXY(x - 2, y - 1); cout << "    ";
-		GotoXY(x - 2, y); cout << "    ";
-		GotoXY(x - 1, y + 1); cout << "___";
+		gotoXY(x - 2, y - 1); 
+		cout << "    ";
+		gotoXY(x - 2, y); 
+		cout << "    ";
+		gotoXY(x - 1, y + 1); 
+		cout << "___";
 		return true;
 	}
 	return false;
@@ -34,15 +39,15 @@ void CDINAUSOR::Draw(int tmpX, int tmpY)
 
 	if (x > Endlane + Startlane - 1 || x <= Startlane) return;
 
-	GotoXY(tmpX, tmpY + 1);
+	gotoXY(tmpX, tmpY + 1);
 	cout << char(223);
 
 	cout << char(178);
-	GotoXY(tmpX - 1, tmpY + 1);
+	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(178);
-	GotoXY(tmpX, tmpY);
+	gotoXY(tmpX, tmpY);
 	cout << char(203);
-	GotoXY(tmpX, tmpY);
+	gotoXY(tmpX, tmpY);
 }
 
 CBIRD::CBIRD(int x, int y) : CANIMAL(x, y) 

@@ -1,12 +1,12 @@
 #ifndef CGAME_H_INCLUDED
 #define CGAME_H_INCLUDED
+
 #include "Files.h"
 #include "Traffic_Light.h"
 #include "CPeople.h"
 #include "CAnimal.h"
 #include "CVehicle.h"
 #include "Console.h"
-#include "MultiThread.h"
 #include <stdio.h>
 #include <vector>
 #include <stdlib.h>

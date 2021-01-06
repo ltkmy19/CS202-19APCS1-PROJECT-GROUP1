@@ -1,7 +1,11 @@
-#include "Traffic_Light.h"
-#include"CAnimal.h"
-#include"CVehicle.h"
-#include<vector>
+#ifndef _CPEOPLE_H_
+#define _CPEOPLE_H_
+
+#include <vector>
+#include "CAnimal.h"
+#include "CVehicle.h"
+using namespace std;
+
 class CPEOPLE {
 	int posX, posY;
 	char people[3][3];
@@ -28,3 +32,5 @@ public:
 		
 	};
 };
+
+#endif

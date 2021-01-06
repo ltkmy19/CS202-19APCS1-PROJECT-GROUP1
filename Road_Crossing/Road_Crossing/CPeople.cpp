@@ -1,4 +1,5 @@
 #include "CPeople.h"
+#include "CGame.h"
 
 CPEOPLE::CPEOPLE(int x, int y, char type) {
 	posX = x;

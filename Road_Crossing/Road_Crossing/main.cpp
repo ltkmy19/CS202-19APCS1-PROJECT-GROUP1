@@ -20,7 +20,7 @@ int main() {
 	bool Is_move = true;
 	CGAME* pp;
 	char MOVE;
-	pp = new CGAME;
+	pp = new CGAME(1);
 
 	while (true)
 	{
