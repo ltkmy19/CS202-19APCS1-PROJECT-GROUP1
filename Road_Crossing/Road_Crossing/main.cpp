@@ -111,13 +111,13 @@ int main() {
 					ti = Stoptime;
 					pp = new CGAME(character);
 
+				//	pp->loadLevel(1);
+
 					pp->startGame();
 					thread game{ RunGame, ref(pp),ref(Is_move), ref(ti), ref(alive), ref(MOVE) };
 					while (alive == true) {
 						press = _getch();
 						press = tolower(press);
-						/*gotoXY(10, 10);
-						cout << press;*/
 						if (!pp->getPeople()->isDead()) {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
 								pp->exitGame(game.native_handle());
@@ -180,18 +180,18 @@ int main() {
 					int level; string name;
 					gotoXY(17, 15);
 					if (f.fail()) {
-						cout << "There is no save file!!";
+						f.close();
+							//	pp->loadLevel(1);
 					}
 					else {
-						cout << "Here are saved files: ";
 						int line = 17;
 						while (!f.eof()) {
 							getline(f, name);
 							f >> level;
 							f.ignore();
 							File[saveno] = new FileSave(level, name);
-							gotoXY(17, line); cout << saveno + 1 << ". " << File[saveno]->getName() << " "
-								<< File[saveno]->getLevel();
+						/*	gotoXY(17, line); cout << saveno + 1 << ". " << File[saveno]->getName() << " "
+								<< File[saveno]->getLevel();*/
 							saveno += 1; line += 1;
 						}
 
@@ -203,17 +203,21 @@ int main() {
 							int a = type - '0';
 							if (a <= saveno && a > 0) {
 								int curLevel = File[a - 1]->getLevel();
-								
-								pp->UpdateLevel();
+								//	pp->loadLevel(curLevel);
 							}
 						}
 						else {
 							continue;
 						}
 					}
-					pp = new CGAME(character);
 
+					pp = new CGAME(character);
 					char press;
+					alive = true;
+					Is_move = true;
+					MOVE = ' ';
+					ti = Stoptime;
+
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
 					while (alive == true) {
@@ -296,7 +300,7 @@ int main() {
 						int posy = 4;
 						White();
 						CPEOPLE male(posx, posy, '1');
-						male.ReDraw(posx, posy, '1');
+						male.Draw(posx, posy, '1');
 						gotoXY(posx - 1, posy + 3);
 
 						cout << "[1]";
@@ -305,7 +309,7 @@ int main() {
 						posy = 4;
 						White();
 						CPEOPLE female(posx, posy, '2');
-						female.ReDraw(posx, posy, '2');
+						female.Draw(posx, posy, '2');
 						gotoXY(posx - 1, posy + 3);
 						cout << "[2]";
 						FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));

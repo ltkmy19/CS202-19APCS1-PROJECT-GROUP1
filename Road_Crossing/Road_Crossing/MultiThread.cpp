@@ -1,8 +1,8 @@
 #include"MultiThread.h"
 
-void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
+void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 	while (alive) {
-		++ti;
+		times++;
 		if (!Is_move) {
 			continue;
 		}
@@ -16,7 +16,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE) {
 		}
 
 		MOVE = ' ';
-		if (ti % 300 > Stoptime-1) {
+		if (times % 300 > Stoptime-1) {
 			pp->TrafficLight(true);
 			//pp->Update();
 		}

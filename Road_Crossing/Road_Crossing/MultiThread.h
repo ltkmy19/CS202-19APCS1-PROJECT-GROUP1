@@ -1,3 +1,3 @@
 #include"CGame.h"
 #include<thread>
-void RunGame(CGAME*& pp, bool& Is_move, int& ti, bool& alive, char& MOVE);
+void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE);
