@@ -135,12 +135,12 @@ int main() {
 								}
 
 							}
-							else if (press == 'k') {
+							else if (press == 'l') {
 								if (!Is_move) {
 									pp->saveGame();
 								}
 							}
-							else if (press == 'l') {
+							else if (press == 't') {
 								if (!Is_move) {
 									pp->loadGame();
 								}

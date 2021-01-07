@@ -20,6 +20,7 @@ CGAME::CGAME(char ppType){
 
 
 void CGAME::drawGame() {
+	system("cls");
     LightMagenta();
     gotoXY(0, 0); cout << (char)218; for (int i = 1; i < Width; i++) { cout << (char)196; } cout << (char)191;
     gotoXY(0, 1); for (int i = 2; i < Height; i++) { cout << (char)179; gotoXY(0, i); }
@@ -39,8 +40,8 @@ void CGAME::drawGame() {
     gotoXY(W + 5, 8); cout << "Level: 1";
     gotoXY(W + 5, 10); cout << "P: Pause/Resume ";
     gotoXY(W + 6, 12); cout << "Please pause before: ";
-    gotoXY(W + 5, 14); cout << "K: Load game ";
-    gotoXY(W + 5, 16); cout << "S: Save game ";
+    gotoXY(W + 5, 14); cout << "T: Load game ";
+    gotoXY(W + 5, 16); cout << "L: Save game ";
 
 	int d = lv[curLevel - 1]->getDistance();
 	int n = lv[curLevel - 1]->getLane();
