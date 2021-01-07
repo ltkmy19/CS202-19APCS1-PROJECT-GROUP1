@@ -84,11 +84,23 @@ vector <CANIMAL*> CGAME::getAnimal(){
     return tmp;
 }
 
-void CGAME::deleteGame(){
-	for (int i = 0; i < lv[curLevel - 1]->AmountOfCar();i++) delete axh[i];
-	for (int i = 0; i < lv[curLevel - 1]->AmountOfTruck();i++) delete axt[i];
-	for (int i = 0; i < lv[curLevel - 1]->AmountOfBird();i++) delete ac[i];
-	for (int i = 0; i < lv[curLevel - 1]->AmountOfDinasour();i++) delete akl[i];
+void CGAME::deleteGame() {
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfCar(); i++) {
+		delete axh[i];
+		axh[i] = NULL;
+	}
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfTruck(); i++) {
+		delete axt[i];
+		axt[i] = NULL;
+	}
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfBird(); i++){
+		delete ac[i];
+		ac[i] = NULL;
+	}
+	for (int i = 0; i < lv[curLevel - 1]->AmountOfDinasour(); i++) {
+		delete akl[i];
+		akl[i] = NULL;
+	}
     delete pp;
 }
 
@@ -313,8 +325,7 @@ bool CGAME::isFinish(){
 }
 void CGAME::UpdateLevel() {
     deleteGame();
-    curLevel++;
-	delete pp;
+    ++curLevel;
     if(!isFinish()) drawGame();
 }
 
