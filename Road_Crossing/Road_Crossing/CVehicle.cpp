@@ -20,6 +20,8 @@ void CVEHICLE::Move(int tmpX, int tmpY)
 		cout << "    ";
 		gotoXY(x - 2, y); 
 		cout << "    ";
+
+		LightCyan();
 		gotoXY(x - 1, y + 1); 
 		cout << "___";
 	}
@@ -33,6 +35,8 @@ bool CVEHICLE::IsDone()
 		cout << "    ";
 		gotoXY(x - 2, y); 
 		cout << "    ";
+
+		LightCyan();
 		gotoXY(x - 1, y + 1); 
 		cout << "___";
 		return true;
@@ -52,6 +56,8 @@ void CTRUCK::Draw(int tmpX, int tmpY)
 	tmpX = x;
 	if (tmpX > Endlane + Startlane - 1 || tmpX <= Startlane) 
 		return;
+
+	Magenta();
 	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(219); 
 	cout << char(219);
@@ -73,6 +79,8 @@ void CCAR::Draw(int tmpX, int tmpY)
 	tmpX = x;
 	if (tmpX > Endlane +Startlane - 1 || tmpX <= Startlane) 
 		return;
+
+	LightRed();
 	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(219);
 	cout << char(219);

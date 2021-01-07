@@ -20,6 +20,7 @@ void CANIMAL::Move(int tmpX, int tmpY)
 		gotoXY(x - 2, y);
 		cout << "    ";
 
+		LightCyan();
 		gotoXY(x - 1, y + 1); 
 		cout << "___";
 	}
@@ -34,6 +35,8 @@ bool CANIMAL::IsDone()
 		cout << "    ";
 		gotoXY(x - 2, y); 
 		cout << "    ";
+
+		LightCyan();
 		gotoXY(x - 1, y + 1); 
 		cout << "___";
 		return true;
@@ -53,6 +56,7 @@ void CDINAUSOR::Draw(int tmpX, int tmpY)
 
 	if (x > Endlane + Startlane - 1 || x <= Startlane) return;
 
+	DarkGray();
 	gotoXY(tmpX, tmpY + 1);
 	cout << char(223);
 	cout << char(178);
@@ -75,6 +79,7 @@ void CBIRD::Draw(int tmpX, int tmpY)
 	if (tmpX > Endlane + Startlane - 1 || tmpX <= Startlane) 
 		return;
 
+	LightGreen();
 	gotoXY(tmpX, tmpY);
 	cout << char(254);
 	cout << char(223);
