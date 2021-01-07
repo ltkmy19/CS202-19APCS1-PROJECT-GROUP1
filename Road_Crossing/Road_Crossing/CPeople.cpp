@@ -71,6 +71,7 @@ void CPEOPLE::Draw(int x, int y, char type) {
 }
 
 void CPEOPLE:: Up(int x) {
+	LightCyan();
 	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
@@ -94,6 +95,7 @@ void CPEOPLE:: Up(int x) {
 }
 
 void CPEOPLE::Down(int x) {
+	LightCyan();
 	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
@@ -116,6 +118,7 @@ void CPEOPLE::Down(int x) {
 	Draw(posX, posY, type);
 }
 void CPEOPLE:: Left(int x) {
+	LightCyan();
 	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
@@ -138,6 +141,7 @@ void CPEOPLE:: Left(int x) {
 	Draw(posX, posY, type);
 }
 void CPEOPLE:: Right(int x) {
+	LightCyan();
 	gotoXY(posX, posY);
 	cout << ' ';
 	gotoXY(posX - 1, posY + 1);
