@@ -31,7 +31,7 @@ CPEOPLE::CPEOPLE(int x, int y, char type) {
 	mState = false;
 }
 void CPEOPLE::Draw(int x, int y, char type) {
-	if (type == 1) {
+	if (type == '1') {
 		gotoXY(x, y);
 		Brown();
 		cout << people[1][1];
