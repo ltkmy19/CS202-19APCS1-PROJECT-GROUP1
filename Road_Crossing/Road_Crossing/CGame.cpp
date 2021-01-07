@@ -37,7 +37,7 @@ void CGAME::drawGame() {
     LightCyan();
     gotoXY(W + 1, 4); cout << "WELCOME TO CROSSING ROAD! ^_^";
     gotoXY(W + 7, 6); cout << "press ESC to exit ";
-    gotoXY(W + 5, 8); cout << "Level: 1";
+    gotoXY(W + 5, 8); cout << "Level: " << curLevel;
     gotoXY(W + 5, 10); cout << "P: Pause/Resume ";
     gotoXY(W + 6, 12); cout << "Please pause before: ";
     gotoXY(W + 5, 14); cout << "T: Load game ";
@@ -261,7 +261,7 @@ void CGAME::updatePosPeople(char tmp,int& times){
 void CGAME::clean(){
     int i = Height - 5;
 	while (i < Height) {
-		gotoXY(Width + 1, i); for (int j = 0; j < Width + 20; j++) cout << " ";
+		gotoXY(Width + 1, i); for (int j = 0; j < Intwidth - 1 ; j++) cout << " ";
 		i += 1;
 	}
 }
