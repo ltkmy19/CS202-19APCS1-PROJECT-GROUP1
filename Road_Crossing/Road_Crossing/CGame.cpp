@@ -331,7 +331,7 @@ void CGAME::UpdateLevel() {
 
 void CGAME::EndGame(bool Win) {
 
-	clrscr();
+	system("cls");
 	if (Win) {
 		Red();
 		ifstream Reader("Win.txt");
