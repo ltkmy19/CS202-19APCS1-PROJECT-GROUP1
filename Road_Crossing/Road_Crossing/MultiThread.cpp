@@ -23,6 +23,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		else {
 			pp->TrafficLight(false);
 			pp->updatePosAnimal();
+			pp->updatePosVehicle();
 		}
 
 		if (pp->isCrashed()) {
