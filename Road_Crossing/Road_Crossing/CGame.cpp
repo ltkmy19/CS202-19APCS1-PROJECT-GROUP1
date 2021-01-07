@@ -265,7 +265,7 @@ void CGAME::updatePosVehicle() {
             if(a % 2) axh[i] = new CCAR(Endlane,Finish + a*level->getDistance()-1);
             else axh[i] = new CCAR(Startlane,Finish + a*level->getDistance()-1);
         }
-        else ac[i]->Move(10,10);
+        else axh[i]->Move(10,10);
     }
     for(int i = 0;i < level->AmountOfTruck();i++){
         if(axt[i] == NULL || axt[i]->IsDone()){
@@ -287,9 +287,9 @@ void CGAME::updatePosAnimal() {
             if(ac[i] != NULL) delete ac[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2 == 0) 
+            if(a % 2 == 0)
 				ac[i] = new CBIRD(Endlane,Finish + a*level->getDistance()-1);
-            else 
+            else
 				ac[i] = new CBIRD(Startlane,Finish + a*level->getDistance()-1);
         }
         else ac[i]->Move(10,10);
@@ -301,7 +301,7 @@ void CGAME::updatePosAnimal() {
             b = rand()%7*12;
             if(a % 2 == 0) \
 				akl[i] = new CDINAUSOR(Endlane,Finish + a*level->getDistance()-1);
-            else 
+            else
 				akl[i] = new CDINAUSOR(Startlane,Finish + a*level->getDistance()-1);
         }
         else akl[i]->Move(10,10);
