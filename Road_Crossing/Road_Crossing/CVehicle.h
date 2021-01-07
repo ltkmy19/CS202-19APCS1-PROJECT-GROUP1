@@ -3,8 +3,8 @@
 
 class CVEHICLE
 {
-private:
-	int x, y;
+protected:
+	int x, y, Way;
 public:
 	CVEHICLE(int tmpX, int tmpY);
 	void virtual Draw(int tmpX, int tmpY) = 0;
