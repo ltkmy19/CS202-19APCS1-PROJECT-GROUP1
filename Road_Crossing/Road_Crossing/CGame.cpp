@@ -260,8 +260,8 @@ void CGAME::updatePosVehicle() {
             if(axh[i] != NULL) delete axh[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axh[i] = new CCAR(Endlane + b,Finish - a*level->getDistance()-1);
-            else axh[i] = new CCAR(Startlane - b,Finish - a*level->getDistance()-1);
+            if(a % 2) axh[i] = new CCAR(Endlane,Finish + a*level->getDistance()-1);
+            else axh[i] = new CCAR(Startlane,Finish + a*level->getDistance()-1);
         }
         else ac[i]->Move(10,10);
     }
@@ -270,8 +270,8 @@ void CGAME::updatePosVehicle() {
             if(axt[i] != NULL) delete axt[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axt[i] = new CTRUCK(Endlane + b,Finish - a*level->getDistance()-1);
-            else axt[i] = new CTRUCK(Startlane - b,Finish - a*level->getDistance()-1);
+            if(a % 2) axt[i] = new CTRUCK(Endlane,Finish + a*level->getDistance()-1);
+            else axt[i] = new CTRUCK(Startlane,Finish + a*level->getDistance()-1);
         }
         else axt[i]->Move(10,10);
     }
