@@ -92,6 +92,7 @@ void CPEOPLE:: Up(int x) {
 	cout << ' ';
 	posY -= x;
 	Draw(posX, posY, type);
+	PlaySound(TEXT("popsound.wav"), NULL, SND_ASYNC);
 }
 
 void CPEOPLE::Down(int x) {
@@ -116,6 +117,7 @@ void CPEOPLE::Down(int x) {
 	cout << ' ';
 	posY += x;
 	Draw(posX, posY, type);
+	PlaySound(TEXT("popsound.wav"), NULL, SND_ASYNC);
 }
 void CPEOPLE:: Left(int x) {
 	LightCyan();
@@ -139,6 +141,7 @@ void CPEOPLE:: Left(int x) {
 	cout << ' ';
 	posX -= x;
 	Draw(posX, posY, type);
+	PlaySound(TEXT("popsound.wav"), NULL, SND_ASYNC);
 }
 void CPEOPLE:: Right(int x) {
 	LightCyan();
@@ -162,6 +165,7 @@ void CPEOPLE:: Right(int x) {
 	cout << ' ';
 	posX += x;
 	Draw(posX, posY, type);
+	PlaySound(TEXT("popsound.wav"), NULL, SND_ASYNC);
 }
 
 bool CPEOPLE::isDead() {
