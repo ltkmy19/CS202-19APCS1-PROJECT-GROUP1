@@ -232,7 +232,7 @@ void CGAME::updatePosPeople(char tmp){
         break;
     };
     case 100:{
-        if(pp->getX() >= RIGHTMOST - 4)
+        if(pp->getX() <= RIGHTMOST - 4)
             pp->Right(4);
         break;
     };

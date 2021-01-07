@@ -134,7 +134,7 @@ void CPEOPLE:: Left(int x) {
 	cout << ' ';
 	gotoXY(posX - 1, posY);
 	cout << ' ';
-	posX -= 4;
+	posX -= x;
 	Draw(posX, posY, type);
 }
 void CPEOPLE:: Right(int x) {
