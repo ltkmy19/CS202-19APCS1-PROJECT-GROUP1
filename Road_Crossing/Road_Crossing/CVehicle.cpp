@@ -50,7 +50,7 @@ void CTRUCK::Draw(int tmpX, int tmpY)
 {
 	x += Way; 
 	tmpX = x;
-	if (x > Endlane + Startlane - 1 || x <= Startlane) 
+	if (tmpX > Endlane + Startlane - 1 || tmpX <= Startlane) 
 		return;
 	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(219); 
@@ -71,7 +71,7 @@ void CCAR::Draw(int tmpX, int tmpY)
 {
 	x += 2 * Way; 
 	tmpX = x;
-	if (tmpX > Endlane +Startlane - 1 || x <= Startlane) 
+	if (tmpX > Endlane +Startlane - 1 || tmpX <= Startlane) 
 		return;
 	gotoXY(tmpX - 1, tmpY + 1);
 	cout << char(219);
