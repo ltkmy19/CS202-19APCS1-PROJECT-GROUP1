@@ -98,7 +98,7 @@ public:
     void saveGame(); //
     void pauseGame(HANDLE);
     void resumeGame(HANDLE);
-    void updatePosPeople(char tmp);
+    void updatePosPeople(char tmp,int& times);
     void updatePosVehicle();
     void updatePosAnimal();
     bool isFinish();
@@ -111,6 +111,7 @@ public:
     void TrafficLight(bool RedLight);
     void EndGame(bool Win);
     void deleteGame();
+    int getSpeed() { return lv[curLevel - 1]->getSpeed(); }
 };
 
 

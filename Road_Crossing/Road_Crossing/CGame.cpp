@@ -4,7 +4,7 @@ using namespace std;
 
 CGAME::CGAME(char ppType){
     peopleType = ppType;
-	lv[0] = new Level(4, 7, 2, 3, 3, 3, 5);//int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours
+	lv[0] = new Level(4, 7, 3, 0, 0, 0, 5);//int lanes, int distances, int speeds, int cars, int trucks, int birds, int dinasours
 	lv[1] = new Level(4, 7, 2, 2, 2, 2, 1);
 	lv[2] = new Level(5, 6, 2, 2, 3, 3, 3);
 	lv[3] = new Level(5, 6, 2, 3, 3, 2, 3);
@@ -214,7 +214,7 @@ bool CGAME::isCrashed(){
 	}
 	return false;
 }
-void CGAME::updatePosPeople(char tmp){
+void CGAME::updatePosPeople(char tmp,int& times){
     int d = lv[curLevel-1]->getDistance();
     switch(tmp) {
     case 119:{
@@ -242,6 +242,7 @@ void CGAME::updatePosPeople(char tmp){
     }
     if(pp->isFinish(Finish)){
         UpdateLevel();
+		times = Stoptime;
     }
 }
 
@@ -313,6 +314,7 @@ bool CGAME::isFinish(){
 void CGAME::UpdateLevel() {
     deleteGame();
     curLevel++;
+	delete pp;
     if(!isFinish()) drawGame();
 }
 

@@ -7,7 +7,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 			continue;
 		}
 		if (!pp->getPeople()->isDead()) {
-			pp->updatePosPeople(MOVE);
+			pp->updatePosPeople(MOVE,times);
 		}
 		if (pp->isFinish()) {
 			pp->EndGame(true);
@@ -17,13 +17,12 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 
 		MOVE = ' ';
 		if (times % 300 > Stoptime-1) {
-			pp->TrafficLight(true);
-			//pp->Update();
-		}
-		else {
 			pp->TrafficLight(false);
 			pp->updatePosAnimal();
 			pp->updatePosVehicle();
+		}
+		else {
+			pp->TrafficLight(true);
 		}
 
 		if (pp->isCrashed()) {
@@ -33,6 +32,6 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 
 		}
 
-	//	Sleep(100 / pp->getSpeed());
+		Sleep(100 / pp->getSpeed());
 	}
 }
