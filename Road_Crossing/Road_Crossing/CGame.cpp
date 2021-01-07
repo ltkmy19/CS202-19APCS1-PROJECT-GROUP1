@@ -215,23 +215,23 @@ bool CGAME::isCrashed(){
 }
 void CGAME::updatePosPeople(char tmp){
     int d = lv[curLevel-1]->getDistance();
-    switch(tmp){
-    case 87:{
+    switch(tmp) {
+    case 119:{
         if(pp->getY()!= Finish)
             pp->Up(d);
         break;
     };
-    case 83:{
+    case 115:{
         if(pp->getY()!= Height-3)
             pp->Down(d);
         break;
     };
-    case 65:{
+    case 97:{
         if(pp->getX() >= LEFTMOST + 4)
             pp->Left(4);
         break;
     };
-    case 68:{
+    case 100:{
         if(pp->getX() >= RIGHTMOST - 4)
             pp->Right(4);
         break;
