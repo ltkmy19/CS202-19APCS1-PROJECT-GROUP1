@@ -172,56 +172,73 @@ int main() {
 				case 1:  //Load Game
 				{
 					system("cls");
-					gotoXY(45, 12);
+					gotoXY(80, 1);
+					Cyan();
+					cout << "SCOREBOARD" << endl;
+					int pos = 3;
+					LightMagenta();
+					ifstream Reader("TextGraphic.txt");
+					string Art = getFileContents(Reader);
+					cout << Art << endl;
+					gotoXY(80, pos);
 					ifstream f;
 					int saveno = 0;
 					vector<FileSave*> File;
+					FileSave* Filetemp;
 					f.open("SaveFile.txt");
-					int level; string name;
-					gotoXY(17, 15);
+					int level; string name; int cha;
 					if (f.fail()) {
 						f.close();
 							//	pp->loadLevel(1);
 					}
 					else {
-						int line = 17;
 						while (!f.eof()) {
+						
+							f >> cha;
+							f.ignore();
 							getline(f, name);
 							f >> level;
 							f.ignore();
-							File[saveno] = new FileSave(level, name);
-						/*	gotoXY(17, line); cout << saveno + 1 << ". " << File[saveno]->getName() << " "
-								<< File[saveno]->getLevel();*/
-							saveno += 1; line += 1;
+							Filetemp= new FileSave(level, name);
+							File.push_back(Filetemp);
+							saveno ++ ; 
+							White();
 						}
-
 						f.close();
 
-						char type;
-						type = _getch();
+						for (int i = 0; i < saveno; i++) {
+							gotoXY(80, pos);
+							LightGray();
+							cout << i + 1 << ". " << File[i]->getName() << " " << File[i]->getLevel();
+							pos++;
+						}
+						int choose;
+						choose = _getch();
+						choose -= '0';
 						if (GetAsyncKeyState(VK_ESCAPE) != true) {
-							int a = type - '0';
-							if (a <= saveno && a > 0) {
-								int curLevel = File[a - 1]->getLevel();
+							
+							if (choose <= saveno && choose > 0) {
+								level = File[choose-1]->getLevel();
+					
+							//	cha = File[choose - 1]->getcharater();
 								//	pp->loadLevel(curLevel);
+								character = cha;
 							}
 						}
 						else {
 							continue;
 						}
 					}
-
+					system("cls");
 					pp = new CGAME(character);
 					char press;
 					alive = true;
 					Is_move = true;
 					MOVE = ' ';
 					ti = Stoptime;
-
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
 					while (alive == true) {
-						system("cls");
 						press = tolower(_getch());
 						if (!pp->getPeople()->isDead()) {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
