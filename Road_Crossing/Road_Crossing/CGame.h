@@ -6,10 +6,7 @@
 #include "CPeople.h"
 #include "CreatorAnimal.h"
 #include "CreatorVehicle.h"
-<<<<<<< HEAD
 #include "CVehicle.h"
-=======
->>>>>>> 992653b724ff90b091da520c53a135522f7c1eac
 #include "Console.h"
 #include <stdio.h>
 #include <vector>

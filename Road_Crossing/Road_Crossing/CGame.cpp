@@ -348,12 +348,6 @@ void CGAME::updatePosVehicle() {
 			else {
 				createCar = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
 				axh[i] = createCar->factoryMethod();
-				create = new CreatorCar(Endlane, Finish + a * level->getDistance() - 1);
-				axh[i] = createCar->factoryMethod();
-			}
-			else {
-				create = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
-				axh[i] = createCar->factoryMethod();
 			}
         }
         else axh[i]->Move(10,10);
@@ -365,12 +359,6 @@ void CGAME::updatePosVehicle() {
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
 			if (a % 2 == 0) {
-				createTruck = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
-				axt[i] = createTruck->factoryMethod();
-			}
-			else {
-				createTruck = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
-				axt[i] = createTruck->factoryMethod();
 				createTruck = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
 				axt[i] = createTruck->factoryMethod();
 			}
