@@ -12,16 +12,16 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		}
 		if (pp->isFinish()) {
 			system("cls");
-				mciSendString("play  win.wav", NULL, 0, NULL);
-				Red();
-				ifstream Reader("Win.txt");
-				string Art = getFileContents(Reader);
-				cout << Art << endl;
-
+			mciSendString("play  win.wav", NULL, 0, NULL);
+			Red();
+			ifstream Reader("Win.txt");
+			string Art = getFileContents(Reader);
+			cout << Art << endl;
+			Sleep(200);
+			White();
 			exit(0);
 		/*	pp->EndGame(true);
 			alive = false;*/
-			
 			break;
 		}
 
