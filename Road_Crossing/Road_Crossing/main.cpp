@@ -101,6 +101,7 @@ int main() {
 				{
 				case 0: //New Game
 				{
+					mciSendString("stop  welcome.mp3", NULL, 0, NULL);
 					system("cls");
 					ProgressBar();
 					system("cls");
@@ -236,6 +237,7 @@ int main() {
 					Is_move = true;
 					MOVE = ' ';
 					ti = Stoptime;
+					mciSendString("stop  welcome.mp3", NULL, 0, NULL);
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
 					while (alive == true) {
