@@ -112,7 +112,7 @@ int main() {
 					ti = Stoptime;
 					pp = new CGAME(character);
 
-				//	pp->loadLevel(1);
+					pp->loadLevel(1);
 					mciSendString("play  ingame.wav", NULL, 0, NULL);
 					pp->startGame();
 					thread game{ RunGame, ref(pp),ref(Is_move), ref(ti), ref(alive), ref(MOVE) };
@@ -123,6 +123,7 @@ int main() {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
 								pp->exitGame(game.native_handle());
 								alive = false;
+								mciSendString("stop ingame.wav", NULL, 0, NULL);
 							
 							}
 							else if (press == 'p') {
@@ -187,20 +188,16 @@ int main() {
 					vector<FileSave*> File;
 					FileSave* Filetemp;
 					f.open("SaveFile.txt");
-					int level; string name; int cha;
-					if (f.fail()) {
-						f.close();
-							//	pp->loadLevel(1);
-					}
-					else {
+					int level; string name; char cha;
+				
+					if(!f.fail()) {
 						while (!f.eof()) {
-						
 							f >> cha;
 							f.ignore();
 							getline(f, name);
 							f >> level;
 							f.ignore();
-							Filetemp= new FileSave(level, name);
+							Filetemp= new FileSave(level, name, cha);
 							File.push_back(Filetemp);
 							saveno ++ ; 
 							White();
@@ -210,7 +207,14 @@ int main() {
 						for (int i = 0; i < saveno; i++) {
 							gotoXY(80, pos);
 							LightGray();
-							cout << i + 1 << ". " << File[i]->getName() << " " << File[i]->getLevel();
+							cout << i + 1 << ". " << File[i]->getName() << " " << File[i]->getLevel() << " ";
+							if(File[i]->getCharacter()=='2'){
+								cout << "FEMALE";
+							}
+							else{
+								cout << "MALE";
+							}
+							
 							pos++;
 						}
 						int choose;
@@ -220,18 +224,22 @@ int main() {
 							
 							if (choose <= saveno && choose > 0) {
 								level = File[choose-1]->getLevel();
-					
-							//	cha = File[choose - 1]->getcharater();
-								//	pp->loadLevel(curLevel);
-								character = cha;
+								cha = File[choose - 1]->getCharacter();
+								character = cha;								
 							}
 						}
 						else {
 							continue;
 						}
 					}
+					else{
+						f.close();
+						level = 1;
+
+					}
 					system("cls");
 					pp = new CGAME(character);
+					pp->loadLevel(level);
 					char press;
 					alive = true;
 					Is_move = true;
@@ -247,6 +255,7 @@ int main() {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
 								pp->exitGame(game.native_handle());
 								alive = false;
+								mciSendString("stop ingame.wav", NULL, 0, NULL);
 							}
 							else if (press == 'p') {
 								if (Is_move) {

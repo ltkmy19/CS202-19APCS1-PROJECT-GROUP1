@@ -27,6 +27,7 @@ class FileSave{
 private:
     int level;
     string name;
+    char character;
 public:
     FileSave() {};
     FileSave(int lv,string name){
@@ -39,6 +40,14 @@ public:
     }
     string getName(){
         return name;
+    }
+    char getCharacter() {
+        return character;
+   }
+    FileSave(int lv, string name, char character) {
+        this->level = lv;
+        this->name = name;
+        this->character=character;
     }
 };
 
@@ -112,6 +121,8 @@ public:
     void EndGame(bool Win);
     void deleteGame();
     int getSpeed() { return lv[curLevel - 1]->getSpeed(); }
+    void loadLevel(int level);
+
 };
 
 

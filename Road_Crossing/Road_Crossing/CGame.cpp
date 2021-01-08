@@ -349,7 +349,9 @@ void CGAME::EndGame(bool Win) {
 		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
 	}
 }
-
+void CGAME::loadLevel(int level) {
+	curLevel = level;
+}
 void CGAME::TrafficLight(bool RedLight){
     Lights tmp;
     int d = lv[curLevel - 1]->getDistance();
