@@ -20,8 +20,8 @@ public:
 	void Down(int x);
 	bool ISCrashed(CCAR** a, int n);
 	bool ISCrashed(CTRUCK** b, int n);
-	bool ISCrashed(CDINAUSOR** a, int n);
-	bool ISCrashed(CBIRD** b, int n);
+	bool ISCrashedDinausor(CANIMAL** a, int n);
+	bool ISCrashedBird(CANIMAL** b, int n);
 	bool isFinish(int Finish);
 	bool isDead();
 	int getX();

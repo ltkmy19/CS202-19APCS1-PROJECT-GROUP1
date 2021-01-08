@@ -154,13 +154,12 @@ string CGAME::getFileLocation() {
 	}
 }
 void CGAME::loadGame() {
-	LightGray();
 	clean();
 	ifstream fin;
 	int numberOfSave = 0;
 	int W = Width + 6;
 	int H = Height - 5;
-	int level = 0, line = H;
+	int level = 0, line = H-2;
 	string name = "",file = "";
 	char peopleType = 1;
 	fin.open(getFileLocation());
@@ -171,6 +170,9 @@ void CGAME::loadGame() {
 		return;
 	}
 	else {
+		Yellow();
+		gotoXY(W + 2, line - 1); cout << "LIST OF SAVED FILES";
+		LightGray();
 		if (fin.eof()) cout << "There is no save file!" << endl;
 		else {
 			while (!(fin.peek() == ifstream::traits_type::eof())) {
@@ -179,6 +181,10 @@ void CGAME::loadGame() {
 				getline(fin, name);
 				fin.get(peopleType);
 				fin.ignore(100, '\n');
+				if (File[numberOfSave] != NULL) {
+					delete File[numberOfSave];
+					File[numberOfSave] = NULL;
+				}
 				File[numberOfSave] = new FileSave(level, name, peopleType);
 				gotoXY(W+2, line);
 				cout << numberOfSave + 1 << ". " << File[numberOfSave]->getName() << " (Level: " << File[numberOfSave]->getLevel() << ")";
@@ -277,7 +283,7 @@ void CGAME::resumeGame(HANDLE){
 }
 
 bool CGAME::isCrashed(){
-	if (pp->ISCrashed(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashed(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashed(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashed(axt, lv[curLevel - 1]->AmountOfTruck())) {
+	if (pp->ISCrashedBird(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashedDinausor(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashed(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashed(axt, lv[curLevel - 1]->AmountOfTruck())) {
 		return true;
 	}
 	return false;
@@ -355,14 +361,19 @@ void CGAME::updatePosAnimal() {
     Level* level = lv[curLevel-1];
     int a,b;
     for(int i = 0;i < level->AmountOfBird();i++){
+		CreatorAnimal* create = NULL;
         if(ac[i] == NULL || ac[i]->IsDone()){
             if(ac[i] != NULL) delete ac[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2 == 0)
-				ac[i] = new CBIRD(Endlane,Finish + a*level->getDistance()-1);
-            else
-				ac[i] = new CBIRD(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				create = new CreatorBird(Endlane, Finish + a * level->getDistance() - 1);
+				ac[i] = create->factoryMethod();
+			}
+			else {
+				create = new CreatorBird(Startlane, Finish + a * level->getDistance() - 1);
+				ac[i] = create->factoryMethod();
+			}
         }
         else ac[i]->Move(10,10);
     }

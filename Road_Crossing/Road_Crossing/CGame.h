@@ -4,7 +4,7 @@
 #include "Files.h"
 #include "Traffic_Light.h"
 #include "CPeople.h"
-#include "CAnimal.h"
+#include "CreatorAnimal.h"
 #include "CVehicle.h"
 #include "Console.h"
 #include <stdio.h>
@@ -74,8 +74,8 @@ private:
     char peopleType;
 	CTRUCK* axt[10];
 	CCAR* axh [10];
-	CDINAUSOR* akl[10];
-	CBIRD* ac[10];
+	CANIMAL* akl[10];
+	CANIMAL* ac[10];
 	Level* lv[10];
 	int Finish; //pos y-axis represent the end point of a level;
     CPEOPLE* pp;

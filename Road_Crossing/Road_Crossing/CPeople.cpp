@@ -237,7 +237,7 @@ bool CPEOPLE::ISCrashed(CTRUCK** b, int n) {
 	}
 	return false;
 }
-bool CPEOPLE::ISCrashed(CDINAUSOR** a, int n) {
+bool CPEOPLE::ISCrashedDinausor(CANIMAL** a, int n) {
 	for (int i = 0; i < n; ++i) {
 		if (a[i] == NULL) continue;
 		int dX = abs(a[i]->getX() - posX);
@@ -249,7 +249,7 @@ bool CPEOPLE::ISCrashed(CDINAUSOR** a, int n) {
 	}
 	return false;
 }
-bool CPEOPLE::ISCrashed(CBIRD** b, int n) {
+bool CPEOPLE::ISCrashedBird(CANIMAL** b, int n) {
 	for (int i = 0; i < n; ++i) {
 		if (b[i] == NULL) continue;
 		int dX = abs(b[i]->getX() - posX);
