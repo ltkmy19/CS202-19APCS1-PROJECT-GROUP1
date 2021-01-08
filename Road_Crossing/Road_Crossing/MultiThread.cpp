@@ -12,13 +12,12 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		}
 		if (pp->isFinish()) {
 			system("cls");
-			mciSendString("stop  ingame.wav", NULL, 0, NULL);
 			mciSendString("play  win.wav", NULL, 0, NULL);
 			Red();
 			ifstream Reader("Win.txt");
 			string Art = getFileContents(Reader);
 			cout << Art << endl;
-			Sleep(4000);
+			Sleep(200);
 			White();
 			exit(0);
 		/*	pp->EndGame(true);
@@ -27,7 +26,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		}
 
 		MOVE = ' ';
-		if ( times % 150 > Stoptime-10) {
+		if ( times % 130 > Stoptime-20) {
 			pp->TrafficLight(false);
 			pp->updatePosAnimal();
 			pp->updatePosVehicle();
@@ -43,6 +42,6 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 
 		}
 
-		Sleep(100 / pp->getSpeed());
+		Sleep(130 / pp->getSpeed());
 	}
 }
