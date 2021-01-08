@@ -10,17 +10,16 @@ int main() {
 
 	mciSendString("play welcome.wav", NULL, 0, NULL);
 	char character = '1';//male
-
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
 	int pointer = 0;
 	int sound = 1;
-
 	bool alive = true;
 	int ti = Stoptime;
 	bool Is_move = true;
 	CGAME* pp;
 	char MOVE;
-
+	bool enter = GetAsyncKeyState(VK_RETURN);
+	bool Is_Enter = false;
 	while (true)
 	{
 
@@ -76,6 +75,9 @@ int main() {
 		White();
 		while (true)
 		{
+			/*if (Is_Enter == false) {
+				enter = GetAsyncKeyState(VK_RETURN);
+			}*/
 			if (GetAsyncKeyState(VK_UP) != 0)
 			{
 				pointer -= 1;
@@ -83,6 +85,7 @@ int main() {
 				{
 					pointer = 5;
 				}
+				Is_Enter = false;
 				break;
 			}
 			else if (GetAsyncKeyState(VK_DOWN) != 0)
@@ -92,9 +95,10 @@ int main() {
 				{
 					pointer = 0;
 				}
+				Is_Enter = false;
 				break;
 			}
-			else if (GetAsyncKeyState(VK_RETURN) != 0)
+			else if (GetAsyncKeyState(VK_RETURN) && Is_Enter==false)
 			{
 
 				switch (pointer)
@@ -171,7 +175,7 @@ int main() {
 					}
 
 					game.join();
-
+					Is_Enter = false;
 					break;
 				}
 				case 1:  //Load Game
@@ -197,7 +201,6 @@ int main() {
 					cout << "SCOREBOARD" << endl;
 					int pos = 3;
 					LightMagenta();
-					
 					cout << Art << endl;
 					gotoXY(80, pos);
 					ifstream f;
@@ -206,7 +209,6 @@ int main() {
 					FileSave* Filetemp;
 					f.open(Filename);
 					int level; string name; char cha;
-				
 					if(!f.fail()) {
 						while (!f.eof()) {
 							f >> cha;
@@ -311,9 +313,9 @@ int main() {
 							}
 						}
 					}
-
+					Is_Enter = true;
 					game.join();
-
+					enter = false;
 					break;
 				}
 				case 2:  //Sound
@@ -325,7 +327,6 @@ int main() {
 					else {
 						sound = 1;
 					}
-
 					break;
 
 				}
@@ -360,6 +361,7 @@ int main() {
 						cout << "[2]";
 						FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 						character = _getch();
+						Is_Enter = false;
 					break;
 				}
 				case 4:  //Tutorial
@@ -388,7 +390,11 @@ int main() {
 					gotoXY(70, pos + 5);
 					Red();
 					cout << "There are 10 rounds for the game." << endl;
+					_getch();
+					Is_Enter = false;
+
 					break;
+
 				}
 				case 5:   //Quit
 				{
@@ -401,6 +407,8 @@ int main() {
 					White();
 					
 					return 0;
+					Is_Enter = false;
+
 					break;
 				}
 
@@ -411,8 +419,13 @@ int main() {
 				}
 
 				}
+				break;
+
 			}
+			
 			_getch();
+
+			
 		}
 
 		Sleep(150);
