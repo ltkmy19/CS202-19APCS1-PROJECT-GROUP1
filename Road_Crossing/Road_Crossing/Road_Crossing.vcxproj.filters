@@ -68,5 +68,8 @@
     <ClInclude Include="CAnimal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CreatorAnimal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
