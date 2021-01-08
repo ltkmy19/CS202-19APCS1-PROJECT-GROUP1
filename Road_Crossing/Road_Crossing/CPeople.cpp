@@ -217,6 +217,7 @@ bool CPEOPLE::ISCrashed(CCAR** a, int n) {
 		int dX = abs(a[i]->getX() - posX);
 		int dY = abs(a[i]->getY() - posY);
 		if (dX < 3 && dY < 3) {
+			mciSendString("play  car.wav", NULL, 0, NULL);
 			return true;
 		}
 	}
@@ -230,6 +231,7 @@ bool CPEOPLE::ISCrashed(CTRUCK** b, int n) {
 		int dX = abs(b[i]->getX() - posX);
 		int dY = abs(b[i]->getY() - posY);
 		if (dX < 3 && dY < 3) {
+			mciSendString("play  truck.wav", NULL, 0, NULL);
 			return true;
 		}
 	}
@@ -241,6 +243,7 @@ bool CPEOPLE::ISCrashed(CDINAUSOR** a, int n) {
 		int dX = abs(a[i]->getX() - posX);
 		int dY = abs(a[i]->getY() - posY);
 		if (dX < 3 && dY < 2) {
+			mciSendString("play  dinosaur.wav", NULL, 0, NULL);
 			return true;
 		}
 	}
@@ -252,6 +255,7 @@ bool CPEOPLE::ISCrashed(CBIRD** b, int n) {
 		int dX = abs(b[i]->getX() - posX);
 		int dY = abs(b[i]->getY() - posY);
 		if (dX < 3 && dY < 2) {
+			mciSendString("play  bird.wav", NULL, 0, NULL);
 			return true;
 		}
 	}

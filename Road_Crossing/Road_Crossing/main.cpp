@@ -150,7 +150,7 @@ int main() {
 								}
 							}
 							else {
-								if (alive) {
+								if (alive && Is_move) {
 									mciSendString("play  ingame.wav", NULL, 0, NULL);
 									MOVE = press;
 								}

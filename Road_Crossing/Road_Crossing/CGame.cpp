@@ -380,8 +380,7 @@ void CGAME::EndGame(bool Win) {
 	}
 	else {
 		gotoXY(Width / 2, Height / 2);
-
-		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
+		cout << "You are stuck at level " << curLevel << ". BETTER LUCK NEXT TIME! "<<endl;
 	}
 }
 void CGAME::loadLevel(int level) {
