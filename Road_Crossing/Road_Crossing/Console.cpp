@@ -194,6 +194,8 @@ void ProgressBar() {
 	gotoXY(50, 15);
 	for (int r = 1; r <= 21; r++) {
 		cout << a;
+		if (r == 2)
+			PlaySound(TEXT("loading.wav"), NULL, SND_ASYNC);
 		if (r <= 13) {
 			Sleep(300);
 		}
