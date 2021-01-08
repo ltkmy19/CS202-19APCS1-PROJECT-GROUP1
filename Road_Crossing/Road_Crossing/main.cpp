@@ -113,7 +113,7 @@ int main() {
 					pp = new CGAME(character);
 
 				//	pp->loadLevel(1);
-
+					mciSendString("play  ingame.wav", NULL, 0, NULL);
 					pp->startGame();
 					thread game{ RunGame, ref(pp),ref(Is_move), ref(ti), ref(alive), ref(MOVE) };
 					while (alive == true) {
@@ -238,6 +238,7 @@ int main() {
 					MOVE = ' ';
 					ti = Stoptime;
 					mciSendString("stop  welcome.mp3", NULL, 0, NULL);
+					mciSendString("play  ingame.wav", NULL, 0, NULL);
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
 					while (alive == true) {

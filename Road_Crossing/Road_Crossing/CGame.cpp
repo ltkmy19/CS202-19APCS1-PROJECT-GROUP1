@@ -334,7 +334,7 @@ void CGAME::UpdateLevel() {
 }
 
 void CGAME::EndGame(bool Win) {
-
+	mciSendString("stop  ingame.wav", NULL, 0, NULL);
 	system("cls");
 	if (Win) {
 		Red();
