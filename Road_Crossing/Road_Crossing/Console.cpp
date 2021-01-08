@@ -166,7 +166,7 @@ void deleteRow(SHORT SStartPos, SHORT SNumberRow)
 	SetConsoleCursorPosition(hConsoleOutput, Pos);
 }
 void ProgressBar() {
-	float progress = 0.0;
+	/*float progress = 0.0;
 	while (progress < 1.0) {
 		Sleep(100);
 		int barWidth = 70;
@@ -187,6 +187,20 @@ void ProgressBar() {
 		}
 		cout << "] " << 100 << " %\r";
 		progress += 0.16;
+	}*/
+	gotoXY(56, 13);
+	cout << "Loading ... " << endl;
+	char a = 222; 
+	gotoXY(50, 15);
+	for (int r = 1; r <= 21; r++) {
+		cout << a;
+		if (r <= 13) {
+			Sleep(300);
+		}
+		else
+		{
+			Sleep(50);
+		}
 	}
 }
 //Black | 0

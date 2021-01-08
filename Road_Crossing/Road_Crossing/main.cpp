@@ -8,7 +8,7 @@ int main() {
 	hidecursor();
 
 
-	mciSendString("play WeWillRockYou.mp3 repeat", NULL, 0, NULL);
+	mciSendString("play welcome.mp3 repeat", NULL, 0, NULL);
 	char character = '1';//male
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
@@ -34,11 +34,11 @@ int main() {
 		Yellow();
 		if (sound == 0) {
 			cout << "OFF";
-			mciSendString("pause  WeWillRockYou.mp3", NULL, 0, NULL);
+			mciSendString("pause  welcome.mp3", NULL, 0, NULL);
 		}
 		else {
 			cout << "ON";
-			mciSendString("play  WeWillRockYou.mp3 repeat", NULL, 0, NULL);
+			mciSendString("play  welcome.mp3 repeat", NULL, 0, NULL);
 		}
 
 		gotoXY(89, 6);
