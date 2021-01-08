@@ -124,9 +124,11 @@ string CGAME::getFileLocation() {
 	int H = Height - 7;
 	int cnt = 0;
 	int line = H + 2;
-	gotoXY(W, line-1); cout << "Input the file location" << endl;
+	LightCyan();
+	gotoXY (0, Height); cout << "Input the file path: " << endl;
+	LightGray();
 	while (a != 27) {
-		gotoXY(W + 2, line); cout << name << "                    ";
+		gotoXY(21, Height); cout << name << "                    ";
 		a = _getch();
 		if (a == 8 && name.size() > 0) {
 			name.pop_back();
@@ -134,9 +136,17 @@ string CGAME::getFileLocation() {
 		}
 		else if (a == 13) {
 			clean();
+			gotoXY(0, Height);
+			for (int i = 0; i < 120; i++) {
+				cout << " ";
+			}
+			gotoXY(0, Height+1);
+			for (int i = 0; i < 120; i++) {
+				cout << " ";
+			}
 			return name;
 		}
-		if (cnt > 23) line++;
+		
 		else {
 			name += a;
 			if (a != 8) cnt++;
@@ -144,6 +154,7 @@ string CGAME::getFileLocation() {
 	}
 }
 void CGAME::loadGame() {
+	LightGray();
 	clean();
 	ifstream fin;
 	int numberOfSave = 0;
@@ -188,6 +199,13 @@ void CGAME::loadGame() {
 						UpdateLevel();
 					}
 				}
+				else {
+					clean();
+					gotoXY(W + 1, H + 2); cout << "Invalid choice!!!!!";
+					Sleep(2000);
+					clean();
+					return;
+				}
 			}
 			clean();
 		}
@@ -206,8 +224,11 @@ void CGAME::saveGame(){
 	int W = Width + 6;
 	int H = Height - 5;
 	int cnt = 0;
+	string tmp = getFileLocation();
+	LightCyan();
 	gotoXY(W, H); cout << "Input the name of your file" << endl;
 	gotoXY(W, H + 1); cout << "(maximum 15 characters) : " << endl;
+	LightGray();
 	while (a != 27) {
 		gotoXY(W + 2, H + 2); cout << name << "                    ";
 		a = _getch();
@@ -216,7 +237,7 @@ void CGAME::saveGame(){
 			cnt--;
 		}
 		else if (a == 13) {
-			fout.open("SaveFiles.txt",fstream::app);
+			fout.open(tmp,fstream::app);
 			if (!fout.is_open()) {
 				gotoXY(W + 2, H + 4); cout << "Can not open file!";
 				Sleep(500);
@@ -372,16 +393,18 @@ void CGAME::EndGame(bool Win) {
 	mciSendString("stop  ingame.wav", NULL, 0, NULL);
 	system("cls");
 	if (Win) {
+		mciSendString("play  win.wav", NULL, 0, NULL);
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
-		cout << Art << endl;
+		cout << Art << endl;	
 		White();
 	}
 	else {
+		Red();
 		gotoXY(Width / 2, Height / 2);
-
-		cout << "You stuck at level " << curLevel << ".BETTER LUCK NEXT TIME! "<<endl;
+		cout << "You are stuck at level " << curLevel << ". BETTER LUCK NEXT TIME! "<<endl;
+		White();
 	}
 }
 void CGAME::loadLevel(int level) {
