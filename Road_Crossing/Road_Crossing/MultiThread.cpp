@@ -27,7 +27,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		}
 
 		MOVE = ' ';
-		if ( times % 150 > Stoptime-20) {
+		if ( times % 150 > Stoptime-10) {
 			pp->TrafficLight(false);
 			pp->updatePosAnimal();
 			pp->updatePosVehicle();
