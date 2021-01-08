@@ -4,33 +4,37 @@
 #include "CGame.h"
 
 class CreatorAnimal {
-private:
+protected:
     int x, y;
 public:
-    CreatorAnimal();
-    virtual ~CreatorAnimal();
+    CreatorAnimal(){};
+    CreatorAnimal(int tmpX, int tmpY){
+        x = tmpX;
+        y = tmpY;
+    }
+    virtual ~CreatorAnimal() {};
     virtual CANIMAL* factoryMethod() = 0;
 };
 
 class CreatorDinausor : public CreatorAnimal {
 public:
-    CreatorDinausor(int tmpX, int tmpY) {};
+    CreatorDinausor(int tmpX, int tmpY) : CreatorAnimal(tmpX,tmpY) {};
     ~CreatorDinausor() {};
-    CANIMAL* factoryMethod() 
+    CANIMAL* factoryMethod()
     {
-        CANIMAL* x = new CDINAUSOR();
-        return x;
+        CANIMAL* tmp = new CDINAUSOR(x,y);
+        return tmp;
     }
 };
 
 class CreatorBird : public CreatorAnimal {
 public:
-    CreatorBird(int tmpX, int tmpY) {};
+    CreatorBird(int tmpX, int tmpY) : CreatorAnimal(tmpX,tmpY) {};
     ~CreatorBird() {};
     CANIMAL* factoryMethod()
     {
-        CANIMAL* x = new CBIRD();
-        return x;
+        CANIMAL* tmp = new CBIRD(x,y);
+        return tmp;
     }
 };
 
