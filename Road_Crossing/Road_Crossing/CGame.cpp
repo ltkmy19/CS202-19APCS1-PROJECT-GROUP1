@@ -146,7 +146,7 @@ string CGAME::getFileLocation() {
 			}
 			return name;
 		}
-		
+
 		else {
 			name += a;
 			if (a != 8) cnt++;
@@ -336,61 +336,47 @@ void CGAME::updatePosVehicle() {
     Level* level = lv[curLevel-1];
     int a,b;
     for(int i = 0;i < level->AmountOfCar();i++){
-<<<<<<< HEAD
 		CreatorVehicle* createCar = NULL;
-=======
-		CreatorVehicle* create = NULL;
->>>>>>> 992653b724ff90b091da520c53a135522f7c1eac
         if(axh[i] == NULL || axh[i]->IsDone()){
             if(axh[i] != NULL) delete axh[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
 			if (a % 2 == 0) {
-<<<<<<< HEAD
 				createCar = new CreatorCar(Endlane, Finish + a * level->getDistance() - 1);
 				axh[i] = createCar->factoryMethod();
 			}
 			else {
 				createCar = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
 				axh[i] = createCar->factoryMethod();
-=======
 				create = new CreatorCar(Endlane, Finish + a * level->getDistance() - 1);
-				axh[i] = create->factoryMethod();
+				axh[i] = createCar->factoryMethod();
 			}
 			else {
 				create = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
-				axh[i] = create->factoryMethod();
->>>>>>> 992653b724ff90b091da520c53a135522f7c1eac
+				axh[i] = createCar->factoryMethod();
 			}
         }
         else axh[i]->Move(10,10);
     }
     for(int i = 0;i < level->AmountOfTruck();i++){
-<<<<<<< HEAD
 		CreatorVehicle* createTruck = NULL;
-=======
-		CreatorVehicle* create = NULL;
->>>>>>> 992653b724ff90b091da520c53a135522f7c1eac
         if(axt[i] == NULL || axt[i]->IsDone()){
             if(axt[i] != NULL) delete axt[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
 			if (a % 2 == 0) {
-<<<<<<< HEAD
 				createTruck = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
 				axt[i] = createTruck->factoryMethod();
 			}
 			else {
 				createTruck = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
 				axt[i] = createTruck->factoryMethod();
-=======
-				create = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
-				axt[i] = create->factoryMethod();
+				createTruck = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
+				axt[i] = createTruck->factoryMethod();
 			}
 			else {
-				create = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
-				axt[i] = create->factoryMethod();
->>>>>>> 992653b724ff90b091da520c53a135522f7c1eac
+				createTruck = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
+				axt[i] = createTruck->factoryMethod();
 			}
         }
         else axt[i]->Move(10,10);
@@ -452,7 +438,7 @@ void CGAME::EndGame(bool Win) {
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
-		cout << Art << endl;	
+		cout << Art << endl;
 		White();
 	}
 	else {
