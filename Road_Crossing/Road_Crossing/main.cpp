@@ -98,7 +98,8 @@ int main() {
 				Is_Enter = false;
 				break;
 			}
-			else if (GetAsyncKeyState(VK_RETURN) && Is_Enter == false)
+			//&& Is_Enter == false
+			else if (GetAsyncKeyState(VK_RETURN))
 			{
 
 				switch (pointer)
@@ -419,7 +420,7 @@ int main() {
 				}
 
 				}
-				break;
+				//break;
 
 			}
 

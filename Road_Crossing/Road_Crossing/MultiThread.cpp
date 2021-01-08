@@ -19,6 +19,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 			cout << Art << endl;
 			Sleep(200);
 			White();
+			delete pp;
 			exit(0);
 		/*	pp->EndGame(true);
 			alive = false;*/
