@@ -17,7 +17,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 			ifstream Reader("Win.txt");
 			string Art = getFileContents(Reader);
 			cout << Art << endl;
-			Sleep(200);
+			Sleep(4000);
 			White();
 			delete pp;
 			exit(0);
@@ -27,7 +27,7 @@ void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 		}
 
 		MOVE = ' ';
-		if ( times % 130 > Stoptime-20) {
+		if ( times % 130 > Stoptime-10) {
 			pp->TrafficLight(false);
 			pp->updatePosAnimal();
 			pp->updatePosVehicle();

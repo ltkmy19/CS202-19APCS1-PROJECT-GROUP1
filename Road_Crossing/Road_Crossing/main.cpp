@@ -400,7 +400,6 @@ int main() {
 				case 5:   //Quit
 				{
 					system("cls");
-					gotoXY(35, 10);
 					LightMagenta();
 					ifstream Reader("ByeBye.txt");
 					string Art = getFileContents(Reader);

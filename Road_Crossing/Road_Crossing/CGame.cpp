@@ -176,6 +176,7 @@ void CGAME::loadGame() {
 		if (fin.eof()) cout << "There is no save file!" << endl;
 		else {
 			while (!(fin.peek() == ifstream::traits_type::eof())) {
+				fin.ignore(100, '\n');
 				fin >> level;
 				fin.ignore(100, '\n');
 				getline(fin, name);
@@ -249,9 +250,9 @@ void CGAME::saveGame(){
 				Sleep(500);
 				return;
 			}
-            fout << curLevel << endl;
-			fout << name << endl;
 			fout << peopleType << endl;
+			fout << name << endl;
+			fout << curLevel << endl;
 			fout.close();
 			gotoXY(W + 2, H + 4); cout << "Save successfully!";
 			Sleep(2000);
