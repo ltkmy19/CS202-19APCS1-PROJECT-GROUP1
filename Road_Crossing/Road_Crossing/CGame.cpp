@@ -372,6 +372,7 @@ void CGAME::EndGame(bool Win) {
 	mciSendString("stop  ingame.wav", NULL, 0, NULL);
 	system("cls");
 	if (Win) {
+		mciSendString("play  win.wav", NULL, 0, NULL);
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
