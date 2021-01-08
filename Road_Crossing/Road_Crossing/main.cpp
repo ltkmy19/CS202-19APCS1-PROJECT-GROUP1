@@ -150,6 +150,7 @@ int main() {
 							}
 							else {
 								if (Is_move) {
+									mciSendString("play  ingame.wav", NULL, 0, NULL);
 									MOVE = press;
 								}
 
@@ -166,8 +167,6 @@ int main() {
 								return 0;
 							}
 						}
-						if (press != 'p')
-							mciSendString("play  ingame.wav", NULL, 0, NULL);
 					}
 
 					game.join();
