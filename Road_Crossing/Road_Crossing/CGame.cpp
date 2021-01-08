@@ -283,7 +283,7 @@ void CGAME::resumeGame(HANDLE){
 }
 
 bool CGAME::isCrashed(){
-	if (pp->ISCrashedBird(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashedDinausor(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashed(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashed(axt, lv[curLevel - 1]->AmountOfTruck())) {
+	if (pp->ISCrashedBird(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashedDinausor(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashedCar(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashedTruck(axt, lv[curLevel - 1]->AmountOfTruck())) {
 		return true;
 	}
 	return false;
@@ -336,22 +336,36 @@ void CGAME::updatePosVehicle() {
     Level* level = lv[curLevel-1];
     int a,b;
     for(int i = 0;i < level->AmountOfCar();i++){
+		CreatorVehicle* createCar = NULL;
         if(axh[i] == NULL || axh[i]->IsDone()){
             if(axh[i] != NULL) delete axh[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axh[i] = new CCAR(Endlane,Finish + a*level->getDistance()-1);
-            else axh[i] = new CCAR(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				createCar = new CreatorCar(Endlane, Finish + a * level->getDistance() - 1);
+				axh[i] = createCar->factoryMethod();
+			}
+			else {
+				createCar = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
+				axh[i] = createCar->factoryMethod();
+			}
         }
         else axh[i]->Move(10,10);
     }
     for(int i = 0;i < level->AmountOfTruck();i++){
+		CreatorVehicle* createTruck = NULL;
         if(axt[i] == NULL || axt[i]->IsDone()){
             if(axt[i] != NULL) delete axt[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axt[i] = new CTRUCK(Endlane,Finish + a*level->getDistance()-1);
-            else axt[i] = new CTRUCK(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				createTruck = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
+				axt[i] = createTruck->factoryMethod();
+			}
+			else {
+				createTruck = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
+				axt[i] = createTruck->factoryMethod();
+			}
         }
         else axt[i]->Move(10,10);
     }
@@ -361,31 +375,35 @@ void CGAME::updatePosAnimal() {
     Level* level = lv[curLevel-1];
     int a,b;
     for(int i = 0;i < level->AmountOfBird();i++){
-		CreatorAnimal* create = NULL;
+		CreatorAnimal* createBird = NULL;
         if(ac[i] == NULL || ac[i]->IsDone()){
             if(ac[i] != NULL) delete ac[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
 			if (a % 2 == 0) {
-				create = new CreatorBird(Endlane, Finish + a * level->getDistance() - 1);
-				ac[i] = create->factoryMethod();
+				createBird = new CreatorBird(Endlane, Finish + a * level->getDistance() - 1);
+				ac[i] = createBird->factoryMethod();
 			}
 			else {
-				create = new CreatorBird(Startlane, Finish + a * level->getDistance() - 1);
-				ac[i] = create->factoryMethod();
+				createBird = new CreatorBird(Startlane, Finish + a * level->getDistance() - 1);
+				ac[i] = createBird->factoryMethod();
 			}
         }
         else ac[i]->Move(10,10);
     }
     for(int i = 0;i < level->AmountOfDinasour();i++){
+		CreatorAnimal* createDina = NULL;
         if(akl[i] == NULL || akl[i]->IsDone()){
             if(akl[i] != NULL) delete akl[i];
             a = 1 + rand() % (level->getLane()-2);
-            b = rand()%7*12;
-            if(a % 2 == 0) \
-				akl[i] = new CDINAUSOR(Endlane,Finish + a*level->getDistance()-1);
-            else
-				akl[i] = new CDINAUSOR(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				createDina = new CreatorDinausor(Endlane, Finish + a * level->getDistance() - 1);
+				akl[i] = createDina->factoryMethod();
+			}
+			else {
+				createDina = new CreatorDinausor(Startlane, Finish + a * level->getDistance() - 1);
+				akl[i] = createDina->factoryMethod();
+			}
         }
         else akl[i]->Move(10,10);
     }

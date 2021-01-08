@@ -5,6 +5,7 @@
 #include "Traffic_Light.h"
 #include "CPeople.h"
 #include "CreatorAnimal.h"
+#include "CreatorVehicle.h"
 #include "CVehicle.h"
 #include "Console.h"
 #include <stdio.h>
@@ -72,8 +73,8 @@ public:
 class CGAME{
 private:
     char peopleType;
-	CTRUCK* axt[10];
-	CCAR* axh [10];
+	CVEHICLE* axt[10];
+	CVEHICLE* axh [10];
 	CANIMAL* akl[10];
 	CANIMAL* ac[10];
 	Level* lv[10];
