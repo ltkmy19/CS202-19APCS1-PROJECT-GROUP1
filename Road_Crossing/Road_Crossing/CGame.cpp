@@ -12,8 +12,8 @@ CGAME::CGAME(char ppType){
 	lv[5] = new Level(7, 4, 2, 3, 3, 3, 3);
 	lv[6] = new Level(7, 4, 3, 3, 3, 3, 3);
 	lv[7] = new Level(7, 4, 4, 4, 4, 4, 4);
-	lv[8] = new Level(9, 3, 3, 6, 5, 4, 4);
-	lv[9] = new Level(9, 3, 4, 7, 7, 7, 7);
+	lv[8] = new Level(9, 3, 3, 5, 5, 4, 4);
+	lv[9] = new Level(9, 3, 4, 5, 5, 5, 5);
 	curLevel = 1;
 
 }
@@ -146,7 +146,7 @@ string CGAME::getFileLocation() {
 			}
 			return name;
 		}
-
+		
 		else {
 			name += a;
 			if (a != 8) cnt++;
@@ -426,7 +426,7 @@ void CGAME::EndGame(bool Win) {
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
-		cout << Art << endl;
+		cout << Art << endl;	
 		White();
 	}
 	else {
