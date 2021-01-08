@@ -177,20 +177,34 @@ int main() {
 				case 1:  //Load Game
 				{
 					system("cls");
+					LightMagenta();
+					ifstream Reader("TextGraphic.txt");
+					string Art = getFileContents(Reader);
+					cout << Art << endl;
+					gotoXY(80, 1);
+					Cyan();
+					cout << "SCOREBOARD" << endl;
+					gotoXY(80, 3);
+					Red();
+					string Filename;
+					cout << "Input File name: ";
+					gotoXY(80, 4);
+					White();
+					getline(cin, Filename);
+					system("cls");
 					gotoXY(80, 1);
 					Cyan();
 					cout << "SCOREBOARD" << endl;
 					int pos = 3;
 					LightMagenta();
-					ifstream Reader("TextGraphic.txt");
-					string Art = getFileContents(Reader);
+					
 					cout << Art << endl;
 					gotoXY(80, pos);
 					ifstream f;
 					int saveno = 0;
 					vector<FileSave*> File;
 					FileSave* Filetemp;
-					f.open("SaveFile.txt");
+					f.open(Filename);
 					int level; string name; char cha;
 				
 					if(!f.fail()) {
