@@ -98,7 +98,7 @@ int main() {
 				Is_Enter = false;
 				break;
 			}
-			else if (GetAsyncKeyState(VK_RETURN) && Is_Enter==false)
+			else if (GetAsyncKeyState(VK_RETURN) && Is_Enter == false)
 			{
 
 				switch (pointer)
@@ -129,7 +129,7 @@ int main() {
 								pp->exitGame(game.native_handle());
 								alive = false;
 								mciSendString("stop ingame.wav", NULL, 0, NULL);
-							
+
 							}
 							else if (press == 'p') {
 								if (Is_move) {
@@ -209,49 +209,49 @@ int main() {
 					FileSave* Filetemp;
 					f.open(Filename);
 					int level; string name; char cha;
-					if(!f.fail()) {
+					if (!f.fail()) {
 						while (!f.eof()) {
 							f >> cha;
 							f.ignore();
 							getline(f, name);
 							f >> level;
 							f.ignore();
-							Filetemp= new FileSave(level, name, cha);
+							Filetemp = new FileSave(level, name, cha);
 							File.push_back(Filetemp);
-							saveno ++ ; 
+							saveno++;
 							White();
 						}
 						f.close();
 
-						for (int i = 0; i < saveno; i++) {
+						for (int i = 0; i < saveno - 1; i++) {
 							gotoXY(80, pos);
 							LightGray();
 							cout << i + 1 << ". " << File[i]->getName() << " " << File[i]->getLevel() << " ";
-							if(File[i]->getCharacter()=='2'){
+							if (File[i]->getCharacter() == '2') {
 								cout << "FEMALE";
 							}
-							else{
+							else {
 								cout << "MALE";
 							}
-							
+
 							pos++;
 						}
 						int choose;
 						choose = _getch();
 						choose -= '0';
 						if (GetAsyncKeyState(VK_ESCAPE) != true) {
-							
+
 							if (choose <= saveno && choose > 0) {
-								level = File[choose-1]->getLevel();
+								level = File[choose - 1]->getLevel();
 								cha = File[choose - 1]->getCharacter();
-								character = cha;								
+								character = cha;
 							}
 						}
 						else {
 							continue;
 						}
 					}
-					else{
+					else {
 						f.close();
 						level = 1;
 
@@ -334,34 +334,34 @@ int main() {
 				{
 					system("cls");
 
-						LightMagenta();
-						ifstream Reader("TextGraphic.txt");
+					LightMagenta();
+					ifstream Reader("TextGraphic.txt");
 
-						string Art = getFileContents(Reader);
+					string Art = getFileContents(Reader);
 
-						cout << Art << endl;
-						gotoXY(76, 1);
-						Cyan();
-						cout << "CHARACTER" << endl;
-						int posx = 75;
-						int posy = 4;
-						White();
-						CPEOPLE male(posx, posy, '1');
-						male.Draw(posx, posy, '1');
-						gotoXY(posx - 1, posy + 3);
+					cout << Art << endl;
+					gotoXY(76, 1);
+					Cyan();
+					cout << "CHARACTER" << endl;
+					int posx = 75;
+					int posy = 4;
+					White();
+					CPEOPLE male(posx, posy, '1');
+					male.Draw(posx, posy, '1');
+					gotoXY(posx - 1, posy + 3);
 
-						cout << "[1]";
+					cout << "[1]";
 
-						posx = 85;
-						posy = 4;
-						White();
-						CPEOPLE female(posx, posy, '2');
-						female.Draw(posx, posy, '2');
-						gotoXY(posx - 1, posy + 3);
-						cout << "[2]";
-						FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-						character = _getch();
-						Is_Enter = false;
+					posx = 85;
+					posy = 4;
+					White();
+					CPEOPLE female(posx, posy, '2');
+					female.Draw(posx, posy, '2');
+					gotoXY(posx - 1, posy + 3);
+					cout << "[2]";
+					FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+					character = _getch();
+					Is_Enter = false;
 					break;
 				}
 				case 4:  //Tutorial
@@ -405,7 +405,7 @@ int main() {
 					string Art = getFileContents(Reader);
 					cout << Art << endl;
 					White();
-					
+
 					return 0;
 					Is_Enter = false;
 
@@ -422,10 +422,10 @@ int main() {
 				break;
 
 			}
-			
+
 			_getch();
 
-			
+
 		}
 
 		Sleep(150);

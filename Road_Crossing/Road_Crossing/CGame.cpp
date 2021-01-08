@@ -397,12 +397,14 @@ void CGAME::EndGame(bool Win) {
 		Red();
 		ifstream Reader("Win.txt");
 		string Art = getFileContents(Reader);
-		cout << Art << endl;
+		cout << Art << endl;	
 		White();
 	}
 	else {
+		Red();
 		gotoXY(Width / 2, Height / 2);
 		cout << "You are stuck at level " << curLevel << ". BETTER LUCK NEXT TIME! "<<endl;
+		White();
 	}
 }
 void CGAME::loadLevel(int level) {
