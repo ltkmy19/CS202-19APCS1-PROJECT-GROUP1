@@ -2,7 +2,8 @@
 
 void RunGame(CGAME*& pp, bool& Is_move, int& times, bool& alive, char& MOVE) {
 	while (alive) {
-		times++;
+		if(Is_move)
+			times++;
 		if (!Is_move) {
 			continue;
 		}
