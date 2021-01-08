@@ -139,6 +139,7 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="CPeople.h" />
     <ClInclude Include="CreatorAnimal.h" />
+    <ClInclude Include="CreatorVehicle.h" />
     <ClInclude Include="CVehicle.h" />
     <ClInclude Include="Files.h" />
     <ClInclude Include="MultiThread.h" />
