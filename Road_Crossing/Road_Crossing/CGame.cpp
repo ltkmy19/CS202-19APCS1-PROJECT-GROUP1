@@ -176,11 +176,12 @@ void CGAME::loadGame() {
 		if (fin.eof()) cout << "There is no save file!" << endl;
 		else {
 			while (!(fin.peek() == ifstream::traits_type::eof())) {
-				fin.ignore(100, '\n');
-				fin >> level;
-				fin.ignore(100, '\n');
-				getline(fin, name);
+			//	fin.ignore(100, '\n');
 				fin.get(peopleType);
+				fin.ignore(100, '\n');
+
+				getline(fin, name);
+				fin >> level;
 				fin.ignore(100, '\n');
 				if (File[numberOfSave] != NULL) {
 					delete File[numberOfSave];

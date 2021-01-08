@@ -98,8 +98,8 @@ int main() {
 				Is_Enter = false;
 				break;
 			}
-			//&& Is_Enter == false
-			else if (GetAsyncKeyState(VK_RETURN))
+			//&& 
+			else if (GetAsyncKeyState(VK_RETURN)&&Is_Enter == false)
 			{
 
 				switch (pointer)
@@ -176,7 +176,7 @@ int main() {
 					}
 
 					game.join();
-					Is_Enter = false;
+					Is_Enter = true;
 					break;
 				}
 				case 1:  //Load Game
@@ -419,7 +419,7 @@ int main() {
 				}
 
 				}
-				//break;
+				break;
 
 			}
 
