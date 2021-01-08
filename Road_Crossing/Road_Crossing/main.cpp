@@ -119,6 +119,7 @@ int main() {
 					while (alive == true) {
 						press = _getch();
 						press = tolower(press);
+						mciSendString("pause  ingame.wav", NULL, 0, NULL);
 						if (!pp->getPeople()->isDead()) {
 							if (GetAsyncKeyState(VK_ESCAPE)) {
 								pp->exitGame(game.native_handle());
@@ -134,6 +135,7 @@ int main() {
 								else {
 									Is_move = true;
 									pp->resumeGame(game.native_handle());
+									mciSendString("play  ingame.wav", NULL, 0, NULL);
 								}
 
 							}
@@ -165,6 +167,8 @@ int main() {
 								return 0;
 							}
 						}
+						if (press != 'p')
+							mciSendString("play  ingame.wav", NULL, 0, NULL);
 					}
 
 					game.join();
