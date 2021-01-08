@@ -18,8 +18,8 @@ public:
 	void Left(int x);
 	void Right(int x);
 	void Down(int x);
-	bool ISCrashed(CCAR** a, int n);
-	bool ISCrashed(CTRUCK** b, int n);
+	bool ISCrashedCar(CVEHICLE** a, int n);
+	bool ISCrashedTruck(CVEHICLE** b, int n);
 	bool ISCrashedDinausor(CANIMAL** a, int n);
 	bool ISCrashedBird(CANIMAL** b, int n);
 	bool isFinish(int Finish);

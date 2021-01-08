@@ -209,7 +209,7 @@ void CPEOPLE:: killPeople() {
 //	return false;
 //}
 
-bool CPEOPLE::ISCrashed(CCAR** a, int n) {
+bool CPEOPLE::ISCrashedCar(CVEHICLE** a, int n) {
 	for (int i = 0; i < n; ++i) {
 		if (a[i] == NULL) {
 			continue;
@@ -223,7 +223,7 @@ bool CPEOPLE::ISCrashed(CCAR** a, int n) {
 	}
 	return false;
 }
-bool CPEOPLE::ISCrashed(CTRUCK** b, int n) {
+bool CPEOPLE::ISCrashedTruck(CVEHICLE** b, int n) {
 	for (int i = 0; i < n; ++i) {
 		if (b[i] == NULL) {
 			continue;

@@ -283,7 +283,7 @@ void CGAME::resumeGame(HANDLE){
 }
 
 bool CGAME::isCrashed(){
-	if (pp->ISCrashedBird(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashedDinausor(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashed(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashed(axt, lv[curLevel - 1]->AmountOfTruck())) {
+	if (pp->ISCrashedBird(ac, lv[curLevel - 1]->AmountOfBird())|| pp->ISCrashedDinausor(akl, lv[curLevel - 1]->AmountOfDinasour())|| pp->ISCrashedCar(axh, lv[curLevel - 1]->AmountOfCar())||pp->ISCrashedTruck(axt, lv[curLevel - 1]->AmountOfTruck())) {
 		return true;
 	}
 	return false;
@@ -336,22 +336,36 @@ void CGAME::updatePosVehicle() {
     Level* level = lv[curLevel-1];
     int a,b;
     for(int i = 0;i < level->AmountOfCar();i++){
+		CreatorVehicle* create = NULL;
         if(axh[i] == NULL || axh[i]->IsDone()){
             if(axh[i] != NULL) delete axh[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axh[i] = new CCAR(Endlane,Finish + a*level->getDistance()-1);
-            else axh[i] = new CCAR(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				create = new CreatorCar(Endlane, Finish + a * level->getDistance() - 1);
+				axh[i] = create->factoryMethod();
+			}
+			else {
+				create = new CreatorCar(Startlane, Finish + a * level->getDistance() - 1);
+				axh[i] = create->factoryMethod();
+			}
         }
         else axh[i]->Move(10,10);
     }
     for(int i = 0;i < level->AmountOfTruck();i++){
+		CreatorVehicle* create = NULL;
         if(axt[i] == NULL || axt[i]->IsDone()){
             if(axt[i] != NULL) delete axt[i];
             a = 1 + rand() % (level->getLane()-2);
             b = 10;
-            if(a % 2) axt[i] = new CTRUCK(Endlane,Finish + a*level->getDistance()-1);
-            else axt[i] = new CTRUCK(Startlane,Finish + a*level->getDistance()-1);
+			if (a % 2 == 0) {
+				create = new CreatorTruck(Endlane, Finish + a * level->getDistance() - 1);
+				axt[i] = create->factoryMethod();
+			}
+			else {
+				create = new CreatorTruck(Startlane, Finish + a * level->getDistance() - 1);
+				axt[i] = create->factoryMethod();
+			}
         }
         else axt[i]->Move(10,10);
     }
