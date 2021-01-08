@@ -110,7 +110,7 @@ void CGAME::resetGame() {
     drawGame();
 }
 void CGAME::exitGame(HANDLE) {
-
+	
 }
 void CGAME::startGame() {
     drawGame();

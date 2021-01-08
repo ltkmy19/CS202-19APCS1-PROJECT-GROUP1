@@ -8,7 +8,7 @@ int main() {
 	hidecursor();
 
 
-	mciSendString("play welcome.mp3 repeat", NULL, 0, NULL);
+	mciSendString("play welcome.wav", NULL, 0, NULL);
 	char character = '1';//male
 
 	string Menu[6] = { "--New Game--", "--Load Game--", "--Sound--", "--Character--","--Tutorial--", "--Quit--" };
@@ -34,11 +34,11 @@ int main() {
 		Yellow();
 		if (sound == 0) {
 			cout << "OFF";
-			mciSendString("pause  welcome.mp3", NULL, 0, NULL);
+			mciSendString("pause  welcome.wav", NULL, 0, NULL);
 		}
 		else {
 			cout << "ON";
-			mciSendString("play  welcome.mp3 repeat", NULL, 0, NULL);
+			mciSendString("play  welcome.wav", NULL, 0, NULL);
 		}
 
 		gotoXY(89, 6);
@@ -101,7 +101,7 @@ int main() {
 				{
 				case 0: //New Game
 				{
-					mciSendString("stop  welcome.mp3", NULL, 0, NULL);
+					mciSendString("stop  welcome.wav", NULL, 0, NULL);
 					system("cls");
 					ProgressBar();
 					system("cls");
@@ -150,7 +150,7 @@ int main() {
 								}
 							}
 							else {
-								if (Is_move) {
+								if (alive) {
 									mciSendString("play  ingame.wav", NULL, 0, NULL);
 									MOVE = press;
 								}
@@ -262,7 +262,7 @@ int main() {
 					Is_move = true;
 					MOVE = ' ';
 					ti = Stoptime;
-					mciSendString("stop  welcome.mp3", NULL, 0, NULL);
+					mciSendString("stop  welcome.wav", NULL, 0, NULL);
 					mciSendString("play  ingame.wav", NULL, 0, NULL);
 					pp->startGame();
 					thread game(RunGame, ref(pp), ref(Is_move), ref(ti), ref(alive), ref(MOVE));
