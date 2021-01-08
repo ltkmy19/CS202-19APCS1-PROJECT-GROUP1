@@ -47,7 +47,7 @@ public:
     FileSave(int lv, string name, char character) {
         this->level = lv;
         this->name = name;
-        this->character=character;
+        this->character = character;
     }
 };
 
@@ -122,7 +122,7 @@ public:
     void deleteGame();
     int getSpeed() { return lv[curLevel - 1]->getSpeed(); }
     void loadLevel(int level);
-
+    string getFileLocation();
 };
 
 

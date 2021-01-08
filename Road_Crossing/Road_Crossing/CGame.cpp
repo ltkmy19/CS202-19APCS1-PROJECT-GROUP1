@@ -110,13 +110,39 @@ void CGAME::resetGame() {
     drawGame();
 }
 void CGAME::exitGame(HANDLE) {
-	
+
 }
 void CGAME::startGame() {
     drawGame();
 }
 
-
+string CGAME::getFileLocation() {
+	clean();
+	string name = "";
+	char a = 'a';
+	int W = Width + 6;
+	int H = Height - 7;
+	int cnt = 0;
+	int line = H + 2;
+	gotoXY(W, line-1); cout << "Input the file location" << endl;
+	while (a != 27) {
+		gotoXY(W + 2, line); cout << name << "                    ";
+		a = _getch();
+		if (a == 8 && name.size() > 0) {
+			name.pop_back();
+			cnt--;
+		}
+		else if (a == 13) {
+			clean();
+			return name;
+		}
+		if (cnt > 23) line++;
+		else {
+			name += a;
+			if (a != 8) cnt++;
+		}
+	}
+}
 void CGAME::loadGame() {
 	clean();
 	ifstream fin;
@@ -124,42 +150,51 @@ void CGAME::loadGame() {
 	int W = Width + 6;
 	int H = Height - 5;
 	int level = 0, line = H;
-	string name = "";
-	FileSave* tmp = nullptr;
-	fin.open("SaveFiles.txt");
+	string name = "",file = "";
+	char peopleType = 1;
+	fin.open(getFileLocation());
 	if (!fin.is_open()) {
-		gotoXY(W + 2, H + 4); cout << "Can not open file!";
-		Sleep(500);
+		gotoXY(W + 2, H + 2); cout << "Can not open file!";
+		Sleep(2000);
 		clean();
 		return;
 	}
 	else {
 		if (fin.eof()) cout << "There is no save file!" << endl;
 		else {
-			while (!fin.eof()) {
+			while (!(fin.peek() == ifstream::traits_type::eof())) {
 				fin >> level;
-				fin.ignore(1);
+				fin.ignore(100, '\n');
 				getline(fin, name);
 				fin.get(peopleType);
-				if (tmp != NULL) delete tmp;
-				tmp = new FileSave(level, name);
-				File[numberOfSave] = (tmp);
+				fin.ignore(100, '\n');
+				File[numberOfSave] = new FileSave(level, name, peopleType);
 				gotoXY(W+2, line);
 				cout << numberOfSave + 1 << ". " << File[numberOfSave]->getName() << " (Level: " << File[numberOfSave]->getLevel() << ")";
-				numberOfSave++;
-				line++;
+				++numberOfSave;
+				++line;
 			}
 			char type = _getch();
 			if (type != 27) {
 				int a = type - '0';
 				if (a > 0 && a <= numberOfSave) {
 					this->curLevel = File[a-1]->getLevel() - 1;
-					UpdateLevel();
+					this->peopleType = File[a - 1]->getCharacter();
+					if (curLevel == 0) {
+						curLevel++;
+						drawGame();
+					}
+					else {
+						UpdateLevel();
+					}
 				}
 			}
+			clean();
 		}
 		fin.close();
 	}
+	gotoXY(W + 2, H + 2); cout << "Press P to resume saved game";
+	Sleep(2000);
 	clean();
 }
 
@@ -181,15 +216,15 @@ void CGAME::saveGame(){
 			cnt--;
 		}
 		else if (a == 13) {
-			fout.open("SaveFile.txt",fstream::app);
+			fout.open("SaveFiles.txt",fstream::app);
 			if (!fout.is_open()) {
 				gotoXY(W + 2, H + 4); cout << "Can not open file!";
 				Sleep(500);
 				return;
 			}
-            fout << peopleType << endl;
+            fout << curLevel << endl;
 			fout << name << endl;
-			fout << curLevel << endl;
+			fout << peopleType << endl;
 			fout.close();
 			gotoXY(W + 2, H + 4); cout << "Save successfully!";
 			Sleep(2000);
@@ -328,8 +363,8 @@ bool CGAME::isFinish(){
     return (curLevel > Max_level) ? true : false;
 }
 void CGAME::UpdateLevel() {
-    deleteGame();
-    ++curLevel;
+	deleteGame();
+	curLevel++;
     if(!isFinish()) drawGame();
 }
 
