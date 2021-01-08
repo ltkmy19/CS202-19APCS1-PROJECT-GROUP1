@@ -1,7 +1,7 @@
 #ifndef _CreatorAnimal_h_
 #define _CreatorAnimal_h_
 
-#include "CGame.h"
+#include "CAnimal.h"
 
 class CreatorAnimal {
 protected:
